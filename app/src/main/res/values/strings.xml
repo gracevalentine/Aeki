@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">MyAeki</string>
+    <string name="hello_blank_fragment">hahaha</string>
+    <!-- Todo: Top Nav Bar -->
+
+    <string name="nav_top_back">Kembali</string>
+    <string name="nav_top_share">Bagikan</string>
+    <string name="nav_top_search">Cari</string>
+
+    <!-- Todo: Content -->
+    <string name="product_series">Oftast</string>
+    <!--    <string name="product_series_bottom">Oftast</string>-->
+    <string name="product_description">piring, putih, 25 cm</string>
+    <string name="product_currency">Rp. </string>
+    <string name="product_price">%1$d</string>
+    <string name="product_purchase_count">%1$d orang telah membeli produk ini</string>
+    <string name="stock_info_title">Stok tersedia %1$d di %2$s</string>
+    <string name="icon_desc"></string>
+    <string name="product_main_features">Fitur utama</string>
+    <string name="product_main_features_detail">Peralatan makan ini memiliki tampilan dan
+        kesan sama seperti porselen tulang namun terbuat dari kaca tempered. Artinya kami
+        dapat menekan harga dan Anda mendapatkan produk yang elegan dan berkilau - dengan
+        biaya lebih rendah.</string>
+    <!--    <string name="product_spec">Spesifikasi</string>-->
+    <string name="product_size_weight">Ukuran &amp; berat paket</string>
+    <string name="product_spec_length">Panjang:</string>
+    <string name="product_spec_length_detail">%1$d cm</string>
+    <string name="product_spec_diameter">Diameter:</string>
+    <string name="product_spec_diameter_detail">%1$d cm</string>
+    <string name="product_spec_volume">Volume per paket:</string>
+    <string name="product_spec_volume_detail">%1$.2f l</string>
+    <string name="product_spec_gross_weight">Berat kotor:</string>
+    <string name="product_spec_gross_weight_detail">%1$.2f kg</string>
+    <string name="product_spec_net_weight">Berat bersih:</string>
+    <string name="product_spec_net_weight_detail">%1$.2f kg</string>
+
+    <string name="product_materials">Bahan</string>
+    <string name="product_materials_detail">Kaca tempered oval</string>
+    <string name="product_care_instructions">Petunjuk perawatan</string>
+    <string name="product_care_instructions_detail">Aman untuk microwave. Aman untuk
+        mesin cuci</string>
+    <string name="product_adds_info">Informasi tambahan</string>
+    <string name="product_info_benefit">Manfaat</string>
+    <string name="product_info_benefit_detail">Anda bisa menggunakan piring ini sebagai
+    tutup yang praktis untuk mangkuk saji dalam seri yang sama. Terbuat dari kaca temper 
+        untuk menambah kekuatan dan daya tahan. Aman untuk mesin pencuci piring dan 
+        microwave, sehingga mudah dibersihkan dan dipanaskan kembali.</string>
+    <string name="product_info_important_note">Penting untuk diketahui</string>
+    <string name="product_info_important_note_detail">Hindari memaparkan kaca temper
+        terhadap perubahan suhu yang tiba-tiba, misalnya saat meletakkan piring dingin ke dalam
+        microwave, karena dapat menyebabkan kerusakan mendadak. Cuci produk lebih dulu sebelum menggunakannya. Bahan dalam produk ini dapat didaur ulang. Silahkan periksa aturan daur ulang di komunitas Anda dan apakah ada fasilitas daur ulang di daerah AndaPenting untuk diketahui</string>
+    <string name="product_desainer">Henrik Preutz</string>
+    <string name="product_similar">Produk Serupa</string>
+
+    <!-- Todo: Bottom Nav Bar -->
+    <string name="nav_bottom_home">Beranda</string>
+    <string name="nav_bottom_inspo">Inspirasi</string>
+    <string name="nav_bottom_cart">Keranjang</string>
+    <string name="nav_bottom_account">Akun</string>
+
+    <!-- Todo: Bottom Nav Bar -->
+    <string name="home_fragment">Home</string>
+</resources>

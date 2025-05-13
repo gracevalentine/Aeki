@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "969059547144",
+    "project_id": "myaeki",
+    "storage_bucket": "myaeki.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969059547144:android:8264ad7e7ae5201c3779bd",
+        "android_client_info": {
+          "package_name": "com.example.myaeki"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrJOvsLziAcvfcGbtbENML93Pn25VLEpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

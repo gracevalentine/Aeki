@@ -1,0 +1,503 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Top Toolbar -->
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Konten scrollable di tengah -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <!-- 1. Gambar Produk -->
+            <ImageView
+                android:id="@+id/productImage"
+                android:layout_width="match_parent"
+                android:layout_height="380dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/piring" />
+
+            <!-- 2. Nama Series Product -->
+            <TextView
+                android:id="@+id/productSeries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/mplus1pbold"
+                android:text="@string/product_series"
+                android:textAllCaps="true"
+                android:textSize="15sp" />
+
+            <!-- 3. Deskripsi Produk -->
+            <TextView
+                android:id="@+id/productDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-3dp"
+                android:fontFamily="@font/mplus1pregular"
+                android:text="@string/product_description"
+                android:textSize="11sp" />
+
+            <!-- 4. Harga -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/rp_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="-5dp"
+                    android:fontFamily="@font/mplus1pmedium"
+                    android:text="@string/product_currency"
+                    android:textColor="#000000"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:fontFamily="@font/mplus1pextrabold"
+                    android:text="@string/product_price"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <!-- 5. Banyak orang yang sudah beli -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/peopleIcon"
+                    android:layout_width="25.1dp"
+                    android:layout_height="18dp"
+                    android:contentDescription="@string/icon_desc"
+                    android:src="@drawable/ic_people_alt_24" />
+
+                <TextView
+                    android:id="@+id/peopleBought"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/mplus1pmedium"
+                    android:text="@string/product_purchase_count"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- 6. Garis Abu -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="#D3D3D3" />
+
+            <!-- 7. Stok Tersedia, dengan Popup untuk List Toko -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="28dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/stockAvailable"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/mplus1pextrabold"
+                    android:text="@string/stock_info_title"
+                    android:textSize="11sp" />
+
+                <ImageView
+                    android:id="@+id/stockArrow"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:contentDescription="@string/icon_desc"
+                    android:src="@drawable/ic_arrow_forward_24"
+                    android:onClick="showStorePopup"/> <!-- Tombol untuk memicu popup -->
+            </LinearLayout>
+
+            <!-- 8. Garis Abu -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D3D3D3" />
+
+            <!-- 10. Fitur Utama -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="28dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/mainFeatures"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/mplus1pbold"
+                    android:text="@string/product_main_features"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <!-- 10a. Fitur Utama detail -->
+                <TextView
+                    android:id="@+id/mainFeaturesDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/mplus1pregular"
+                    android:justificationMode="inter_word"
+                    android:text="@string/product_main_features_detail"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/sizeWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/mplus1pbold"
+                    android:text="@string/product_size_weight"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <!-- 10b. ukuran dan berat paket -->
+                <!-- panjang-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/specLength"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/mplus1pregular"
+                        android:justificationMode="inter_word"
+                        android:text="@string/product_spec_length"
+                        android:textColor="@color/black"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/specLengthDetail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/mplus1pregular"
+                        android:justificationMode="inter_word"
+                        android:text="@string/product_spec_length_detail"
+                        android:textColor="@color/black"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- diameter-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/specDiameter"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/mplus1pregular"
+                        android:justificationMode="inter_word"
+                        android:text="@string/product_spec_diameter"
+                        android:textColor="@color/black"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/specDiameterDetail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/mplus1pregular"
+                        android:justificationMode="inter_word"
+                        android:text="@string/product_spec_diameter_detail"
+                        android:textColor="@color/black"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- volume-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/specVolume"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/mplus1pregular"
+                        android:justificationMode="inter_word"
+                        android:text="@string/product_spec_volume"
+                        android:textColor="@color/black"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/specVolumeDetail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/mplus1pregular"
+                        android:justificationMode="inter_word"
+                        android:text="@string/product_spec_volume_detail"
+                        android:textColor="@color/black"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- berat kotor -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/specGrossWeight"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/mplus1pregular"
+                        android:justificationMode="inter_word"
+                        android:text="@string/product_spec_gross_weight"
+                        android:textColor="@color/black"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/specGrossWeightDetail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/mplus1pregular"
+                        android:justificationMode="inter_word"
+                        android:text="@string/product_spec_gross_weight_detail"
+                        android:textColor="@color/black"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- berat bersih -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/specNetWeight"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/mplus1pregular"
+                        android:justificationMode="inter_word"
+                        android:text="@string/product_spec_net_weight"
+                        android:textColor="@color/black"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/specNetWeightDetail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/mplus1pregular"
+                        android:justificationMode="inter_word"
+                        android:text="@string/product_spec_net_weight_detail"
+                        android:textColor="@color/black"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- 11. Garis Abu -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D3D3D3" />
+
+            <!-- 12. Bahan -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="28dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/material"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/mplus1pbold"
+                    android:text="@string/product_materials"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/materialDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mplus1pregular"
+                    android:justificationMode="inter_word"
+                    android:text="@string/product_materials_detail"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- 13. Garis Abu -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D3D3D3" />
+
+            <!-- 14. Petunjuk Perawatan -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="28dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/careInstructions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/mplus1pbold"
+                    android:text="@string/product_care_instructions"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/careInstructionsDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mplus1pregular"
+                    android:justificationMode="inter_word"
+                    android:text="@string/product_care_instructions_detail"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- 15. Garis Abu -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D3D3D3" />
+
+            <!-- 16. Info Tambahan -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="28dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/addsInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/mplus1pbold"
+                    android:text="@string/product_adds_info"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+                <!-- benefit-->
+                <TextView
+                    android:id="@+id/addsInfoBenefit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/mplus1pbold"
+                    android:text="@string/product_info_benefit"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/addsInfoBenefitDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/mplus1pregular"
+                    android:justificationMode="inter_word"
+                    android:text="@string/product_info_benefit_detail"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
+
+                <!-- penting untuk diketahui-->
+                <TextView
+                    android:id="@+id/addsInfoImportantNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
+                    android:fontFamily="@font/mplus1pbold"
+                    android:text="@string/product_info_important_note"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/addsInfoImportantNoteDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mplus1pregular"
+                    android:justificationMode="inter_word"
+                    android:text="@string/product_info_important_note_detail"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- 17. Garis Abu -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D3D3D3" />
+
+            <!-- 18. Produk Serupa -->
+            <TextView
+                android:id="@+id/similarProducts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/product_similar"
+                android:textSize="16sp"
+                android:fontFamily="@font/mplus1pbold" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <include
+        android:id="@+id/bottomNavView"
+        layout="@layout/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
