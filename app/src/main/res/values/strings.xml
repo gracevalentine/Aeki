@@ -7,6 +7,18 @@
     <string name="nav_top_share">Bagikan</string>
     <string name="nav_top_search">Cari</string>
 
+    <!-- Todo: signin dan signup -->
+    <string name="app_name">LoginorSignin</string>
+    <string name="welcome">Selamat datang di ÆKI</string>
+    <string name="pendaftaran">Daftar atau masuk untuk melihat list belanja Anda, pembelian, reward atau lainnya</string>
+    <string name="inputNoHp">Masukkan nomor hp tanpa awalan 0</string>
+    <string name="forgotPW">Lupa kata sandi?</string>
+    <string name="signIn">Masuk</string>
+    <string name="signUp">Daftar</string>
+    <string name="loginWarning">Pelanggan wajib untuk melakukan login terlebih dahulu untuk melanjutkan</string>
+    <string name="register">Buat Akun</string>
+    <string name="textRegister">Isi semua kolom untuk membuat akun ÆKI \n Semua kolom wajib diisi</string>
+
     <!-- Todo: Content -->
     <string name="product_series">Oftast</string>
     <!--    <string name="product_series_bottom">Oftast</string>-->
