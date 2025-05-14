@@ -1,5 +1,5 @@
 <resources>
-    <!--    <string name="app_name">MyAeki</string>-->
+    <string name="app_name">MyAeki</string>
     <string name="hello_blank_fragment">hahaha</string>
 
     <!-- NOTE: Top Nav Bar -->
@@ -8,7 +8,7 @@
     <string name="nav_top_search">Cari</string>
 
     <!-- NOTE: signin dan signup -->
-    <string name="app_name">LoginorSignin</string>
+<!--    <string name="app_name">LoginorSignin</string>-->
     <string name="welcome">Selamat datang di ÆKI</string>
     <string name="pendaftaran">Daftar atau masuk untuk melihat list belanja Anda, pembelian, reward atau lainnya</string>
     <string name="input_email_placeholder">contoh@email.com atau 821012345678</string>
