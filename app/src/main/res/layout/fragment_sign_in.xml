@@ -22,19 +22,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/mplus1pbold"
             android:text="@string/welcome"
             android:textColor="#000000"
-            android:textSize="20sp"
-            android:fontFamily="@font/mplus1pbold"/>
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/mplus1pregular"
             android:text="@string/pendaftaran"
             android:textColor="#666666"
-            android:textSize="14sp"
-            android:fontFamily="@font/mplus1pregular"/>
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/etEmailPhone"
@@ -42,11 +42,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:background="@drawable/edit_text_background"
+            android:fontFamily="@font/mplus1pregular"
             android:hint="@string/input_email_placeholder"
             android:inputType="textEmailAddress|phone"
             android:padding="12dp"
-            android:fontFamily="@font/mplus1pregular"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -54,7 +54,7 @@
             android:layout_marginTop="4dp"
             android:text="@string/inputNoHp"
             android:textColor="#888888"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -67,11 +67,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:background="@drawable/edit_text_background"
-                android:hint="Kata Sandi"
+                android:fontFamily="@font/mplus1pregular"
+                android:hint="@string/input_password_placeholder"
                 android:inputType="textPassword"
                 android:padding="12dp"
-                android:fontFamily="@font/mplus1pregular"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/ivTogglePassword"
@@ -80,7 +80,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="12dp"
-                android:src="@drawable/ic_visibility_off" />
+                android:src="@drawable/ic_visibility_off"
+                android:contentDescription="@string/password_visibility"/>
         </RelativeLayout>
 
         <TextView
@@ -90,7 +91,8 @@
             android:layout_marginTop="12dp"
             android:text="@string/forgotPW"
             android:textColor="#00529B"
-            android:textStyle="bold" />
+            android:fontFamily="@font/mplus1pbold"
+            android:textSize="13sp"/>
 
         <Button
             android:id="@+id/btnLogin"
@@ -100,8 +102,10 @@
             android:background="@drawable/rounded_button_blue"
             android:backgroundTint="#00529B"
             android:padding="12dp"
-            android:text="@string/signIn"
-            android:textColor="#FFFFFF" />
+            android:text="@string/button_signin"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/mplus1pbold"
+            android:textSize="14sp"/>
 
         <Button
             android:id="@+id/btnRegister"
@@ -110,8 +114,10 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/rounded_button_white"
             android:padding="12dp"
-            android:text="@string/signUp"
-            android:textColor="#fff" />
+            android:text="@string/button_signup"
+            android:textColor="#fff"
+            android:fontFamily="@font/mplus1pbold"
+            android:textSize="14sp"/>
 
         <TextView
             android:layout_width="match_parent"

@@ -10,7 +10,6 @@ class SignUpPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(acti
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> SignUpPribadi()
-            1 -> SignUpBisnis()
             else -> throw IllegalArgumentException("Invalid tab index")
         }
     }
