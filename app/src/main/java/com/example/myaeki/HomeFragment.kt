@@ -1,59 +1,57 @@
 package com.example.myaeki
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.SearchView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val searchView = view.findViewById<SearchView>(R.id.searchView)
+
+        val imageProduct1 = view.findViewById<ImageView>(R.id.imageProduct1)
+        val productName1 = view.findViewById<TextView>(R.id.productName1)
+        val productDescription1 = view.findViewById<TextView>(R.id.productDescription1)
+        val productPrice1 = view.findViewById<TextView>(R.id.productPrice1)
+
+        val imageProduct2 = view.findViewById<ImageView>(R.id.imageProduct2)
+        val productName2 = view.findViewById<TextView>(R.id.productName2)
+        val productDescription2 = view.findViewById<TextView>(R.id.productDescription2)
+        val productPrice2 = view.findViewById<TextView>(R.id.productPrice2)
+
+        val imageProduct3 = view.findViewById<ImageView>(R.id.imageProduct3)
+        val productName3 = view.findViewById<TextView>(R.id.productName3)
+        val productDescription3 = view.findViewById<TextView>(R.id.productDescription3)
+        val productPrice3 = view.findViewById<TextView>(R.id.productPrice3)
+
+        imageProduct1.setOnClickListener {
+            Toast.makeText(requireContext(), "Kamu klik ${productName1.text}", Toast.LENGTH_SHORT).show()
+        }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Toast.makeText(requireContext(), "Cari: $query", Toast.LENGTH_SHORT).show()
+                return true
             }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
     }
 }
