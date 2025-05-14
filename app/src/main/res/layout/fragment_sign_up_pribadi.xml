@@ -1,11 +1,179 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:padding="16dp">
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="16dp">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/phone_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        </LinearLayout>
+
+        <!-- Nomor Telepon -->
+        <EditText
+            android:id="@+id/phone_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="Nomor telepon"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginStart="16dp" />
+
+
+    <!-- Checkbox WhatsApp -->
+    <CheckBox
+        android:id="@+id/whatsapp_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up Pribadi"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-</LinearLayout>
+        android:text="@string/checkWA"
+        android:textColor="#757575"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/phone_layout"
+        android:layout_marginTop="8dp" />
+
+    <!-- Email -->
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="contoh@email.com"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background"
+        app:layout_constraintTop_toBottomOf="@id/whatsapp_checkbox"
+        android:layout_marginTop="16dp" />
+
+    <!-- Nama Depan -->
+    <EditText
+        android:id="@+id/first_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nama Depan"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background"
+        app:layout_constraintTop_toBottomOf="@id/email"
+        android:layout_marginTop="8dp" />
+
+    <!-- Nama Belakang -->
+    <EditText
+        android:id="@+id/last_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nama Belakang"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background"
+        app:layout_constraintTop_toBottomOf="@id/first_name"
+        android:layout_marginTop="8dp" />
+
+    <!-- Alamat -->
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukan Alamat pengiriman"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background"
+        app:layout_constraintTop_toBottomOf="@id/last_name"
+        android:layout_marginTop="8dp" />
+
+    <!-- Kode Pos -->
+    <EditText
+        android:id="@+id/postal_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Kode pos"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background"
+        app:layout_constraintTop_toBottomOf="@id/address"
+        android:layout_marginTop="8dp" />
+
+    <!-- Kata Sandi -->
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Kata sandi"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background"
+        app:layout_constraintTop_toBottomOf="@id/postal_code"
+        android:layout_marginTop="8dp" />
+
+    <!-- Deskripsi Kata Sandi -->
+    <TextView
+        android:id="@+id/password_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/deksripsiKataSandi"
+        android:textColor="#757575"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/password"
+        android:layout_marginTop="4dp" />
+
+    <!-- Konfirmasi Kata Sandi -->
+    <EditText
+        android:id="@+id/confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Konfirmasi kata sandi Anda:"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background"
+        app:layout_constraintTop_toBottomOf="@id/password_hint"
+        android:layout_marginTop="16dp" />
+
+    <!-- Deskripsi Konfirmasi Kata Sandi -->
+    <TextView
+        android:id="@+id/confirm_password_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/konfPW"
+        android:textColor="#757575"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/confirm_password"
+        android:layout_marginTop="4dp" />
+
+    <!-- Checkbox Persetujuan -->
+    <CheckBox
+        android:id="@+id/terms_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/checkSetuju"
+        android:textColor="#757575"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/confirm_password_hint"
+        android:layout_marginTop="16dp" />
+
+    <!-- Tautan Bantuan -->
+    <TextView
+        android:id="@+id/help_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/butuhBantuan"
+        android:textColor="#2196F3"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/terms_checkbox"
+        android:layout_marginTop="8dp" />
+
+    <!-- Button Buat Akun -->
+    <Button
+        android:id="@+id/create_account_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/buatAkun"
+        android:textColor="@android:color/white"
+        android:background="#2196F3"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/help_link"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
