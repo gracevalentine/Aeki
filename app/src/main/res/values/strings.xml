@@ -11,10 +11,10 @@
     <string name="app_name">LoginorSignin</string>
     <string name="welcome">Selamat datang di ÆKI</string>
     <string name="pendaftaran">Daftar atau masuk untuk melihat list belanja Anda, pembelian, reward atau lainnya</string>
-    <string name="input_email_placeholder">contoh@email.com atau 821012345678</string>
-    <string name="input_password_placeholder">Kata Sandi</string>
+    <string name="placeholder_email_or_num">contoh@email.com atau 821012345678</string>
+    <string name="placeholder_password">Kata Sandi</string>
     <string name="password_visibility">vis</string>
-    <string name="inputNoHp">Masukkan nomor hp tanpa awalan 0</string>
+    <string name="detail_inp_num">Masukkan nomor hp tanpa awalan 0</string>
     <string name="forgotPW">Lupa kata sandi?</string>
     <string name="button_signin">Masuk</string>
     <string name="button_signup">Daftar</string>
@@ -24,8 +24,26 @@
     <string name="signup">Buat Akun</string>
     <string name="fill_required">Isi semua kolom untuk membuat akun ÆKI\nSemua kolom wajib
         diisi</string>
+    <string name="placeholder_inp_tlp">Nomor telepon</string>
+    <string name="checkbox_whatsapp">\tNomor ini terhubung dengan Whatsapp</string>
+    <string name="placeholder_inp_email">contoh@email.com</string>
+    <string name="placeholder_first_name">Nama Depan</string>
+    <string name="placeholder_last_name">Nama Belakang</string>
+    <string name="placeholder_address">Masukkan Alamat Pengiriman</string>
+    <string name="placeholder_postal_code">Kode pos</string>
+    <string name="detail_inp_password">Kata sandi harus terdiri dari minimal 8 karakter,
+        termasuk minimal satu huruf kapital dan minimal satu angka.</string>
+    <string name="placeholder_confirm_password">Konfirmasi kata sandi Anda:</string>
+    <string name="commit_privacy">Kami berkomitmen untuk melindungi dan menghargai privasi
+        Anda, seperti mengirimkan pesan yang dipersonalisasi, materi promosi, berita,
+        informasi, serta tujuan yang dijelaskan dalam kebijakan privasi kami.</string>
+    <string name="checkbox_privacy_policy">Dengan mencentang kotak, saya telah membaca dan
+        menerima Ketentuan penjualan Belanja Online | IKEA Indonesia dan Kebijakan Privasi</string>
+    <string name="call_center">Butuh bantuan? Hubungi kami.</string>
+    <string name="button_create_account">Buat Akun</string>
 
-    <!-- Note: Content -->
+
+    <!-- Note: Detail Produk -->
     <string name="product_series">Oftast</string>
     <string name="product_description">piring, putih, 25 cm</string>
     <string name="product_currency">Rp. </string>

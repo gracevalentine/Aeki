@@ -2,8 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,20 +15,21 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/mplus1pbold"
             android:text="@string/signup"
             android:textColor="#212121"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textSize="24sp" />
 
         <!-- Deskripsi -->
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/textRegister"
+            android:layout_marginTop="16dp"
+            android:text="@string/fill_required"
             android:textColor="#757575"
-            android:textSize="16sp"
-            android:layout_marginTop="16dp" />
+            android:textSize="16sp" />
 
         <!-- Form Inputs -->
         <EditText
@@ -37,16 +37,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_background"
-            android:hint="Nomor telepon"
+            android:fontFamily="@font/mplus1pregular"
+            android:hint="@string/placeholder_inp_tlp"
             android:inputType="phone"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:textSize="14sp" />
 
         <CheckBox
             android:id="@+id/whatsapp_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/checkWA"
+            android:text="@string/checkbox_whatsapp"
             android:textColor="#757575"
             android:textSize="14sp" />
 
@@ -56,9 +58,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/edit_text_background"
-            android:hint="contoh@email.com"
+            android:fontFamily="@font/mplus1pregular"
+            android:hint="@string/placeholder_inp_email"
             android:inputType="textEmailAddress"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/first_name"
@@ -66,8 +70,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Nama Depan"
-            android:padding="12dp" />
+            android:fontFamily="@font/mplus1pregular"
+            android:hint="@string/placeholder_first_name"
+            android:padding="12dp"
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/last_name"
@@ -75,8 +81,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Nama Belakang"
-            android:padding="12dp" />
+            android:fontFamily="@font/mplus1pregular"
+            android:hint="@string/placeholder_last_name"
+            android:padding="12dp"
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/address"
@@ -84,8 +92,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Masukan Alamat pengiriman"
-            android:padding="12dp" />
+            android:fontFamily="@font/mplus1pregular"
+            android:hint="@string/placeholder_address"
+            android:padding="12dp"
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/postal_code"
@@ -93,8 +103,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Kode pos"
-            android:padding="12dp" />
+            android:fontFamily="@font/mplus1pregular"
+            android:hint="@string/placeholder_postal_code"
+            android:padding="12dp"
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/password"
@@ -102,16 +114,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Kata sandi"
+            android:fontFamily="@font/mplus1pregular"
+            android:hint="@string/placeholder_password"
             android:inputType="textPassword"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/password_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/deksripsiKataSandi"
+            android:fontFamily="@font/mplus1pregular"
+            android:text="@string/detail_inp_password"
             android:textColor="#757575"
             android:textSize="12sp" />
 
@@ -121,25 +136,37 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Konfirmasi kata sandi Anda:"
+            android:fontFamily="@font/mplus1pregular"
+            android:hint="@string/placeholder_confirm_password"
             android:inputType="textPassword"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/confirm_password_hint"
+            android:id="@+id/second_password_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/konfPW"
+            android:fontFamily="@font/mplus1pregular"
+            android:paddingBottom="13dp"
+            android:text="@string/detail_inp_password"
             android:textColor="#757575"
             android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mplus1pregular"
+            android:text="@string/commit_privacy"
+            android:textColor="#757575"
+            android:textSize="13sp" />
 
         <CheckBox
             android:id="@+id/terms_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/checkSetuju"
+            android:text="@string/checkbox_privacy_policy"
             android:textColor="#757575"
             android:textSize="14sp" />
 
@@ -148,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/butuhBantuan"
+            android:text="@string/call_center"
             android:textColor="#2196F3"
             android:textSize="14sp" />
 
@@ -159,7 +186,7 @@
             android:layout_marginTop="16dp"
             android:background="#2196F3"
             android:padding="16dp"
-            android:text="@string/buatAkun"
+            android:text="@string/button_create_account"
             android:textColor="@android:color/white" />
     </LinearLayout>
 </ScrollView>

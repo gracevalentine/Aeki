@@ -43,7 +43,7 @@
             android:layout_marginTop="24dp"
             android:background="@drawable/edit_text_background"
             android:fontFamily="@font/mplus1pregular"
-            android:hint="@string/input_email_placeholder"
+            android:hint="@string/placeholder_email_or_num"
             android:inputType="textEmailAddress|phone"
             android:padding="12dp"
             android:textSize="14sp" />
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/inputNoHp"
+            android:text="@string/detail_inp_num"
             android:textColor="#888888"
             android:textSize="12sp" />
 
@@ -68,7 +68,7 @@
                 android:layout_alignParentStart="true"
                 android:background="@drawable/edit_text_background"
                 android:fontFamily="@font/mplus1pregular"
-                android:hint="@string/input_password_placeholder"
+                android:hint="@string/placeholder_password"
                 android:inputType="textPassword"
                 android:padding="12dp"
                 android:textSize="14sp" />
