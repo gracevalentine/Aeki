@@ -27,131 +27,217 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/mplus1pregular"
             android:text="@string/fill_required"
             android:textColor="#757575"
-            android:textSize="16sp" />
+            android:textSize="17sp" />
 
-        <!-- Form Inputs -->
-        <EditText
-            android:id="@+id/phone_number"
+        <!-- note: email-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_background"
-            android:fontFamily="@font/mplus1pregular"
-            android:hint="@string/placeholder_inp_tlp"
-            android:inputType="phone"
-            android:padding="12dp"
-            android:textSize="14sp" />
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
 
-        <CheckBox
-            android:id="@+id/whatsapp_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/checkbox_whatsapp"
-            android:textColor="#757575"
-            android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/mplus1pregular"
+                android:text="@string/email"
+                android:textSize="15sp" />
 
-        <EditText
-            android:id="@+id/email"
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:fontFamily="@font/mplus1pregular"
+                android:hint="@string/placeholder_email"
+                android:inputType="textEmailAddress"
+                android:padding="12dp"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!--        note: nama depan-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/edit_text_background"
-            android:fontFamily="@font/mplus1pregular"
-            android:hint="@string/placeholder_inp_email"
-            android:inputType="textEmailAddress"
-            android:padding="12dp"
-            android:textSize="14sp" />
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/first_name"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/mplus1pregular"
+                android:text="@string/first_name"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/first_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:fontFamily="@font/mplus1pregular"
+                android:hint="@string/placeholder_first_name"
+                android:padding="12dp"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!--        note: nama belakang-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/edit_text_background"
-            android:fontFamily="@font/mplus1pregular"
-            android:hint="@string/placeholder_first_name"
-            android:padding="12dp"
-            android:textSize="14sp" />
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/last_name"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/mplus1pregular"
+                android:text="@string/last_name"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/last_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:fontFamily="@font/mplus1pregular"
+                android:hint="@string/placeholder_last_name"
+                android:padding="12dp"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!--        note: alamat-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/edit_text_background"
-            android:fontFamily="@font/mplus1pregular"
-            android:hint="@string/placeholder_last_name"
-            android:padding="12dp"
-            android:textSize="14sp" />
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/address"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/mplus1pregular"
+                android:text="@string/address"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:fontFamily="@font/mplus1pregular"
+                android:hint="@string/placeholder_address"
+                android:padding="12dp"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!--        note: kode pos-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/edit_text_background"
-            android:fontFamily="@font/mplus1pregular"
-            android:hint="@string/placeholder_address"
-            android:padding="12dp"
-            android:textSize="14sp" />
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/postal_code"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/mplus1pregular"
+                android:text="@string/postal_code"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/postal_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:fontFamily="@font/mplus1pregular"
+                android:hint="@string/placeholder_postal_code"
+                android:padding="12dp"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!--        note: kata sandi-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/edit_text_background"
-            android:fontFamily="@font/mplus1pregular"
-            android:hint="@string/placeholder_postal_code"
-            android:padding="12dp"
-            android:textSize="14sp" />
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/password"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/mplus1pregular"
+                android:text="@string/password"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:fontFamily="@font/mplus1pregular"
+                android:hint="@string/placeholder_password"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/password_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/mplus1pregular"
+                android:text="@string/detail_inp_password"
+                android:textColor="#757575"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!--        note: konfirmasi kata sandi-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/edit_text_background"
-            android:fontFamily="@font/mplus1pregular"
-            android:hint="@string/placeholder_password"
-            android:inputType="textPassword"
-            android:padding="12dp"
-            android:textSize="14sp" />
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/password_hint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/mplus1pregular"
-            android:text="@string/detail_inp_password"
-            android:textColor="#757575"
-            android:textSize="12sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/mplus1pregular"
+                android:text="@string/last_name"
+                android:textSize="15sp" />
 
-        <EditText
-            android:id="@+id/confirm_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/edit_text_background"
-            android:fontFamily="@font/mplus1pregular"
-            android:hint="@string/placeholder_confirm_password"
-            android:inputType="textPassword"
-            android:padding="12dp"
-            android:textSize="14sp" />
+            <EditText
+                android:id="@+id/confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:fontFamily="@font/mplus1pregular"
+                android:hint="@string/placeholder_confirm_password"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/second_password_hint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/mplus1pregular"
-            android:paddingBottom="13dp"
-            android:text="@string/detail_inp_password"
-            android:textColor="#757575"
-            android:textSize="12sp" />
+            <TextView
+                android:id="@+id/second_password_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/mplus1pregular"
+                android:paddingBottom="9dp"
+                android:text="@string/detail_inp_password"
+                android:textColor="#757575"
+                android:textSize="12sp" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -166,6 +252,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/mplus1pregular"
             android:text="@string/checkbox_privacy_policy"
             android:textColor="#757575"
             android:textSize="14sp" />
@@ -174,7 +261,8 @@
             android:id="@+id/help_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/mplus1pbold"
             android:text="@string/call_center"
             android:textColor="#2196F3"
             android:textSize="14sp" />
@@ -184,7 +272,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="#2196F3"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#000"
+            android:fontFamily="@font/mplus1pbold"
             android:padding="16dp"
             android:text="@string/button_create_account"
             android:textColor="@android:color/white" />

@@ -36,63 +36,84 @@
             android:textColor="#666666"
             android:textSize="14sp" />
 
-        <EditText
-            android:id="@+id/etEmailPhone"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/edit_text_background"
-            android:fontFamily="@font/mplus1pregular"
-            android:hint="@string/placeholder_email_or_num"
-            android:inputType="text"
-            android:padding="12dp"
-            android:textSize="14sp" />
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/detail_inp_num"
-            android:textColor="#888888"
-            android:textSize="12sp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-
-            <EditText
-                android:id="@+id/etPassword"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/mplus1pregular"
+                android:text="@string/email"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_background"
                 android:fontFamily="@font/mplus1pregular"
-                android:hint="@string/placeholder_password"
-                android:inputType="textPassword"
+                android:hint="@string/placeholder_email"
+                android:inputType="text"
                 android:padding="12dp"
                 android:textSize="14sp" />
+        </LinearLayout>
 
-            <ImageView
-                android:id="@+id/ivTogglePassword"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="12dp"
-                android:src="@drawable/ic_visibility_off"
-                android:contentDescription="@string/password_visibility"/>
-        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/mplus1pregular"
+                android:text="@string/password"
+                android:textSize="15sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/edit_text_background"
+                    android:fontFamily="@font/mplus1pregular"
+                    android:hint="@string/placeholder_password"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/ivTogglePassword"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="@string/password_visibility"
+                    android:src="@drawable/ic_visibility_off" />
+            </RelativeLayout>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvForgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/mplus1pbold"
             android:text="@string/forgotPW"
             android:textColor="#00529B"
-            android:fontFamily="@font/mplus1pbold"
-            android:textSize="13sp"/>
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btnLogin"
@@ -101,11 +122,11 @@
             android:layout_marginTop="24dp"
             android:background="@drawable/rounded_button_blue"
             android:backgroundTint="#00529B"
+            android:fontFamily="@font/mplus1pbold"
             android:padding="12dp"
             android:text="@string/button_signin"
             android:textColor="#FFFFFF"
-            android:fontFamily="@font/mplus1pbold"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btnRegister"
@@ -113,11 +134,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="@drawable/rounded_button_white"
+            android:fontFamily="@font/mplus1pbold"
             android:padding="12dp"
             android:text="@string/button_signup"
             android:textColor="#fff"
-            android:fontFamily="@font/mplus1pbold"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="match_parent"

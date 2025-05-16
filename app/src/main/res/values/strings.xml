@@ -6,33 +6,40 @@
     <string name="nav_top_back">Kembali</string>
     <string name="nav_top_share">Bagikan</string>
     <string name="nav_top_search">Cari</string>
+    <string name="close">Tutup</string>
 
     <!-- NOTE: Sign In -->
     <string name="app_name">LoginorSignin</string>
     <string name="welcome">Selamat datang di ÆKI</string>
     <string name="pendaftaran">Daftar atau masuk untuk melihat list belanja Anda, pembelian, reward atau lainnya</string>
-    <string name="placeholder_email_or_num">contoh@email.com</string>
-    <string name="placeholder_password">Kata Sandi</string>
+    <string name="email">Email</string>
+    <string name="placeholder_email">contoh@email.com</string>
+    <string name="password">Kata Sandi</string>
+    <string name="placeholder_password">Masukkan Kata Sandi</string>
     <string name="password_visibility">vis</string>
-    <string name="detail_inp_num">Masukkan nomor hp tanpa awalan 0</string>
     <string name="forgotPW">Lupa kata sandi?</string>
     <string name="button_signin">Masuk</string>
     <string name="button_signup">Daftar</string>
     <string name="loginWarning">Pelanggan wajib untuk melakukan login terlebih dahulu untuk melanjutkan</string>
 
-<!--    Note: Sign Up-->
+    <!--    Note: Sign Up-->
     <string name="signup">Buat Akun</string>
     <string name="fill_required">Isi semua kolom untuk membuat akun ÆKI\nSemua kolom wajib
         diisi</string>
-    <string name="placeholder_inp_tlp">Nomor telepon</string>
-    <string name="checkbox_whatsapp">\tNomor ini terhubung dengan Whatsapp</string>
-    <string name="placeholder_inp_email">contoh@email.com</string>
-    <string name="placeholder_first_name">Nama Depan</string>
-    <string name="placeholder_last_name">Nama Belakang</string>
+    <!--    <string name="placeholder_inp_tlp">Nomor telepon</string>-->
+    <!--    <string name="checkbox_whatsapp">\tNomor ini terhubung dengan Whatsapp</string>-->
+    <!--    <string name="placeholder_inp_email">contoh@email.com</string>-->
+    <string name="first_name">Nama Depan</string>
+    <string name="placeholder_first_name">Nama Anda</string>
+    <string name="last_name">Nama Belakang</string>
+    <string name="placeholder_last_name">Nama Belakang Anda</string>
+    <string name="address">Alamat</string>
     <string name="placeholder_address">Masukkan Alamat Pengiriman</string>
+    <string name="postal_code">Kode Pos</string>
     <string name="placeholder_postal_code">Kode pos</string>
     <string name="detail_inp_password">Kata sandi harus terdiri dari minimal 8 karakter,
         termasuk minimal satu huruf kapital dan minimal satu angka.</string>
+    <string name="retype_password">Ketik ulang kata sandi Anda:</string>
     <string name="placeholder_confirm_password">Konfirmasi kata sandi Anda:</string>
     <string name="commit_privacy">Kami berkomitmen untuk melindungi dan menghargai privasi
         Anda, seperti mengirimkan pesan yang dipersonalisasi, materi promosi, berita,
@@ -87,10 +94,10 @@
     <string name="product_desainer">Henrik Preutz</string>
     <string name="product_similar">Produk Serupa</string>
 
-    <!--Todo: Akun -->
+    <!--note: Akun -->
     <string name="profil">Profil saya</string>
 
-    <!-- Todo: Bottom Nav Bar -->
+    <!-- note: Bottom Nav Bar -->
     <string name="nav_bottom_home">Beranda</string>
     <string name="nav_bottom_inspo">Inspirasi</string>
     <string name="nav_bottom_cart">Keranjang</string>
