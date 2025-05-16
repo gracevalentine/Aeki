@@ -43,10 +43,7 @@ class SignInFragment : Fragment() {
         }
 
         btnRegister.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.main, SignUpFragment())
-                .addToBackStack(null)
-                .commit()
+
         }
     }
 }
