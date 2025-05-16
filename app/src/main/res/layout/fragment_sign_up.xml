@@ -213,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
                 android:fontFamily="@font/mplus1pregular"
-                android:text="@string/last_name"
+                android:text="@string/retype_password"
                 android:textSize="15sp" />
 
             <EditText
