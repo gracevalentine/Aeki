@@ -13,17 +13,17 @@ class SignUp : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
-
-        viewPager = findViewById(R.id.viewPager)
-        tabLayout = findViewById(R.id.tabLayout)
-
-        val adapter = SignUpPagerAdapter(this)
-        viewPager.adapter = adapter
-
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = if (position == 0) "Pribadi" else "Bisnis"
-        }.attach()
+//        setContentView(R.layout.activity_sign_up)
+//
+//        viewPager = findViewById(R.id.viewPager)
+//        tabLayout = findViewById(R.id.tabLayout)
+//
+//        val adapter = SignUpPagerAdapter(this)
+//        viewPager.adapter = adapter
+//
+//        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+//            tab.text = if (position == 0) "Pribadi" else "Bisnis"
+//        }.attach()
 
         findViewById<ImageView>(R.id.imageView).setOnClickListener {
             finish()
