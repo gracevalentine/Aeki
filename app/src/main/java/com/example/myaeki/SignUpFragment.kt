@@ -1,44 +1,55 @@
 package com.example.myaeki
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
-
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 
 class SignUpFragment : Fragment() {
-    private lateinit var viewPager: ViewPager2
-    private lateinit var tabLayout: TabLayout
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_sign_up)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
 
-        viewPager = findViewById(R.id.viewPager)
-        tabLayout = findViewById(R.id.tabLayout)
+        // Ambil view yang diperlukan
+        val phoneNumber = view.findViewById<EditText>(R.id.phone_number)
+        val email = view.findViewById<EditText>(R.id.email)
+        val firstName = view.findViewById<EditText>(R.id.first_name)
+        val lastName = view.findViewById<EditText>(R.id.last_name)
+        val address = view.findViewById<EditText>(R.id.address)
+        val postalCode = view.findViewById<EditText>(R.id.postal_code)
+        val password = view.findViewById<EditText>(R.id.password)
+        val confirmPassword = view.findViewById<EditText>(R.id.confirm_password)
+        val termsCheckBox = view.findViewById<CheckBox>(R.id.terms_checkbox)
+        val createButton = view.findViewById<Button>(R.id.create_account_button)
 
-        val adapter = SignUpPagerAdapter(this)
-        viewPager.adapter = adapter
+        // Event saat tombol ditekan
+        createButton.setOnClickListener {
+            val phone = phoneNumber.text.toString()
+            val emailText = email.text.toString()
+            val pass = password.text.toString()
+            val confirmPass = confirmPassword.text.toString()
 
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = if (position == 0) "Pribadi" else "Bisnis"
-        }.attach()
-
-        findViewById<ImageView>(R.id.imageView).setOnClickListener {
-            finish()
+            if (phone.isBlank() || emailText.isBlank() || pass.isBlank()) {
+                Toast.makeText(requireContext(), "Isi semua data wajib!", Toast.LENGTH_SHORT).show()
+            } else if (pass != confirmPass) {
+                Toast.makeText(requireContext(), "Password tidak cocok", Toast.LENGTH_SHORT).show()
+            } else if (!termsCheckBox.isChecked) {
+                Toast.makeText(requireContext(), "Harap setujui kebijakan privasi", Toast.LENGTH_SHORT).show()
+            } else {
+                // Lanjutkan ke proses pendaftaran
+                Toast.makeText(requireContext(), "Akun berhasil dibuat!", Toast.LENGTH_SHORT).show()
+            }
         }
 
-        override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-        ): View? {
-            // Inflate the layout for this fragment
-            return inflater.inflate(R.layout.fragment_sign_up, container, false)
-        }
+        return view
     }
 }
