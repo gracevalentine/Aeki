@@ -87,6 +87,9 @@
     <string name="product_desainer">Henrik Preutz</string>
     <string name="product_similar">Produk Serupa</string>
 
+    <!--Todo: Akun -->
+    <string name="profil">Profil saya</string>
+
     <!-- Todo: Bottom Nav Bar -->
     <string name="nav_bottom_home">Beranda</string>
     <string name="nav_bottom_inspo">Inspirasi</string>
