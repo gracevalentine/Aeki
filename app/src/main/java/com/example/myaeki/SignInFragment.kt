@@ -4,12 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
+import com.example.myaeki.api.ApiClient
+import com.example.myaeki.api.LoginRequest
+import com.example.myaeki.api.UserResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignInFragment : Fragment() {
+    private lateinit var etEmailPhone: EditText
+    private lateinit var etPassword: EditText
+    private lateinit var btnLogin: Button
+    private lateinit var btnRegister: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,18 +29,6 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-<<<<<<< HEAD
-        val btnLogin = view.findViewById<Button>(R.id.btnLogin)
-        val etEmailPhone = view.findViewById<EditText>(R.id.etEmailPhone)
-        val etPassword = view.findViewById<EditText>(R.id.etPassword)
-        val btnRegister = view.findViewById<Button>(R.id.btnRegister)
-
-        btnLogin.setOnClickListener {
-            val emailOrPhone = etEmailPhone.text.toString()
-            val password = etPassword.text.toString()
-
-            if (emailOrPhone.isEmpty() || password.isEmpty()) {
-=======
         etEmailPhone = view.findViewById(R.id.etEmailPhone)
         etPassword = view.findViewById(R.id.etPassword)
         btnLogin = view.findViewById(R.id.btnLogin)
@@ -43,25 +39,11 @@ class SignInFragment : Fragment() {
             val password = etPassword.text.toString().trim()
 
             if (username.isEmpty() || password.isEmpty()) {
->>>>>>> 39b1fb8dbd12c4cde181c867d148516e4258fa9d
                 Toast.makeText(requireContext(), "Data tidak boleh kosong", Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
             }
 
-<<<<<<< HEAD
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.main, HomeFragment())
-                .addToBackStack(null)
-                .commit()
-        }
-
-        btnRegister.setOnClickListener {
-
-        }
-    }
-}
-=======
             val loginRequest = LoginRequest(username, password)
 
             ApiClient.authService.login(loginRequest).enqueue(object : Callback<UserResponse> {
@@ -105,4 +87,3 @@ class SignInFragment : Fragment() {
         }
     }
 }
->>>>>>> 39b1fb8dbd12c4cde181c867d148516e4258fa9d

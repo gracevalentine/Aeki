@@ -44,7 +44,7 @@
             android:background="@drawable/edit_text_background"
             android:fontFamily="@font/mplus1pregular"
             android:hint="@string/placeholder_email_or_num"
-            android:inputType="textEmailAddress|phone"
+            android:inputType="text"
             android:padding="12dp"
             android:textSize="14sp" />
 

@@ -42,6 +42,15 @@ android {
 
 dependencies {
 
+// Retrofit
+    implementation (libs.retrofit2.retrofit)
+
+// Gson converter (untuk parsing JSON otomatis)
+    implementation (libs.retrofit2.converter.gson)
+
+// OkHttp (optional, tapi penting untuk konfigurasi client)
+    implementation (libs.okhttp)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
