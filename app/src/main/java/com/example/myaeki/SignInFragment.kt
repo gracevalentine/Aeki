@@ -35,16 +35,16 @@ class SignInFragment : Fragment() {
         btnRegister = view.findViewById(R.id.btnRegister)
 
         btnLogin.setOnClickListener {
-            val username = etEmailPhone.text.toString().trim()
+            val email = etEmailPhone.text.toString().trim()
             val password = etPassword.text.toString().trim()
 
-            if (username.isEmpty() || password.isEmpty()) {
+            if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(), "Data tidak boleh kosong", Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
             }
 
-            val loginRequest = LoginRequest(username, password)
+            val loginRequest = LoginRequest(email, password)
 
             ApiClient.authService.login(loginRequest).enqueue(object : Callback<UserResponse> {
                 override fun onResponse(
@@ -67,7 +67,7 @@ class SignInFragment : Fragment() {
                     } else {
                         Toast.makeText(
                             requireContext(),
-                            "Login gagal. Cek kembali username/password",
+                            "Login gagal. Cek kembali email/password",
                             Toast.LENGTH_SHORT
                         ).show()
                     }

@@ -11,7 +11,7 @@
     <string name="app_name">LoginorSignin</string>
     <string name="welcome">Selamat datang di ÆKI</string>
     <string name="pendaftaran">Daftar atau masuk untuk melihat list belanja Anda, pembelian, reward atau lainnya</string>
-    <string name="placeholder_email_or_num">contoh@email.com atau 821012345678</string>
+    <string name="placeholder_email_or_num">contoh@email.com</string>
     <string name="placeholder_password">Kata Sandi</string>
     <string name="password_visibility">vis</string>
     <string name="detail_inp_num">Masukkan nomor hp tanpa awalan 0</string>
