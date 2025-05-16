@@ -180,7 +180,6 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
-
 --
 -- Indexes for table `cart`
 --

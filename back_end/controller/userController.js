@@ -1,9 +1,9 @@
 const database = require('../configuration/database');
 
 exports.loginUser = (req, res) => {
-console.log("BODY:", req.body);
-console.log('REQ BODY DEBUG:', req.body);
-console.log('Headers:', req.headers['content-type']);
+// console.log("BODY:", req.body);
+// console.log('REQ BODY DEBUG:', req.body);
+// console.log('Headers:', req.headers['content-type']);
 
 const { email, password } = req.body || {};
 if (!email || !password) {
@@ -41,8 +41,68 @@ exports.logoutUser = (req, res) => {
 req.session.destroy(err => {
 if (err) {
 return res.status(500).json({ message: 'Logout failed' });
-}
+}a
 res.clearCookie('connect.sid');
 res.json({ message: 'Logout successful' });
 });
+};
+
+const bcrypt = require('bcrypt');
+
+exports.signupUser = async (req, res) => {
+  const {
+    first_name,
+    last_name,
+    email,
+    password,
+    email_checkbox,
+    address,
+    postal_code
+  } = req.body || {};
+
+  // Validasi wajib
+  if (!first_name || !last_name || !email || !password || !address || !postal_code) {
+    return res.status(400).json({ message: 'First name, last name, email, password, address, dan postal_code wajib diisi.' });
+  }
+
+  try {
+    // Cek email sudah ada atau belum
+    const [existingUsers] = await database.promise().query('SELECT * FROM users WHERE email = ?', [email]);
+    if (existingUsers.length > 0) {
+      return res.status(409).json({ message: 'Email sudah terdaftar.' });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert ke tabel users
+    const [resultUser] = await database.promise().query(
+      'INSERT INTO users (password, email, first_name, last_name) VALUES (?, ?, ?, ?)',
+      [hashedPassword, email, first_name, last_name]
+    );
+
+    const newUserId = resultUser.insertId;
+
+    // Insert ke tabel customers, kaitkan ke user_id
+    await database.promise().query(
+      'INSERT INTO customers (user_id, address, postal_code) VALUES (?, ?, ?)',
+      [newUserId, address, postal_code]
+    );
+
+    return res.status(201).json({
+      message: 'Signup berhasil.',
+      user: {
+        id: newUserId,
+        first_name,
+        last_name,
+        email,
+        address,
+        postal_code
+      }
+    });
+
+  } catch (err) {
+    console.error('Error saat signup:', err);
+    return res.status(500).json({ message: 'Terjadi kesalahan server.' });
+  }
 };
