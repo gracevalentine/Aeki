@@ -47,7 +47,6 @@ res.json({ message: 'Logout successful' });
 });
 };
 
-const bcrypt = require('bcrypt');
 
 exports.signupUser = async (req, res) => {
   const {
@@ -66,26 +65,30 @@ exports.signupUser = async (req, res) => {
   }
 
   try {
-    // Cek email sudah ada atau belum
-    const [existingUsers] = await database.promise().query('SELECT * FROM users WHERE email = ?', [email]);
+    // Cek apakah email sudah terdaftar
+    const [existingUsers] = await database.promise().query(
+      'SELECT * FROM users WHERE email = ?',
+      [email]
+    );
+
     if (existingUsers.length > 0) {
       return res.status(409).json({ message: 'Email sudah terdaftar.' });
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Langsung simpan password tanpa hashing (tidak aman untuk produksi!)
+    const plainPassword = password;
 
     // Insert ke tabel users
     const [resultUser] = await database.promise().query(
       'INSERT INTO users (password, email, first_name, last_name) VALUES (?, ?, ?, ?)',
-      [hashedPassword, email, first_name, last_name]
+      [plainPassword, email, first_name, last_name]
     );
 
     const newUserId = resultUser.insertId;
 
-    // Insert ke tabel customers, kaitkan ke user_id
+    // Insert ke tabel customers
     await database.promise().query(
-      'INSERT INTO customers (user_id, address, postal_code) VALUES (?, ?, ?)',
+      'INSERT INTO customer (customer_id, address, postal_code) VALUES (?, ?, ?)',
       [newUserId, address, postal_code]
     );
 
@@ -102,7 +105,10 @@ exports.signupUser = async (req, res) => {
     });
 
   } catch (err) {
-    console.error('Error saat signup:', err);
-    return res.status(500).json({ message: 'Terjadi kesalahan server.' });
+    console.error('Error saat signup:', err.message); // Tambahkan log detail
+    return res.status(500).json({
+      message: 'Terjadi kesalahan server.',
+      error: err.message // Tampilkan pesan error di response untuk debugging
+    });
   }
 };
