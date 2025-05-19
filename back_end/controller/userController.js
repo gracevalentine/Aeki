@@ -30,7 +30,8 @@ res.json({
   message: 'Login successful',
   user: {
     id: results[0].user_id,
-    username: results[0].username,
+    first_name: results[0].first_name,
+    last_name: results[0].last_name,
     email: results[0].email
   }
 });

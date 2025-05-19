@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.myaeki.api.LoginRequest
 import com.example.myaeki.api.UserResponse
@@ -82,11 +84,8 @@ class SignInFragment : Fragment() {
 
         btnRegister.setOnClickListener {
             // Nanti bisa diarahkan ke RegisterFragment (jika sudah dibuat)
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.main, SignUpFragment())
-                .addToBackStack(null)
-                .commit()
-
+            Toast.makeText(requireContext(), "Arahkan ke halaman registrasi", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 }
