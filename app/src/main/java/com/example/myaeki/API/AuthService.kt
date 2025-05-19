@@ -10,4 +10,8 @@ interface AuthService {
 
     @POST("/logout")
     fun logout(): Call<LogoutResponse>
+
+    @POST("/users/signup")
+    fun signup(@Body request: SignupRequest): Call<UserResponse>
+
 }

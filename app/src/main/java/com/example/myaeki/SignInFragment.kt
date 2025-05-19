@@ -55,7 +55,7 @@ class SignInFragment : Fragment() {
                         val user = response.body()!!.user!!
                         Toast.makeText(
                             requireContext(),
-                            "Selamat datang, ${user.username}",
+                            "Selamat datang, ${user.first_name}",
                             Toast.LENGTH_SHORT
                         ).show()
 

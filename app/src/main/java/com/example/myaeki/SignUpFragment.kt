@@ -8,7 +8,13 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
+import retrofit2.Call
+import retrofit2.Callback
 import androidx.fragment.app.Fragment
+import com.example.myaeki.api.SignupRequest
+import com.example.myaeki.api.UserResponse
+import retrofit2.Response
+
 
 class SignUpFragment : Fragment() {
 
@@ -50,11 +56,41 @@ class SignUpFragment : Fragment() {
             } else if (!termsCheckBox.isChecked) {
                 Toast.makeText(requireContext(), "Harap setujui kebijakan privasi", Toast.LENGTH_SHORT).show()
             } else {
-                // Kirim request ke server (jika sudah ada fungsi seperti sendSignupRequest())
-                Toast.makeText(requireContext(), "Akun berhasil dibuat!", Toast.LENGTH_SHORT).show()
+                val signupRequest = SignupRequest(
+                    first_name = first,
+                    last_name = last,
+                    email = emailText,
+                    password = pass,
+                    address = add,
+                    postal_code = code.toInt(),
+                    email_checkbox = true
+                )
+                sendSignupRequest(signupRequest)
             }
         }
 
         return view
+    }
+    private fun sendSignupRequest(signupRequest: SignupRequest) {
+        ApiClient.authService.signup(signupRequest).enqueue(object : Callback<UserResponse> {
+            override fun onResponse(
+                call: Call<UserResponse>,
+                response: Response<UserResponse>
+            ) {
+                if (response.isSuccessful && response.body() != null) {
+                    Toast.makeText(requireContext(), "Akun berhasil dibuat!", Toast.LENGTH_SHORT).show()
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.main, SignInFragment())
+                        .addToBackStack(null)
+                        .commit()
+                } else {
+                    Toast.makeText(requireContext(), "Gagal daftar: ${response.errorBody()?.string()}", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "Error: ${t.localizedMessage}", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }
