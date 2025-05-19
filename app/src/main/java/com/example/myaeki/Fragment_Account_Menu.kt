@@ -17,7 +17,7 @@ class Fragment_Account_Menu : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate layout fragment-nya
-        return inflater.inflate(R.layout.fragment__account__menu, container, false) // Ganti dengan nama XML kamu
+        return inflater.inflate(R.layout.fragment_account, container, false) // Ganti dengan nama XML kamu
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

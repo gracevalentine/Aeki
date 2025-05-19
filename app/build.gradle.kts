@@ -55,4 +55,13 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    // Retrofit
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+
+    // OkHttp
+    implementation (libs.okhttp)
+
+    // OkHttp JavaNetCookieJar (bagian dari okhttp-urlconnection)
+    implementation (libs.okhttp.urlconnection)
 }
