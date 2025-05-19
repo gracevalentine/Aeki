@@ -1,12 +1,14 @@
 package com.example.myaeki
 
+import ApiClient
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.myaeki.api.ApiClient
 import com.example.myaeki.api.LoginRequest
 import com.example.myaeki.api.UserResponse
 import retrofit2.Call
@@ -29,7 +31,7 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        etEmailPhone = view.findViewById(R.id.etEmailPhone)
+        etEmailPhone = view.findViewById(R.id.etEmail)
         etPassword = view.findViewById(R.id.etPassword)
         btnLogin = view.findViewById(R.id.btnLogin)
         btnRegister = view.findViewById(R.id.btnRegister)
@@ -55,7 +57,7 @@ class SignInFragment : Fragment() {
                         val user = response.body()!!.user!!
                         Toast.makeText(
                             requireContext(),
-                            "Selamat datang, ${user.username}",
+                            "Selamat datang, ${user.first_name}",
                             Toast.LENGTH_SHORT
                         ).show()
 

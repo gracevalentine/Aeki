@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 
-class AkunFragment : Fragment() {
+class AccountFragment : Fragment() {
 
     private lateinit var logoutButton: Button
 

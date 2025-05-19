@@ -20,7 +20,6 @@ class SignUpFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
 
         // Ambil view yang diperlukan
-        val phoneNumber = view.findViewById<EditText>(R.id.phone_number)
         val email = view.findViewById<EditText>(R.id.email)
         val firstName = view.findViewById<EditText>(R.id.first_name)
         val lastName = view.findViewById<EditText>(R.id.last_name)
@@ -33,12 +32,11 @@ class SignUpFragment : Fragment() {
 
         // Event saat tombol ditekan
         createButton.setOnClickListener {
-            val phone = phoneNumber.text.toString()
             val emailText = email.text.toString()
             val pass = password.text.toString()
             val confirmPass = confirmPassword.text.toString()
 
-            if (phone.isBlank() || emailText.isBlank() || pass.isBlank()) {
+            if (emailText.isBlank() || pass.isBlank()) {
                 Toast.makeText(requireContext(), "Isi semua data wajib!", Toast.LENGTH_SHORT).show()
             } else if (pass != confirmPass) {
                 Toast.makeText(requireContext(), "Password tidak cocok", Toast.LENGTH_SHORT).show()
