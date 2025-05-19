@@ -26,7 +26,7 @@
     <string name="signup">Buat Akun</string>
     <string name="fill_required">Isi semua kolom untuk membuat akun ÆKI\nSemua kolom wajib
         diisi</string>
-    <string name="first_name">Nama Depan</string>
+    <string name="first_name">Nama Anda</string>
     <string name="placeholder_first_name">Nama Anda</string>
     <string name="last_name">Nama Belakang</string>
     <string name="placeholder_last_name">Nama Belakang Anda</string>

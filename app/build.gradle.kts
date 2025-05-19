@@ -52,6 +52,15 @@ dependencies {
     implementation(libs.kotlin.stdlib)
 //    implementation(libs.kotlin.stdlib.v1924)
 //    implementation(libs.firebase.database)
+    // Retrofit
+    implementation (libs.squareup.retrofit)
+    implementation (libs.converter.gson)
+
+    // OkHttp
+    implementation (libs.okhttp)
+
+    // OkHttp JavaNetCookieJar (bagian dari okhttp-urlconnection)
+    implementation (libs.okhttp.urlconnection)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
