@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/transaction"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+    <!-- Sticky Header -->
+    <LinearLayout
+        android:id="@+id/navigationTransaction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Space
+            android:layout_width="115dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Keranjang Belanja"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hapus Semua"
+            android:background="@android:color/transparent"
+            android:textColor="#00008B"
+            android:padding="8dp" />
+    </LinearLayout>
+
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/navigationTransaction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Section Counter -->
+            <LinearLayout
+                android:id="@+id/sectionCounter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:background="#f3f3f3">
+
+                <TextView
+                    android:id="@+id/countProduct"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1 produk"
+                    android:textSize="15sp" />
+
+                <Space
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/countPrice"
+                    android:layout_width="24dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Rp 39.800"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Section Produk -->
+            <LinearLayout
+                android:id="@+id/sectionProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <!-- Produk 1 + Adjustment Button -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/product_border"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <!--List Product -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginVertical="8dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/imageProduct1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/oftast" />
+
+                        <!--Detail Product-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="8dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                            <TextView
+                                android:id="@+id/productName1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="OFTAST"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/productDescription1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="piring, putih, 25 cm"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/productPrice1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Rp9.900"
+                                android:textColor="#D32F2F"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <Space
+                            android:layout_width="99dp"
+                            android:layout_height="match_parent" />
+
+                        <ImageButton
+                            android:id="@+id/buttonDelete"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/circle_button_bg"
+                            android:contentDescription="Hapus produk"
+                            android:padding="10dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/trash" />
+
+                        <Space
+                            android:layout_width="12dp"
+                            android:layout_height="match_parent" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:background="@drawable/rounded_border"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <!-- Kurangi -->
+                            <ImageButton
+                                android:id="@+id/buttonMinus"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@android:color/transparent"
+                                android:contentDescription="Kurangi"
+                                android:padding="10dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/minus"
+                                app:tint="#000000" />
+
+                            <!-- Jumlah -->
+                            <TextView
+                                android:id="@+id/textQuantity"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textSize="16sp" />
+
+                            <!-- Tambah -->
+                            <ImageButton
+                                android:id="@+id/buttonPlus"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@android:color/transparent"
+                                android:contentDescription="Tambah"
+                                android:padding="10dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/plus" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#CCCCCC" />
+
+                <!-- Produk lainnya bisa ditambah di sini -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/product_border"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <!--List Product -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginVertical="8dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/imageProduct2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/samla" />
+
+                        <!--Detail Product-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="8dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                            <TextView
+                                android:id="@+id/productName2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="SAMLA"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/productDescription2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="kotak penyimpanan bening"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/productPrice2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Rp19.900"
+                                android:textColor="#D32F2F"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <Space
+                            android:layout_width="99dp"
+                            android:layout_height="match_parent" />
+
+                        <ImageButton
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/circle_button_bg"
+                            android:contentDescription="Hapus produk"
+                            android:padding="10dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/trash" />
+
+                        <Space
+                            android:layout_width="12dp"
+                            android:layout_height="match_parent" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:background="@drawable/rounded_border"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <!-- Kurangi -->
+                            <ImageButton
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@android:color/transparent"
+                                android:contentDescription="Kurangi"
+                                android:padding="10dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/minus" />
+
+                            <!-- Jumlah -->
+                            <TextView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textSize="16sp" />
+
+                            <!-- Tambah -->
+                            <ImageButton
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@android:color/transparent"
+                                android:contentDescription="Tambah"
+                                android:padding="10dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/plus" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#CCCCCC" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/product_border"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <!--List Product -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginVertical="8dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/imageProduct3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/reko" />
+
+                        <!--Detail Product-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="8dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                            <TextView
+                                android:id="@+id/productName3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="REKO"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/productDescription3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="gelas, putih, kecil"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/productPrice3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Rp9.900"
+                                android:textColor="#D32F2F"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <Space
+                            android:layout_width="99dp"
+                            android:layout_height="match_parent" />
+
+                        <ImageButton
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/circle_button_bg"
+                            android:contentDescription="Hapus produk"
+                            android:padding="10dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/trash" />
+
+                        <Space
+                            android:layout_width="12dp"
+                            android:layout_height="match_parent" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:background="@drawable/rounded_border"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <!-- Kurangi -->
+                            <ImageButton
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@android:color/transparent"
+                                android:contentDescription="Kurangi"
+                                android:padding="10dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/minus" />
+
+                            <!-- Jumlah -->
+                            <TextView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textSize="16sp" />
+
+                            <!-- Tambah -->
+                            <ImageButton
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@android:color/transparent"
+                                android:contentDescription="Tambah"
+                                android:padding="10dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/plus" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#CCCCCC" />
+
+            </LinearLayout>
+
+            <!--Section Pengiriman-->
+            <LinearLayout
+                android:id="@+id/sectionPengiriman"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
