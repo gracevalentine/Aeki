@@ -113,3 +113,38 @@ exports.signupUser = async (req, res) => {
     });
   }
 };
+
+
+exports.getUserProfile = async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const [userResult] = await database.promise().query(
+      `SELECT 
+         u.user_id,
+         u.first_name,
+         u.last_name,
+         u.email,
+         u.created_at,
+         c.address,
+         c.postal_code,
+         c.phone_number
+       FROM users u
+       LEFT JOIN customer c ON u.user_id = c.customer_id
+       WHERE u.user_id = ?`,
+      [userId]
+    );
+
+    if (userResult.length === 0) {
+      return res.status(404).json({ message: 'User tidak ditemukan.' });
+    }
+
+    return res.status(200).json({
+      message: 'Profil user ditemukan.',
+      user: userResult[0]
+    });
+  } catch (err) {
+    console.error('Error saat ambil profile:', err);
+    return res.status(500).json({ message: 'Gagal ambil data user.', error: err.message });
+  }
+};

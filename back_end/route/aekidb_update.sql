@@ -169,15 +169,15 @@
     `password` varchar(255) NOT NULL,
     `email` varchar(255) NOT NULL,
     `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-    `nama_depan` varchar(100) NOT NULL,
-    `nama_belakang` varchar(100) NOT NULL
+    `first_name` varchar(100) NOT NULL,
+    `last_name` varchar(100) NOT NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
   --
   -- Dumping data for table `users`
   --
 
-  INSERT INTO `users` (`user_id`, `password`, `email`, `created_at`, `nama_depan`, `nama_belakang`) VALUES
+  INSERT INTO `users` (`user_id`, `password`, `email`, `created_at`, `first_name`, `last_name`) VALUES
   (1, 'inipw123', 'habilgans@gmail.com', '2024-12-01 03:00:00', 'Moch', 'Habil'),
   (2, 'pcrh1seng', 'aduhc0k@gmail.com', '2024-12-02 04:30:00', 'Dea', 'Nur'),
   (3, 'kudus123', 'kudus123@gmail.com', '2024-12-03 07:45:00', 'Steven', 'Nicholas'),
