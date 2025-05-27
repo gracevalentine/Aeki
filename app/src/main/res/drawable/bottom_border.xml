@@ -1,0 +1,17 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Latar belakang transparan -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <!-- Garis bawah -->
+    <item android:top="-1dp"> <!-- Geser ke bawah -->
+        <shape android:shape="rectangle">
+            <size android:height="1dp" />
+            <solid android:color="#CCCCCC" />
+        </shape>
+    </item>
+</layer-list>
