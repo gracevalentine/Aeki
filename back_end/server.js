@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 const userRoute = require('./route/userRoute');
+const productRoute = require('./route/productRoute');
 
 const app = express();
 const PORT = 3000;
@@ -23,6 +24,7 @@ cookie: { secure: false }
 }));
 
 app.use('/users', userRoute);
+app.use('/products', productRoute);
 
 app.get('/', (req, res) => {
 res.send('AEKI backend is running...');
