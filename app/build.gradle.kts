@@ -41,27 +41,19 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-//    implementation(platform(libs.firebase.bom))
-//    implementation(libs.firebase.analytics)
     implementation(libs.kotlin.stdlib)
-//    implementation(libs.kotlin.stdlib.v1924)
-//    implementation(libs.firebase.database)
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.okhttp)
+    implementation (libs.okhttp.urlconnection)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    // Retrofit
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
+    implementation (libs.androidx.fragment.ktx) 
 
-    // OkHttp
-    implementation (libs.okhttp)
-
-    // OkHttp JavaNetCookieJar (bagian dari okhttp-urlconnection)
-    implementation (libs.okhttp.urlconnection)
 }
