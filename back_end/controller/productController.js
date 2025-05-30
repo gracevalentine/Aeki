@@ -120,3 +120,26 @@ exports.buyProduct = (req, res) => {
     });
   });
 };
+
+exports.getProductDetail = async (req, res) => {
+  const productId = req.params.id;
+
+  try {
+    const [productResult] = await database.promise().query(
+      `SELECT * FROM products WHERE product_id = ?`,
+      [productId]
+    );
+
+    if (productResult.length === 0) {
+      return res.status(404).json({ message: 'Produk tidak ditemukan.' });
+    }
+
+    return res.status(200).json({
+      message: 'Detail produk ditemukan.',
+      product: productResult[0]
+    });
+  } catch (err) {
+    console.error('Error saat ambil detail produk:', err);
+    return res.status(500).json({ message: 'Gagal ambil data produk.', error: err.message });
+  }
+};
