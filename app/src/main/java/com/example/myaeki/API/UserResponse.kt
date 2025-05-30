@@ -1,4 +1,4 @@
-package com.example.myaeki.api
+package com.example.myaeki.API
 
 data class UserResponse(
     val message: String,

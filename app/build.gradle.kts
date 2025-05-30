@@ -52,8 +52,11 @@ dependencies {
     implementation (libs.okhttp)
     implementation (libs.okhttp.urlconnection)
     testImplementation(libs.junit)
+    implementation (libs.androidx.fragment.ktx.v162)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation (libs.androidx.fragment.ktx)
+    implementation (libs.retrofit.v2110)
+    implementation (libs.converter.gson.v2110)
 
 }

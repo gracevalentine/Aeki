@@ -9,6 +9,9 @@ import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.myaeki.API.ProductResponse
+import com.example.myaeki.API.RetrofitClient
+
 
 class HomeFragment : Fragment() {
 
@@ -45,9 +48,38 @@ class HomeFragment : Fragment() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                Toast.makeText(requireContext(), "Cari: $query", Toast.LENGTH_SHORT).show()
+                if (!query.isNullOrEmpty()) {
+                    RetrofitClient.instance.searchProducts(query).enqueue(object : retrofit2.Callback<ProductResponse> {
+                        override fun onResponse(
+                            call: retrofit2.Call<ProductResponse>,
+                            response: retrofit2.Response<ProductResponse>
+                        ) {
+                            if (response.isSuccessful) {
+                                val products = response.body()?.products
+                                if (!products.isNullOrEmpty()) {
+                                    // Tampilkan hasil pertama (untuk sementara)
+                                    val product = products[0]
+                                    productName1.text = product.name
+                                    productDescription1.text = product.description
+                                    productPrice1.text = "Rp ${product.price}"
+
+                                    // TODO: tampilkan product2 dan product3
+                                } else {
+                                    Toast.makeText(requireContext(), "Produk tidak ditemukan", Toast.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                Toast.makeText(requireContext(), "Gagal mendapatkan data", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                        override fun onFailure(call: retrofit2.Call<ProductResponse>, t: Throwable) {
+                            Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                }
                 return true
             }
+
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 return false

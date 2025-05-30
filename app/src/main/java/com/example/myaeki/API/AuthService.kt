@@ -1,4 +1,4 @@
-package com.example.myaeki.api
+package com.example.myaeki.API
 
 import retrofit2.Call
 import retrofit2.http.Body
