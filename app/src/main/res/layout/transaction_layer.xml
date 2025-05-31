@@ -35,6 +35,7 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/button_delete_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hapus Semua"
@@ -329,6 +330,7 @@
                             android:layout_height="match_parent" />
 
                         <ImageButton
+                            android:id="@+id/buttonDelete2"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:background="@drawable/circle_button_bg"
@@ -350,6 +352,7 @@
 
                             <!-- Kurangi -->
                             <ImageButton
+                                android:id="@+id/buttonMinus2"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:background="@android:color/transparent"
@@ -360,6 +363,7 @@
 
                             <!-- Jumlah -->
                             <TextView
+                                android:id="@+id/textQuantity2"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:gravity="center"
@@ -368,6 +372,7 @@
 
                             <!-- Tambah -->
                             <ImageButton
+                                android:id="@+id/buttonPlus2"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:background="@android:color/transparent"
@@ -468,6 +473,7 @@
                             android:layout_height="match_parent" />
 
                         <ImageButton
+                            android:id="@+id/buttonDelete3"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:background="@drawable/circle_button_bg"
@@ -489,6 +495,7 @@
 
                             <!-- Kurangi -->
                             <ImageButton
+                                android:id="@+id/buttonMinus3"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:background="@android:color/transparent"
@@ -499,6 +506,7 @@
 
                             <!-- Jumlah -->
                             <TextView
+                                android:id="@+id/textQuantity3"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:gravity="center"
@@ -507,6 +515,7 @@
 
                             <!-- Tambah -->
                             <ImageButton
+                                android:id="@+id/buttonPlus3"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:background="@android:color/transparent"

@@ -1,4 +1,4 @@
-package com.example.aeki
+package com.example.myaeki
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myaeki.R
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -172,5 +173,9 @@ class CheckoutFragment : Fragment() {
                 // Add navigation or further checkout logic here
             }
         }
+    }
+
+    private fun Triple(first: ImageButton?, second: ImageButton?, third: ImageButton?, findViewById: TextView?, i: Int): Triple<ImageButton, ImageButton, ImageButton> {
+
     }
 }

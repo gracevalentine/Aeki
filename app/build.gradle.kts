@@ -58,11 +58,9 @@ dependencies {
     implementation (libs.androidx.fragment.ktx)
     implementation (libs.retrofit.v2110)
     implementation (libs.converter.gson.v2110)
-    // ViewModel and Lifecycle dependencies
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
     implementation (libs.androidx.lifecycle.livedata.ktx)
-
-    // Kotlin Coroutines for viewModelScope
     implementation (libs.kotlinx.coroutines.android)
+
 
 }
