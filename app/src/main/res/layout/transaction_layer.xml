@@ -73,7 +73,7 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="1 produk"
+                    android:text="3 produk"
                     android:textSize="15sp" />
 
                 <Space
@@ -180,7 +180,7 @@
                         android:padding="8dp">
 
                         <Space
-                            android:layout_width="99dp"
+                            android:layout_width="130dp"
                             android:layout_height="match_parent" />
 
                         <ImageButton
@@ -213,8 +213,7 @@
                                 android:contentDescription="Kurangi"
                                 android:padding="10dp"
                                 android:scaleType="centerInside"
-                                android:src="@drawable/minus"
-                                app:tint="#000000" />
+                                android:src="@drawable/minus" />
 
                             <!-- Jumlah -->
                             <TextView
@@ -326,7 +325,7 @@
                         android:padding="8dp">
 
                         <Space
-                            android:layout_width="99dp"
+                            android:layout_width="130dp"
                             android:layout_height="match_parent" />
 
                         <ImageButton
@@ -465,7 +464,7 @@
                         android:padding="8dp">
 
                         <Space
-                            android:layout_width="99dp"
+                            android:layout_width="130dp"
                             android:layout_height="match_parent" />
 
                         <ImageButton
@@ -528,18 +527,382 @@
 
             <!--Section Pengiriman-->
             <LinearLayout
-                android:id="@+id/sectionPengiriman"
+                android:id="@+id/sectionPengantaran"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
                 android:orientation="vertical"
                 android:padding="15dp">
 
+                <!--            Header Pengiriman-->
+                <LinearLayout
+                    android:id="@+id/headerPengantaran"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/titlePengantaran"
+                        android:layout_width="180dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        android:text="Metode Pengantaran"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <Space
+                        android:layout_width="75dp"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:id="@+id/headerPengantaran2"
+                        android:layout_width="115dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="(Wajib Diisi)"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/headerAlamat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/titleAlamat"
+                        android:layout_width="180dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        android:text="Alamat / Kode Pos"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/detailAlamat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        android:text="Jl. KH Wahid Hasyim 27, Kudus | 59313"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <!--            Section Button Delivery-->
+                <LinearLayout
+                    android:id="@+id/buttonDelivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="20dp"
+                    android:background="@drawable/product_border"
+                    app:cardElevation="2dp"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/local_shipping"/>
 
 
+                    <LinearLayout
+                        android:id="@+id/sectionbuttonDelivery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:id="@+id/titleDelivery"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Delivery"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/descDelivery"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Tersedia pengantaran Delivery dengan biaya tambahan Rp. 25.000"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--            Section Pick Up Button-->
+                <LinearLayout
+                    android:id="@+id/buttonPickUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/product_border"
+                    app:cardElevation="2dp"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@android:color/transparent">
+
+                    <LinearLayout
+                        android:id="@+id/sectionButtonPickUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="10dp">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/pickup_point"/>
+
+                        <LinearLayout
+                            android:id="@+id/sectionbuttonPickUp2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/titlePickUp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Pick Up Point"
+                                android:textSize="18sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:id="@+id/descPickUp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Ambil di Pick-up point terdekat"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/detailButtonPickUpLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp"
+                        android:background="@drawable/product_border">
+
+                        <TextView
+                            android:id="@+id/titlePickUpLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="23 Paskal Pick-Up Point"
+                            android:textSize="15sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/descPickUpLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jl. Pasir Kaliki No.25"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#CCCCCC" />
+
+            </LinearLayout>
+
+            <!--            Section Ringkasan Pesanan-->
+            <LinearLayout
+                android:id="@+id/ringkasanPesanan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/product_border"
+                android:layout_margin="15dp"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/headerRingkasanPesanan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ringkasan Pemesanan"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:id="@+id/sectionTotalProduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:gravity="left"
+                        android:text="Jumlah Produk"/>
+
+                    <Space
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/productCounter"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:gravity="right"
+                        android:text="3"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#CCCCCC"
+                    android:layout_marginBottom="5dp"/>
+
+                <LinearLayout
+                    android:id="@+id/sectionSubTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:gravity="left"
+                        android:text="Subtotal sebelum pengantaran"/>
+
+                    <Space
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/biayaSubTotal"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:gravity="right"
+                        android:textStyle="bold"
+                        android:text="Rp. 39.900"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sectionBiayaPengantaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:gravity="left"
+                        android:text="Biaya pengantaran"/>
+
+                    <Space
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/biayaPengantaran"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:gravity="right"
+                        android:textStyle="bold"
+                        android:text="GRATIS"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#CCCCCC"
+                    android:layout_marginBottom="5dp"/>
+
+                <LinearLayout
+                    android:id="@+id/sectionBiayaTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:gravity="left"
+                        android:text="Total Biaya"/>
+
+                    <Space
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/totalBiaya"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:gravity="right"
+                        android:textStyle="bold"
+                        android:text="Rp. 39.900"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/sectionButtonCheckOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/buttonCheckOut"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:text="CheckOut Transaction"
+                        android:layout_margin="5dp"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
