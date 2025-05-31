@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
+import com.example.myaeki.API.UserResponse
+import com.example.myaeki.api.SignupRequest
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignUpFragment : Fragment() {
 
@@ -19,7 +20,7 @@ class SignUpFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
 
-        // Ambil view yang diperlukan
+        // Ambil view
         val email = view.findViewById<EditText>(R.id.email)
         val firstName = view.findViewById<EditText>(R.id.first_name)
         val lastName = view.findViewById<EditText>(R.id.last_name)
@@ -30,24 +31,88 @@ class SignUpFragment : Fragment() {
         val termsCheckBox = view.findViewById<CheckBox>(R.id.terms_checkbox)
         val createButton = view.findViewById<Button>(R.id.create_account_button)
 
-        // Event saat tombol ditekan
         createButton.setOnClickListener {
-            val emailText = email.text.toString()
+            val emailText = email.text.toString().trim()
+            val first = firstName.text.toString().trim()
+            val last = lastName.text.toString().trim()
+            val add = address.text.toString().trim()
+            val code = postalCode.text.toString().trim()
             val pass = password.text.toString()
             val confirmPass = confirmPassword.text.toString()
 
-            if (emailText.isBlank() || pass.isBlank()) {
-                Toast.makeText(requireContext(), "Isi semua data wajib!", Toast.LENGTH_SHORT).show()
-            } else if (pass != confirmPass) {
-                Toast.makeText(requireContext(), "Password tidak cocok", Toast.LENGTH_SHORT).show()
-            } else if (!termsCheckBox.isChecked) {
-                Toast.makeText(requireContext(), "Harap setujui kebijakan privasi", Toast.LENGTH_SHORT).show()
-            } else {
-                // Lanjutkan ke proses pendaftaran
-                Toast.makeText(requireContext(), "Akun berhasil dibuat!", Toast.LENGTH_SHORT).show()
+            // Validasi semua field harus diisi
+            if (emailText.isEmpty() || first.isEmpty() || last.isEmpty() || add.isEmpty()
+                || code.isEmpty() || pass.isEmpty() || confirmPass.isEmpty()
+            ) {
+                Toast.makeText(requireContext(), "Semua field harus diisi", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            // Validasi email harus @gmail.com
+            if (!emailText.endsWith("@gmail.com", ignoreCase = true)) {
+                Toast.makeText(requireContext(), "Email harus menggunakan @gmail.com", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Validasi kode pos harus angka
+            if (!code.matches(Regex("^[0-9]+$"))) {
+                Toast.makeText(requireContext(), "Kode pos hanya boleh angka", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Validasi konfirmasi password
+            if (pass != confirmPass) {
+                Toast.makeText(requireContext(), "Password dan konfirmasi tidak cocok", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Validasi checkbox
+            if (!termsCheckBox.isChecked) {
+                Toast.makeText(requireContext(), "Harap setujui kebijakan privasi", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Data valid, kirim request
+            val signupRequest = SignupRequest(
+                first_name = first,
+                last_name = last,
+                email = emailText,
+                password = pass,
+                address = add,
+                postal_code = code.toInt(),
+                email_checkbox = true
+            )
+
+            sendSignupRequest(signupRequest)
         }
 
         return view
+    }
+
+    private fun sendSignupRequest(signupRequest: SignupRequest) {
+        ApiClient.authService.signup(signupRequest).enqueue(object : Callback<UserResponse> {
+            override fun onResponse(
+                call: Call<UserResponse>,
+                response: Response<UserResponse>
+            ) {
+                if (response.isSuccessful && response.body() != null) {
+                    Toast.makeText(requireContext(), "Akun berhasil dibuat!", Toast.LENGTH_SHORT).show()
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.main, SignInFragment())
+                        .addToBackStack(null)
+                        .commit()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Gagal daftar: ${response.errorBody()?.string() ?: "Unknown error"}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "Error: ${t.localizedMessage}", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }

@@ -80,8 +80,8 @@ class HomeFragment : Fragment() {
                 return true
             }
 
-
             override fun onQueryTextChange(newText: String?): Boolean {
+
                 return false
             }
         })

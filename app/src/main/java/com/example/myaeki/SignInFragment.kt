@@ -9,8 +9,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.myaeki.API.UserResponse
 import com.example.myaeki.api.LoginRequest
-import com.example.myaeki.api.UserResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -83,9 +83,10 @@ class SignInFragment : Fragment() {
         }
 
         btnRegister.setOnClickListener {
-            // Nanti bisa diarahkan ke RegisterFragment (jika sudah dibuat)
-            Toast.makeText(requireContext(), "Arahkan ke halaman registrasi", Toast.LENGTH_SHORT)
-                .show()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main, SignUpFragment())
+                .addToBackStack(null)
+                .commit()
         }
     }
 }

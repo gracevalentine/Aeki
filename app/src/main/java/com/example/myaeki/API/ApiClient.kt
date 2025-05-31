@@ -1,4 +1,4 @@
-import com.example.myaeki.api.AuthService
+import com.example.myaeki.API.AuthService
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
