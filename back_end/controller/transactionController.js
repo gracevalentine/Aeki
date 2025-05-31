@@ -1,3 +1,5 @@
+const database = require('../configuration/database');
+
 exports.insertToCart = (req, res) => {
   const { user_id, product_id, quantity } = req.body;
 
