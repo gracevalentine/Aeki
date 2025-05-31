@@ -16,7 +16,7 @@
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:layout_gravity="end"
-            android:src="@drawable/aeki_logo" />
+            android:src="@drawable/dekora" />
 
         <TextView
             android:layout_width="match_parent"

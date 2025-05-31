@@ -4,18 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
-import com.example.myaeki.R
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collectLatest
 
 // Data class for product
 data class Product(
@@ -79,6 +77,15 @@ class CheckoutViewModel : ViewModel() {
     }
 }
 
+// Holder untuk setiap produk di UI
+data class ProductViewHolder(
+    val deleteButton: ImageButton,
+    val minusButton: ImageButton,
+    val plusButton: ImageButton,
+    val quantityText: TextView,
+    val productId: Int
+)
+
 class CheckoutFragment : Fragment() {
 
     private val viewModel: CheckoutViewModel by viewModels()
@@ -87,13 +94,12 @@ class CheckoutFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_checkout, container, false)
+        return inflater.inflate(R.layout.transaction_layer, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize UI components
         val countProductText: TextView = view.findViewById(R.id.countProduct)
         val countPriceText: TextView = view.findViewById(R.id.countPrice)
         val deleteAllButton: Button = view.findViewById(R.id.button_delete_all)
@@ -101,53 +107,59 @@ class CheckoutFragment : Fragment() {
         val deliveryButton: View = view.findViewById(R.id.buttonDelivery)
         val pickUpButton: View = view.findViewById(R.id.buttonPickUp)
 
-        // Product-specific views
         val productViews = listOf(
-            Triple(
-                view.findViewById<ImageButton>(R.id.buttonDelete),
-                view.findViewById<ImageButton>(R.id.buttonMinus),
-                view.findViewById<ImageButton>(R.id.buttonPlus),
-                view.findViewById<TextView>(R.id.textQuantity),
+            ProductViewHolder(
+                view.findViewById(R.id.buttonDelete),
+                view.findViewById(R.id.buttonMinus),
+                view.findViewById(R.id.buttonPlus),
+                view.findViewById(R.id.textQuantity),
                 1
             ),
-            Triple(
-                view.findViewById<ImageButton>(R.id.buttonDelete2),
-                view.findViewById<ImageButton>(R.id.buttonMinus2),
-                view.findViewById<ImageButton>(R.id.buttonPlus2),
-                view.findViewById<TextView>(R.id.textQuantity2),
+            ProductViewHolder(
+                view.findViewById(R.id.buttonDelete2),
+                view.findViewById(R.id.buttonMinus2),
+                view.findViewById(R.id.buttonPlus2),
+                view.findViewById(R.id.textQuantity2),
                 2
             ),
-            Triple(
-                view.findViewById<ImageButton>(R.id.buttonDelete3),
-                view.findViewById<ImageButton>(R.id.buttonMinus3),
-                view.findViewById<ImageButton>(R.id.buttonPlus3),
-                view.findViewById<TextView>(R.id.textQuantity3),
+            ProductViewHolder(
+                view.findViewById(R.id.buttonDelete3),
+                view.findViewById(R.id.buttonMinus3),
+                view.findViewById(R.id.buttonPlus3),
+                view.findViewById(R.id.textQuantity3),
                 3
             )
         )
 
-        // Observe ViewModel data
-        viewModel.products.observe(viewLifecycleOwner) { products ->
-            countProductText.text = "${products.sumOf { it.quantity }} produk"
-            countPriceText.text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
-            productViews.forEach { (deleteButton, minusButton, plusButton, quantityText, productId) ->
-                val product = products.find { it.id == productId }
-                quantityText.text = product?.quantity?.toString() ?: "0"
-                deleteButton.setOnClickListener { viewModel.deleteProduct(productId) }
-                minusButton.setOnClickListener { viewModel.updateQuantity(productId, false) }
-                plusButton.setOnClickListener { viewModel.updateQuantity(productId, true) }
+        // Observe product list
+        lifecycleScope.launch {
+            viewModel.products.collectLatest { products ->
+                countProductText.text = "${products.sumOf { it.quantity }} produk"
+                countPriceText.text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
+
+                productViews.forEach { holder ->
+                    val product = products.find { it.id == holder.productId }
+                    holder.quantityText.text = product?.quantity?.toString() ?: "0"
+                    holder.deleteButton.setOnClickListener { viewModel.deleteProduct(holder.productId) }
+                    holder.minusButton.setOnClickListener { viewModel.updateQuantity(holder.productId, false) }
+                    holder.plusButton.setOnClickListener { viewModel.updateQuantity(holder.productId, true) }
+                }
+
+                view.findViewById<TextView>(R.id.productCounter).text = products.sumOf { it.quantity }.toString()
+                view.findViewById<TextView>(R.id.biayaSubTotal).text = "Rp ${String.format("%,.0f", products.sumOf { it.price * it.quantity })}"
+                view.findViewById<TextView>(R.id.totalBiaya).text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
             }
-            view.findViewById<TextView>(R.id.productCounter).text = products.sumOf { it.quantity }.toString()
-            view.findViewById<TextView>(R.id.biayaSubTotal).text = "Rp ${String.format("%,.0f", products.sumOf { it.price * it.quantity })}"
-            view.findViewById<TextView>(R.id.totalBiaya).text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
         }
 
-        viewModel.deliveryMethod.observe(viewLifecycleOwner) { method ->
-            view.findViewById<TextView>(R.id.biayaPengantaran).text = if (method == "Delivery") "Rp 25.000" else "GRATIS"
-            view.findViewById<TextView>(R.id.totalBiaya).text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
+        // Observe delivery method
+        lifecycleScope.launch {
+            viewModel.deliveryMethod.collectLatest { method ->
+                view.findViewById<TextView>(R.id.biayaPengantaran).text = if (method == "Delivery") "Rp 25.000" else "GRATIS"
+                view.findViewById<TextView>(R.id.totalBiaya).text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
+            }
         }
 
-        // Set click listeners
+        // Button handlers
         deleteAllButton.setOnClickListener {
             viewModel.deleteAllProducts()
             Toast.makeText(context, "Semua produk dihapus", Toast.LENGTH_SHORT).show()
@@ -164,18 +176,13 @@ class CheckoutFragment : Fragment() {
         }
 
         checkoutButton.setOnClickListener {
-            if (viewModel.deliveryMethod.value == null) {
-                Toast.makeText(context, "Pilih metode pengantaran terlebih dahulu", Toast.LENGTH_SHORT).show()
-            } else if (viewModel.products.value.isEmpty()) {
-                Toast.makeText(context, "Keranjang belanja kosong", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, "Checkout berhasil! Total: Rp ${String.format("%,.0f", viewModel.getTotalPrice())}", Toast.LENGTH_LONG).show()
-                // Add navigation or further checkout logic here
+            when {
+                viewModel.deliveryMethod.value == null ->
+                    Toast.makeText(context, "Pilih metode pengantaran terlebih dahulu", Toast.LENGTH_SHORT).show()
+                viewModel.products.value.isEmpty() ->
+                    Toast.makeText(context, "Keranjang belanja kosong", Toast.LENGTH_SHORT).show()
+                else -> Toast.makeText(context, "Checkout berhasil! Total: Rp ${String.format("%,.0f", viewModel.getTotalPrice())}", Toast.LENGTH_LONG).show()
             }
         }
-    }
-
-    private fun Triple(first: ImageButton?, second: ImageButton?, third: ImageButton?, findViewById: TextView?, i: Int): Triple<ImageButton, ImageButton, ImageButton> {
-
     }
 }

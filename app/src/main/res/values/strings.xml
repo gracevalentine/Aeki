@@ -10,7 +10,7 @@
 
     <!-- NOTE: Sign In -->
     <string name="app_name">LoginorSignin</string>
-    <string name="welcome">Selamat datang di ÆKI</string>
+    <string name="welcome">Selamat datang di DEKORA</string>
     <string name="pendaftaran">Daftar atau masuk untuk melihat list belanja Anda, pembelian, reward atau lainnya</string>
     <string name="email">Email</string>
     <string name="placeholder_email">contoh@email.com</string>

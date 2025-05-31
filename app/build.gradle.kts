@@ -51,6 +51,12 @@ dependencies {
     implementation (libs.converter.gson)
     implementation (libs.okhttp)
     implementation (libs.okhttp.urlconnection)
+    // ViewModel and Lifecycle dependencies
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+
+    // Kotlin Coroutines for viewModelScope
+    implementation (libs.kotlinx.coroutines.android)
     testImplementation(libs.junit)
     implementation (libs.androidx.fragment.ktx.v162)
     androidTestImplementation(libs.androidx.junit)

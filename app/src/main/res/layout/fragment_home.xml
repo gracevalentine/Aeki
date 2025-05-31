@@ -59,7 +59,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:contentDescription="Promo Banner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,13 +70,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:paddingStart="20dp"
+        android:layout_marginBottom="12dp"
+        app:layoutHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView3">
 
-        <!-- Add your content here -->
+        <!--         Add your content here-->
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
@@ -89,11 +88,10 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="43dp"
             android:text="Produk Unggulan"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
-
-
     </LinearLayout>
 
     <HorizontalScrollView
@@ -106,9 +104,10 @@
         android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavView">
 
-        <!-- Parent container for all product cards -->
+    <!-- Parent container for all product cards -->
         <LinearLayout
             android:id="@+id/productsContainer"
             android:layout_width="wrap_content"
@@ -119,13 +118,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:orientation="vertical"
-                android:padding="8dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginVertical="8dp"
                 android:layout_marginStart="4dp"
-                android:background="@drawable/product_border">
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/product_border"
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <ImageView
                     android:id="@+id/imageProduct1"
@@ -139,125 +138,38 @@
                     android:id="@+id/productName1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="OFTAST"
-                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/product_series"
                     android:textSize="14sp"
-                    android:layout_marginTop="4dp" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/productDescription1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="piring, putih, 25 cm"
+                    android:text="@string/product_description"
                     android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/productPrice1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Rp9.900"
-                    android:textColor="#D32F2F"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:layout_marginTop="4dp" />
-            </LinearLayout>
-
-            <!-- Item 2 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:orientation="vertical"
-                android:padding="8dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginVertical="8dp"
-                android:layout_marginStart="4dp"
-                android:background="@drawable/product_border">
-
-                <ImageView
-                    android:id="@+id/imageProduct2"
-                    android:layout_width="140dp"
-                    android:layout_height="155dp"
                     android:layout_marginTop="4dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/samla" />
-
-                <TextView
-                    android:id="@+id/productName2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="SAMLA"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp" />
-
-                <TextView
-                    android:id="@+id/productDescription2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="kotak dengan penutup"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/productPrice2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rp19.900"
+                    android:text="@string/product_price"
                     android:textColor="#D32F2F"
-                    android:textStyle="bold"
                     android:textSize="16sp"
-                    android:layout_marginTop="4dp" />
+                    android:textStyle="bold" />
             </LinearLayout>
-
-            <!-- Item 3 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:orientation="vertical"
-                android:padding="8dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginVertical="8dp"
-                android:layout_marginStart="4dp"
-                android:background="@drawable/product_border">
-
-                <ImageView
-                    android:id="@+id/imageProduct3"
-                    android:layout_width="140dp"
-                    android:layout_height="155dp"
-                    android:layout_marginTop="4dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/reko" />
-
-                <TextView
-                    android:id="@+id/productName3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="REKO"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp" />
-
-                <TextView
-                    android:id="@+id/productDescription3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="gelas-gelas kaca"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/productPrice3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rp9.900"
-                    android:textColor="#D32F2F"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:layout_marginTop="4dp" />
-            </LinearLayout>
-
         </LinearLayout>
+        <!-- Bottom Navigation -->
     </HorizontalScrollView>
+
+    <include
+        android:id="@+id/bottomNavView"
+        layout="@layout/bottom_nav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
