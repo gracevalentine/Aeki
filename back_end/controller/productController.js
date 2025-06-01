@@ -79,11 +79,9 @@ exports.buyProduct = (req, res) => {
           return res.status(400).json({ message: 'Saldo wallet tidak cukup.' });
         }
 
-        // Lanjut ke transaksi
         lanjutkanTransaksi();
       });
     } else {
-      // Metode selain wallet, langsung lanjut
       lanjutkanTransaksi();
     }
 
@@ -122,7 +120,7 @@ exports.buyProduct = (req, res) => {
                 });
               }
 
-              // Kalau pakai wallet, kurangi saldo user
+              // Kalau pakai wallet, kurangi saldo user dulu
               if (payment_method === 'E_WALLET') {
                 const updateWallet = 'UPDATE customer SET wallet = wallet - ? WHERE customer_id = ?';
                 database.query(updateWallet, [totalAmount, user_id], (err) => {
@@ -133,10 +131,30 @@ exports.buyProduct = (req, res) => {
                     });
                   }
 
-                  commitSelesai();
+                  // Lanjut ke insert transaksi
+                  insertTransaction();
                 });
               } else {
-                commitSelesai();
+                // Langsung insert transaksi kalau bukan wallet
+                insertTransaction();
+              }
+
+              function insertTransaction() {
+               const insertTransaction = `
+  INSERT INTO \`transaction\` (order_id, product_id, quantity, subtotal)
+  VALUES (?, ?, ?, ?)
+`;
+database.query(insertTransaction, [orderId, product_id, quantity, totalAmount], (err) => {
+  if (err) {
+    return database.rollback(() => {
+      console.error('Error insert transaction:', err);
+      res.status(500).json({ message: 'Gagal menyimpan transaksi.' });
+    });
+  }
+
+  commitSelesai();
+});
+
               }
 
               function commitSelesai() {
@@ -167,6 +185,7 @@ exports.buyProduct = (req, res) => {
     }
   });
 };
+
 
 
 exports.getProductDetail = async (req, res) => {
