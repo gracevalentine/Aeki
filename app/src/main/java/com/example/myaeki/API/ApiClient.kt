@@ -1,4 +1,5 @@
 import com.example.myaeki.API.AuthService
+import com.example.myaeki.API.UserService
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -12,7 +13,7 @@ object ApiClient {
     private val cookieManager = CookieManager()
 
     private val okHttpClient = OkHttpClient.Builder()
-        .cookieJar(JavaNetCookieJar(cookieManager)) // <- ini penting buat session
+        .cookieJar(JavaNetCookieJar(cookieManager))
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .build()
@@ -25,4 +26,14 @@ object ApiClient {
             .build()
             .create(AuthService::class.java)
     }
+
+    val userService: UserService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(UserService::class.java)
+    }
 }
+
