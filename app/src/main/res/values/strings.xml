@@ -47,6 +47,11 @@
     <string name="button_create_account">Buat Akun</string>
 
 
+    <!--    Note: Sign Up-->
+    <string name="placeholder_search">Masukkan kata kunci</string>
+
+
+
     <!-- Note: Detail Produk -->
     <string name="product_series">Oftast</string>
     <string name="product_description">piring, putih, 25 cm</string>

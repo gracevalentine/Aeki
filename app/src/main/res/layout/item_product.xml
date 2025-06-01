@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/product_border"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!-- Gambar Produk -->
+    <ImageView
+        android:id="@+id/imageProduct1"
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/oftast" />
+
+    <!-- Nama Produk -->
+    <TextView
+        android:id="@+id/productName1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textAllCaps="true"
+        android:text="@string/product_series"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <!-- Deskripsi -->
+    <TextView
+        android:id="@+id/productDescription1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/product_description"
+        android:textSize="12sp" />
+
+    <!-- Harga -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/rp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginTop="-5dp"
+            android:fontFamily="@font/mplus1pmedium"
+            android:text="@string/product_currency"
+            android:textColor="#000000"
+            android:textSize="11sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/mplus1pextrabold"
+            android:text="@string/product_price"
+            android:textSize="17sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -16,21 +16,21 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collectLatest
 
 // Data class for product
-data class Product(
-    val id: Int,
-    val name: String,
-    val description: String,
-    val price: Double,
-    var quantity: Int
-)
+//data class Product(
+//    val id: Int,
+//    val name: String,
+//    val description: String,
+//    val price: Double,
+//    var quantity: Int
+//)
 
 // ViewModel for managing checkout data
 class CheckoutViewModel : ViewModel() {
     private val _products = MutableStateFlow<List<Product>>(
         listOf(
-            Product(1, "OFTAST", "piring, putih, 25 cm", 9900.0, 1),
-            Product(2, "SAMLA", "kotak penyimpanan bening", 19900.0, 1),
-            Product(3, "REKO", "gelas, putih, kecil", 9900.0, 1)
+            Product(1, "OFTAST", "piring, putih, 25 cm", 9900.0, 1, category = null, imageUrl = null),
+            Product(2, "SAMLA", "kotak penyimpanan bening", 19900.0, 1, category = null, imageUrl = null),
+            Product(3, "REKO", "gelas, putih, kecil", 9900.0, 1, category = null, imageUrl = null)
         )
     )
     val products: StateFlow<List<Product>> = _products

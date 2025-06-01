@@ -58,6 +58,7 @@ dependencies {
     // Kotlin Coroutines for viewModelScope
     implementation (libs.kotlinx.coroutines.android)
     testImplementation(libs.junit)
+    implementation (libs.glide)
     implementation (libs.androidx.fragment.ktx.v162)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
