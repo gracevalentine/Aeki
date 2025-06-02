@@ -12,9 +12,10 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.splash_screen)
 
         val videoView = findViewById<VideoView>(R.id.videoView)
-        val videoPath = "android.resource://${packageName}/${R.raw.intro}" // contoh video di res/raw
+        val videoPath = "android.resource://${packageName}/${R.raw.dekora}"
 
         videoView.setVideoURI(Uri.parse(videoPath))
+
         videoView.setOnCompletionListener {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
