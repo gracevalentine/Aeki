@@ -26,20 +26,20 @@ class ProductAdapter(private val listProduct: List<Product>) :
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        val product = listProduct[position]
-
-        // Load image pakai Glide
-        Glide.with(holder.itemView.context)
-            .load(product.imageUrl) // imageUrl harus URL yang valid ya
-            .placeholder(R.drawable.oftast) // gambar default kalau gagal
-            .into(holder.img)
-
-        holder.nama.text = product.name
-        holder.desc.text = product.description ?: "-"
-
-        // Format harga pakai Rupiah
-        val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-        holder.harga.text = formatter.format(product.price)
+//        val product = listProduct[position]
+//
+//        // Load image pakai Glide
+//        Glide.with(holder.itemView.context)
+//            .load(product.imageUrl) // imageUrl harus URL yang valid ya
+//            .placeholder(R.drawable.oftast) // gambar default kalau gagal
+//            .into(holder.img)
+//
+//        holder.nama.text = product.name
+//        holder.desc.text = product.description ?: "-"
+//
+//        // Format harga pakai Rupiah
+//        val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+//        holder.harga.text = formatter.format(product.price)
     }
 
     override fun getItemCount(): Int = listProduct.size

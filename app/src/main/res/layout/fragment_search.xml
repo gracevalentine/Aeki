@@ -70,13 +70,14 @@
     <!-- Search Input -->
     <EditText
         android:id="@+id/searchProductInput"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_width="370dp"
+        android:layout_height="48dp"
         android:layout_marginStart="19dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="19dp"
         android:background="@drawable/searchview_border"
         android:hint="@string/placeholder_search"
+        android:inputType="text"
         android:paddingHorizontal="12dp"
         android:textColor="@android:color/black"
         android:textSize="14sp"
@@ -92,11 +93,11 @@
         android:clipToPadding="false"
         android:padding="8dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        app:layout_constraintTop_toBottomOf="@id/searchProductInput"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchProductInput"
+        app:spanCount="2"
         tools:listitem="@layout/item_product"/>
 
     <!-- Bottom Navigation -->
@@ -108,3 +109,4 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
