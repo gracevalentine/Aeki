@@ -14,44 +14,20 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewProduk)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.productRecyclerView)
+        recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
         val dummyProducts = listOf(
-            Product(
-                id = 1,
-                name = "OFTAST",
-                description = "Piring kecil",
-                price = 9900.0,
-                quantity = 10,
-                category = "Dapur",
-                imageUrl = "https://via.placeholder.com/150"
-            ),
-            Product(
-                id = 2,
-                name = "FÄRGKLAR",
-                description = "Piring hitam (4 pcs)",
-                price = 149000.0,
-                quantity = 15,
-                category = "Dapur",
-                imageUrl = "https://via.placeholder.com/150"
-            ),
-            Product(
-                id = 3,
-                name = "OFTAST",
-                description = "Piring cekung",
-                price = 9900.0,
-                quantity = 5,
-                category = "Dapur",
-                imageUrl = "https://via.placeholder.com/150"
-            )
+            Product(1, "OFTAST", "Piring kecil", 9900.0, 10, "Dapur", "https://via.placeholder.com/150"),
+            Product(2, "FÄRGKLAR", "Piring hitam (4 pcs)", 149000.0, 15, "Dapur", "https://via.placeholder.com/150"),
+            Product(3, "OFTAST", "Piring cekung", 9900.0, 5, "Dapur", "https://via.placeholder.com/150")
         )
 
 //        NOTE: ENIH ADA CODE RETORFIT, MOGA MEMBANTU
