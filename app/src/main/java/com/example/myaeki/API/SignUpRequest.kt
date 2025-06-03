@@ -1,4 +1,4 @@
-package com.example.myaeki.api
+package com.example.myaeki.API
 
 data class SignupRequest(
     val first_name: String,

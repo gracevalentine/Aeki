@@ -1,6 +1,7 @@
 package com.example.myaeki
 
-import ApiClient
+import com.example.myaeki.API.ApiClient
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,16 +11,33 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.myaeki.API.UserResponse
-import com.example.myaeki.api.LoginRequest
+import com.example.myaeki.API.LoginRequest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class SignInFragment : Fragment() {
+
+    interface LoginListener {
+        fun onLoginSuccess()
+    }
+
+    private var loginListener: LoginListener? = null
+
     private lateinit var etEmailPhone: EditText
     private lateinit var etPassword: EditText
     private lateinit var btnLogin: Button
     private lateinit var btnRegister: Button
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        loginListener = context as? LoginListener
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        loginListener = null
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,8 +59,7 @@ class SignInFragment : Fragment() {
             val password = etPassword.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(requireContext(), "Data tidak boleh kosong", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(), "Data tidak boleh kosong", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -55,29 +72,22 @@ class SignInFragment : Fragment() {
                 ) {
                     if (response.isSuccessful && response.body()?.user != null) {
                         val user = response.body()!!.user!!
-                        Toast.makeText(
-                            requireContext(),
-                            "Selamat datang, ${user.first_name}",
-                            Toast.LENGTH_SHORT
-                        ).show()
 
-                        // Berhasil login → ke HomeFragment
-                        parentFragmentManager.beginTransaction()
-                            .replace(R.id.main, HomeFragment())
-                            .addToBackStack(null)
-                            .commit()
+                        // Simpan user_id ke SharedPreferences
+                        val sharedPref = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+                        sharedPref.edit().putString("USER_ID", user.id.toString()).apply()
+
+                        Toast.makeText(requireContext(), "Selamat datang, ${user.first_name}", Toast.LENGTH_SHORT).show()
+
+                        // Login sukses, kasih tahu activity lewat callback
+                        loginListener?.onLoginSuccess()
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Login gagal. Cek kembali email/password",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(requireContext(), "Login gagal. Cek kembali email/password", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                    Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
         }

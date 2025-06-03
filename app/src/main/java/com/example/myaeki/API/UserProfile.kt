@@ -1,7 +1,7 @@
 package com.example.myaeki.API
 
 data class UserProfile(
-    val user_id: String,
+    val user_id: Int,
     val first_name: String,
     val last_name: String,
     val email: String,

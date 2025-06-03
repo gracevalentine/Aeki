@@ -1,3 +1,5 @@
+package com.example.myaeki.API
+
 import com.example.myaeki.API.AuthService
 import com.example.myaeki.API.UserService
 import okhttp3.JavaNetCookieJar
@@ -8,7 +10,7 @@ import java.net.CookieManager
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
-    private const val BASE_URL = "http://10.0.2.2:3000"
+    private const val BASE_URL = "http://10.0.2.2:3000/"
 
     private val cookieManager = CookieManager()
 

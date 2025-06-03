@@ -20,10 +20,25 @@ class DetailProductFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_detail_product, container, false)
+        val backButton = view.findViewById<ImageView>(R.id.buttonBack)
+        val searchButton = view.findViewById<ImageView>(R.id.buttonSearch)
 
         stockArrow = view.findViewById(R.id.stockArrow)
         stockArrow.setOnClickListener {
             showStoreBottomSheet()
+        }
+
+        backButton.setOnClickListener {
+            // Kembali ke fragment sebelumnya di backstack
+            parentFragmentManager.popBackStack()
+        }
+
+        searchButton.setOnClickListener {
+            // Navigasi ke SearchFragment
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main, SearchFragment())
+                .addToBackStack(null)
+                .commit()
         }
 
         return view
@@ -33,11 +48,11 @@ class DetailProductFragment : Fragment() {
         val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_store_stock, null)
         val dialog = BottomSheetDialog(requireContext())
         dialog.setContentView(bottomSheetView)
-
+        val stockContainer = bottomSheetView.findViewById<LinearLayout>(R.id.stockContainer)
         val closeBtn = bottomSheetView.findViewById<ImageView>(R.id.btnClose)
+
         closeBtn.setOnClickListener { dialog.dismiss() }
 
-        val stockContainer = bottomSheetView.findViewById<LinearLayout>(R.id.stockContainer)
 
         // Contoh data dummy, nanti bisa kamu ganti dengan data asli dari database atau ViewModel
         val storeList = listOf(

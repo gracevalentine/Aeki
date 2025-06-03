@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.myaeki.API.UserResponse
-import com.example.myaeki.api.SignupRequest
+import com.example.myaeki.API.SignupRequest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.example.myaeki.API.ApiClient
 
 class SignUpFragment : Fragment() {
 
@@ -44,31 +45,45 @@ class SignUpFragment : Fragment() {
             if (emailText.isEmpty() || first.isEmpty() || last.isEmpty() || add.isEmpty()
                 || code.isEmpty() || pass.isEmpty() || confirmPass.isEmpty()
             ) {
-                Toast.makeText(requireContext(), "Semua field harus diisi", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Semua field harus diisi", Toast.LENGTH_SHORT)
+                    .show()
                 return@setOnClickListener
             }
 
             // Validasi email harus @gmail.com
             if (!emailText.endsWith("@gmail.com", ignoreCase = true)) {
-                Toast.makeText(requireContext(), "Email harus menggunakan @gmail.com", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Email harus menggunakan @gmail.com",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
 
             // Validasi kode pos harus angka
             if (!code.matches(Regex("^[0-9]+$"))) {
-                Toast.makeText(requireContext(), "Kode pos hanya boleh angka", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Kode pos hanya boleh angka", Toast.LENGTH_SHORT)
+                    .show()
                 return@setOnClickListener
             }
 
             // Validasi konfirmasi password
             if (pass != confirmPass) {
-                Toast.makeText(requireContext(), "Password dan konfirmasi tidak cocok", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Password dan konfirmasi tidak cocok",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
 
             // Validasi checkbox
             if (!termsCheckBox.isChecked) {
-                Toast.makeText(requireContext(), "Harap setujui kebijakan privasi", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Harap setujui kebijakan privasi",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
 
@@ -96,7 +111,8 @@ class SignUpFragment : Fragment() {
                 response: Response<UserResponse>
             ) {
                 if (response.isSuccessful && response.body() != null) {
-                    Toast.makeText(requireContext(), "Akun berhasil dibuat!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Akun berhasil dibuat!", Toast.LENGTH_SHORT)
+                        .show()
                     parentFragmentManager.beginTransaction()
                         .replace(R.id.main, SignInFragment())
                         .addToBackStack(null)
@@ -111,7 +127,8 @@ class SignUpFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                Toast.makeText(requireContext(), "Error: ${t.localizedMessage}", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Error: ${t.localizedMessage}", Toast.LENGTH_LONG)
+                    .show()
             }
         })
     }
