@@ -58,12 +58,17 @@ class AccountFragment : Fragment() {
             // Hapus data SharedPreferences saat logout
             sharedPref.edit().clear().apply()
             Toast.makeText(requireContext(), "Logout berhasil", Toast.LENGTH_SHORT).show()
-            // Navigasi ke login atau halaman lain jika perlu
+
+            // Sembunyikan BottomNavigationView langsung dari fragment
+            activity?.findViewById<View>(R.id.bottomNavViewInclude)?.visibility = View.GONE
+
+            // Navigasi ke SignInFragment
             parentFragmentManager.beginTransaction()
                 .replace(R.id.main, SignInFragment())
                 .addToBackStack(null)
                 .commit()
         }
+
     }
 
     private fun fetchUserProfile(userId: String) {

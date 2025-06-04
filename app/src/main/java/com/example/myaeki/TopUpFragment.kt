@@ -63,9 +63,10 @@ class TopUpFragment : Fragment() {
     private fun setupConfirmButton() {
         binding.btnConfirmPayment.setOnClickListener {
             Toast.makeText(requireContext(), "Top Up Success", Toast.LENGTH_SHORT).show()
-            val intent = Intent(requireContext(), HomeFragment::class.java)
-            startActivity(intent)
-            requireActivity().finish()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main, HomeFragment())
+                .addToBackStack(null)
+                .commit()
         }
     }
 
