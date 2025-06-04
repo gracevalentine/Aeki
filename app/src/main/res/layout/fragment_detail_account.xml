@@ -17,8 +17,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavView"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,522 +31,202 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
+            <!-- SECTION 1: Info Profil -->
             <LinearLayout
+                android:id="@+id/section_info_profil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="13dp"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                android:orientation="vertical">
+
+                <!-- Nama -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_section_nama"
+                    android:fontFamily="@font/mplus1pbold"
+                    android:textSize="17sp" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/first_name"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingEnd="8dp">
 
-                    <TextView
-                        android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/mplus1pmedium"
+                            android:text="@string/title_section_nama_depan" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/mplus1pmedium"
+                            android:hint="@string/hint_nama_depan" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:text="isan"
-                        android:textSize="14sp" />
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingStart="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/mplus1pmedium"
+                            android:text="@string/title_section_nama_belakang" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/mplus1pmedium"
+                            android:hint="@string/hint_nama_belakang" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/image_edit_nama"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="start"
-                    android:contentDescription=""
-                    android:src="@drawable/ic_edit" />
+                <!-- Alamat -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_section_alamat"
+                    android:fontFamily="@font/mplus1pbold"
+                    android:textSize="17sp"
+                    android:layout_marginTop="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_section_alamat_detail"
+                    android:fontFamily="@font/mplus1pmedium"
+                    android:layout_marginTop="8dp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_alamat_detail" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_section_alamat_kode_pos"
+                    android:fontFamily="@font/mplus1pmedium"
+                    android:layout_marginTop="12dp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_alamat_kode_pos"
+                    android:inputType="number" />
+
+                <!-- Email -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_section_email"
+                    android:fontFamily="@font/mplus1pbold"
+                    android:textSize="17sp"
+                    android:layout_marginTop="12dp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_section_email"
+                    android:fontFamily="@font/mplus1pmedium"
+                    android:inputType="textEmailAddress" />
+
+                <!-- Simpan Akun -->
+                <Button
+                    android:id="@+id/button_simpan_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_simpan_perubahan_profile"
+                    android:fontFamily="@font/mplus1pextrabold"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="#000" />
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#656565" />
+
+            <!-- SECTION 2: Ubah Kata Sandi -->
             <LinearLayout
+                android:id="@+id/section_kata_sandi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="13dp"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                android:orientation="vertical"
+                android:layout_marginBottom="100dp">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="@string/tile_section_kata_sandi"
+                    android:fontFamily="@font/mplus1pbold"
+                    android:textSize="18sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/email"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:text="isan"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/image_edit_email"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="start"
-                    android:contentDescription=""
-                    android:src="@drawable/ic_edit" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="13dp"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/password"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:text="isan"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/image_edit_password"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="start"
-                    android:contentDescription=""
-                    android:src="@drawable/ic_edit" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="13dp"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                    android:text="@string/title_kata_sandi_saat_ini"
+                    android:fontFamily="@font/mplus1pmedium"
+                    android:layout_marginTop="12dp" />
+                <EditText
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:fontFamily="@font/mplus1pmedium"
+                    android:inputType="textPassword" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/address"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_masukkan_kata_sandi_baru"
+                    android:fontFamily="@font/mplus1pmedium"
+                    android:layout_marginTop="8dp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mplus1pmedium"
+                    android:inputType="textPassword" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:text="isan"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_konfirmasi_kata_sandi_baru"
+                    android:fontFamily="@font/mplus1pmedium"
+                    android:layout_marginTop="8dp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mplus1pmedium"
+                    android:inputType="textPassword" />
 
-                <ImageView
-                    android:id="@+id/image_edit_address"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="start"
-                    android:contentDescription=""
-                    android:src="@drawable/ic_edit" />
+                <Button
+                    android:id="@+id/button_simpan_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_simpan_perubahan_kata_sandi"
+                    android:fontFamily="@font/mplus1pextrabold"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="#000" />
 
-                <ImageView
-                    android:id="@+id/image_hapus_alamat"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_delete"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <Button
+                    android:id="@+id/button_hapus_akun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_hapus_akun"
+                    android:fontFamily="@font/mplus1pextrabold"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@android:color/holo_red_dark" />
             </LinearLayout>
         </LinearLayout>
-        <!-- Nama -->
-        <!--        <androidx.cardview.widget.CardView-->
-        <!--            android:id="@+id/card_nama"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:padding="16dp"-->
-        <!--            app:cardElevation="4dp"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent">-->
-
-        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content">-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_nama_label"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:text="Nama"-->
-        <!--                    android:textSize="16sp"-->
-        <!--                    android:textStyle="bold"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_nama_value"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="8dp"-->
-        <!--                    android:text="Grace V"-->
-        <!--                    android:textSize="14sp"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/text_nama_label" />-->
-
-        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--        </androidx.cardview.widget.CardView>-->
-
-        <!--        &lt;!&ndash; Hari ulang tahun &ndash;&gt;-->
-        <!--        <androidx.cardview.widget.CardView-->
-        <!--            android:id="@+id/card_tanggal_lahir"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:padding="16dp"-->
-        <!--            app:cardElevation="4dp"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/card_nama">-->
-
-        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content">-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_tanggal_lahir_label"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:text="Hari ulang tahun"-->
-        <!--                    android:textSize="16sp"-->
-        <!--                    android:textStyle="bold"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_tanggal_lahir_value"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="8dp"-->
-        <!--                    android:text="Tolong tambahkan tanggal lahirmu"-->
-        <!--                    android:textSize="14sp"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/text_tanggal_lahir_label" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/image_edit_tanggal_lahir"-->
-        <!--                    android:layout_width="24dp"-->
-        <!--                    android:layout_height="24dp"-->
-        <!--                    android:src="@drawable/ic_edit"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--        </androidx.cardview.widget.CardView>-->
-
-        <!--        &lt;!&ndash; Nomor telepon &ndash;&gt;-->
-        <!--        <androidx.cardview.widget.CardView-->
-        <!--            android:id="@+id/card_nomor_telepon"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:padding="16dp"-->
-        <!--            app:cardElevation="4dp"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/card_tanggal_lahir">-->
-
-        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content">-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_nomor_telepon_label"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:text="Nomor telepon"-->
-        <!--                    android:textSize="16sp"-->
-        <!--                    android:textStyle="bold"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_nomor_telepon_value"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="8dp"-->
-        <!--                    android:text="85273864767"-->
-        <!--                    android:textSize="14sp"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/text_nomor_telepon_label" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_verifikasi_telepon"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="8dp"-->
-        <!--                    android:text="Terverifikasi"-->
-        <!--                    android:textColor="#28a745"-->
-        <!--                    android:textSize="12sp"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/text_nomor_telepon_value" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/image_verifikasi_telepon"-->
-        <!--                    android:layout_width="16dp"-->
-        <!--                    android:layout_height="16dp"-->
-        <!--                    android:layout_marginEnd="4dp"-->
-        <!--                    android:src="@drawable/ic_check"-->
-        <!--                    app:layout_constraintEnd_toStartOf="@id/text_verifikasi_telepon"-->
-        <!--                    app:layout_constraintTop_toTopOf="@id/text_verifikasi_telepon" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_whatsapp_connection"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="8dp"-->
-        <!--                    android:text="Nomor terhubung dengan WhatsApp"-->
-        <!--                    android:textSize="12sp"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/text_verifikasi_telepon" />-->
-
-        <!--                <Switch-->
-        <!--                    android:id="@+id/switch_whatsapp"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="8dp"-->
-        <!--                    android:layout_marginEnd="16dp"-->
-        <!--                    android:checked="false"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="@id/text_whatsapp_connection" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/image_edit_nomor_telepon"-->
-        <!--                    android:layout_width="24dp"-->
-        <!--                    android:layout_height="24dp"-->
-        <!--                    android:src="@drawable/ic_edit"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--        </androidx.cardview.widget.CardView>-->
-
-        <!--        &lt;!&ndash; Email &ndash;&gt;-->
-        <!--        <androidx.cardview.widget.CardView-->
-        <!--            android:id="@+id/card_email"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:padding="16dp"-->
-        <!--            app:cardElevation="4dp"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/card_nomor_telepon">-->
-
-        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content">-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_email_label"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:text="Email"-->
-        <!--                    android:textSize="16sp"-->
-        <!--                    android:textStyle="bold"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_email_value"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="8dp"-->
-        <!--                    android:text="gracevalentinecf@gmail.com"-->
-        <!--                    android:textSize="14sp"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/text_email_label" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_verifikasi_email"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="8dp"-->
-        <!--                    android:text="Terverifikasi"-->
-        <!--                    android:textColor="#28a745"-->
-        <!--                    android:textSize="12sp"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/text_email_value" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/image_verifikasi_email"-->
-        <!--                    android:layout_width="16dp"-->
-        <!--                    android:layout_height="16dp"-->
-        <!--                    android:layout_marginEnd="4dp"-->
-        <!--                    android:src="@drawable/ic_check"-->
-        <!--                    app:layout_constraintEnd_toStartOf="@id/text_verifikasi_email"-->
-        <!--                    app:layout_constraintTop_toTopOf="@id/text_verifikasi_email" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/image_edit_email"-->
-        <!--                    android:layout_width="24dp"-->
-        <!--                    android:layout_height="24dp"-->
-        <!--                    android:src="@drawable/ic_edit"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--        </androidx.cardview.widget.CardView>-->
-
-        <!--        &lt;!&ndash; Kata sandi &ndash;&gt;-->
-        <!--        <androidx.cardview.widget.CardView-->
-        <!--            android:id="@+id/card_kata_sandi"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:padding="16dp"-->
-        <!--            app:cardElevation="4dp"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/card_email">-->
-
-        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content">-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_kata_sandi_label"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:text="Kata sandi"-->
-        <!--                    android:textSize="16sp"-->
-        <!--                    android:textStyle="bold"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_kata_sandi_value"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="8dp"-->
-        <!--                    android:text=""-->
-        <!--                    android:textSize="14sp"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/text_kata_sandi_label" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/image_edit_kata_sandi"-->
-        <!--                    android:layout_width="24dp"-->
-        <!--                    android:layout_height="24dp"-->
-        <!--                    android:src="@drawable/ic_edit"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--        </androidx.cardview.widget.CardView>-->
-
-        <!--        &lt;!&ndash; Alamat saya &ndash;&gt;-->
-        <!--        <androidx.cardview.widget.CardView-->
-        <!--            android:id="@+id/card_alamat"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:padding="16dp"-->
-        <!--            app:cardElevation="4dp"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/card_kata_sandi">-->
-
-        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content">-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_alamat_label"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:text="Alamat saya"-->
-        <!--                    android:textSize="16sp"-->
-        <!--                    android:textStyle="bold"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_alamat_judul"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="8dp"-->
-        <!--                    android:text="HOUSE"-->
-        <!--                    android:textSize="14sp"-->
-        <!--                    android:textStyle="bold"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/text_alamat_label" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_alamat_detail"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="4dp"-->
-        <!--                    android:text="HOUSE, Jalan Melati II No. 5 Perum Bumi Rancaekek\nKencana, ,\nRancaekek Kencana, 40394"-->
-        <!--                    android:textSize="12sp"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/text_alamat_judul" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/image_edit_alamat"-->
-        <!--                    android:layout_width="24dp"-->
-        <!--                    android:layout_height="24dp"-->
-        <!--                    android:src="@drawable/ic_edit"-->
-        <!--                    app:layout_constraintEnd_toStartOf="@id/image_hapus_alamat"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--        </androidx.cardview.widget.CardView>-->
-
-        <!--        &lt;!&ndash; Tombol Tambahkan alamat &ndash;&gt;-->
-
-        <!--        <Button-->
-        <!--            android:id="@+id/button_tambah_alamat"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="20dp"-->
-        <!--            android:background="@drawable/bg_outline_button"-->
-        <!--            android:padding="12dp"-->
-        <!--            android:text="Tambahkan alamat"-->
-        <!--            android:textColor="#000"-->
-        <!--            android:textSize="14sp"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintHorizontal_bias="0.0"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/card_alamat" />-->
-        <!--        &lt;!&ndash;</androidx.constraintlayout.widget.ConstraintLayout>&ndash;&gt;-->
     </ScrollView>
-
-    <include
-        android:id="@+id/bottomNavView"
-        layout="@layout/bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

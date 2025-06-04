@@ -24,7 +24,7 @@
 
     <!--    Note: Sign Up-->
     <string name="signup">Buat Akun</string>
-    <string name="fill_required">Isi semua kolom untuk membuat akun ÆKI\nSemua kolom wajib
+    <string name="fill_required">Isi semua kolom untuk membuat akun Dekora\nSemua kolom wajib
         diisi</string>
     <string name="first_name">Nama Anda</string>
     <string name="placeholder_first_name">Nama Anda</string>
@@ -42,7 +42,7 @@
         Anda, seperti mengirimkan pesan yang dipersonalisasi, materi promosi, berita,
         informasi, serta tujuan yang dijelaskan dalam kebijakan privasi kami.</string>
     <string name="checkbox_privacy_policy">Dengan mencentang kotak, saya telah membaca dan
-        menerima Ketentuan penjualan Belanja Online | IKEA Indonesia dan Kebijakan Privasi</string>
+        menerima Ketentuan penjualan Belanja Online | Dekora Indonesia dan Kebijakan Privasi</string>
     <string name="call_center">Butuh bantuan? Hubungi kami.</string>
     <string name="button_create_account">Buat Akun</string>
 
@@ -100,10 +100,27 @@
     <string name="cart_total_product"> produk</string>
     <string name="cart_total_price">10.000</string>
 
-
-
-    <!--note: Akun -->
+    <!-- note: My Profile-->
     <string name="my_profil">Profil saya</string>
+    <string name="title_section_nama">Nama Lengkap</string>
+    <string name="title_section_nama_depan">Depan</string>
+    <string name="title_section_nama_belakang">Belakang</string>
+    <string name="hint_nama_depan">Devid</string>
+    <string name="hint_nama_belakang">Laritsan</string>
+    <string name="title_section_alamat">Alamat Lengkap</string>
+    <string name="title_section_alamat_detail">Alamat</string>
+    <string name="hint_alamat_detail">Jl. Cicalengka Barat No. 45</string>
+    <string name="title_section_alamat_kode_pos">Kode Pos</string>
+    <string name="hint_alamat_kode_pos">48202</string>
+    <string name="title_section_email">Email</string>
+    <string name="hint_section_email">devid@gmail.com</string>
+    <string name="button_simpan_perubahan_profile">Simpan Akun</string>
+    <string name="tile_section_kata_sandi">Ubah Kata Sandi</string>
+    <string name="title_kata_sandi_saat_ini">Masukkan kata sandi saat ini</string>
+    <string name="title_masukkan_kata_sandi_baru">Masukkan kata sandi baru</string>
+    <string name="title_konfirmasi_kata_sandi_baru">Konfirmasi kata sandi baru</string>
+    <string name="button_simpan_perubahan_kata_sandi">Simpan Kata Sandi</string>
+    <string name="button_hapus_akun">Hapus Akun</string>
 
     <!-- note: Bottom Nav Bar -->
     <string name="nav_bottom_home">Beranda</string>
