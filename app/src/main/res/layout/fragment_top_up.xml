@@ -7,8 +7,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center_vertical"
+        android:orientation="vertical"
         android:padding="10dp">
 
         <!-- SECTION: HEADER -->
@@ -16,8 +16,8 @@
             android:id="@+id/sectionHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:padding="8dp">
 
             <ImageButton
@@ -25,15 +25,15 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_arrow_back_24"
-                android:contentDescription="Kembali" />
+                android:contentDescription="Kembali"
+                android:src="@drawable/ic_arrow_back_24" />
 
             <TextView
                 android:id="@+id/topUpTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="Top Up"
+                android:text="@string/title_top_up"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -49,48 +49,48 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pilih Nominal"
-                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
+                android:text="@string/choose_total_topup"
                 android:textSize="16sp"
-                android:layout_marginBottom="8dp" />
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3"
+                android:layout_marginBottom="16dp"
                 android:gravity="center"
-                android:layout_marginBottom="16dp">
+                android:orientation="horizontal"
+                android:weightSum="3">
 
                 <Button
                     android:id="@+id/btnNominal20000"
                     android:layout_width="0dp"
-                    android:layout_height="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:text="20.000"
-                    android:background="@drawable/btn_nominal_selector"
-                    android:backgroundTint="@null"
-                    android:layout_marginEnd="8dp" />
+                    android:backgroundTint="#5D4037"
+                    android:text="@string/topup_20k" />
+
 
                 <Button
                     android:id="@+id/btnNominal50000"
                     android:layout_width="0dp"
-                    android:layout_height="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:text="50.000"
-                    android:background="@drawable/btn_nominal_selector"
-                    android:backgroundTint="@null"
-                    android:layout_marginEnd="8dp" />
+                    android:backgroundTint="#5D4037"
+                    android:text="@string/topup_50k" />
+
 
                 <Button
                     android:id="@+id/btnNominal100000"
                     android:layout_width="0dp"
-                    android:layout_height="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:text="100.000"
-                    android:background="@drawable/btn_nominal_selector"
-                    android:backgroundTint="@null"
-                    android:layout_marginEnd="8dp" />
+                    android:backgroundTint="#5D4037"
+                    android:text="@string/topup_100k" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -99,18 +99,18 @@
             android:id="@+id/sectionPaymentMethod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/product_border"
-            android:layout_marginBottom="16dp">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Metode Pembayaran"
-                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
+                android:text="@string/choose_payment_method"
                 android:textSize="16sp"
-                android:layout_marginBottom="8dp" />
+                android:textStyle="bold" />
 
             <RadioGroup
                 android:id="@+id/paymentMethodGroup"
@@ -122,19 +122,19 @@
                     android:id="@+id/radioBCA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BCA Virtual Account" />
+                    android:text="@string/payment_by_bca" />
 
                 <RadioButton
                     android:id="@+id/radioQRIS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="QRIS" />
+                    android:text="@string/payment_by_qris" />
 
                 <RadioButton
                     android:id="@+id/radioIndomaret"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Indomaret" />
+                    android:text="@string/payment_by_indomaret" />
             </RadioGroup>
         </LinearLayout>
 
@@ -143,29 +143,23 @@
             android:id="@+id/sectionTerms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginBottom="16dp"
-            android:padding="10dp"
-            android:background="@drawable/product_border">
+            android:background="@drawable/product_border"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Syarat dan Ketentuan:"
-                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
+                android:text="@string/term_conditions"
                 android:textSize="16sp"
-                android:layout_marginBottom="8dp" />
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text = "1. Minimal transaksi top up adalah sebesar Rp 20.000.\nPengguna tidak dapat melakukan pengisian saldo di bawah nominal tersebut. Pastikan jumlah nominal yang dipilih sesuai dengan kebutuhan dan batas minimal yang berlaku.\n\n
-2. Dana yang telah ditop up tidak dapat dikembalikan.\nSetelah proses top up berhasil, dana yang masuk ke saldo akun pengguna bersifat final dan tidak dapat diuangkan kembali atau ditransfer ke rekening bank.\n\n
-3. Pembayaran harus diselesaikan dalam waktu maksimal 24 jam setelah melakukan permintaan top up.\nJika dalam waktu tersebut tidak ada konfirmasi pembayaran, maka transaksi top up akan otomatis dibatalkan dan harus dilakukan ulang.\n\n
-4. Gunakan hanya metode pembayaran resmi yang tersedia pada aplikasi.\nPembayaran melalui jalur tidak resmi atau pihak ketiga di luar aplikasi ini dapat menyebabkan kegagalan transaksi dan kehilangan dana.\n\n
-5. Jika terjadi kendala atau transaksi gagal, silakan segera hubungi layanan pelanggan.\nTim customer service kami siap membantu menyelesaikan permasalahan terkait transaksi, namun pengguna wajib menyertakan bukti transaksi yang sah untuk proses verifikasi.
-"
-
+                android:text="@string/term_conditions_detail"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -174,15 +168,15 @@
             android:id="@+id/sectionConfirmationButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/btnConfirmPayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Konfirmasi Pembayaran"
                 android:backgroundTint="#2196F3"
+                android:text="@string/button_confirm_payment"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
     </LinearLayout>

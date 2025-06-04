@@ -48,6 +48,25 @@
 
     <!--    Note: Cari Produk-->
     <string name="placeholder_search">Masukkan kata kunci</string>
+    <string name="choose_total_topup">Pilih Nominal</string>
+    <string name="topup_20k">20.000</string>
+    <string name="topup_50k">50.000</string>
+    <string name="topup_100k">100.000</string>
+    <string name="choose_payment_method">Metode Pembayaran</string>
+    <string name="payment_by_bca">BCA Virtual Account</string>
+    <string name="payment_by_qris">QRIS</string>
+    <string name="payment_by_indomaret">Indomaret</string>
+    <string name="term_conditions">Syarat dan Ketentuan:</string>
+    <string name="term_conditions_detail">1. Minimal transaksi top up adalah sebesar Rp
+        20.000.\nPengguna tidak dapat melakukan pengisian saldo di bawah nominal tersebut. Pastikan jumlah nominal yang dipilih sesuai dengan kebutuhan dan batas minimal yang berlaku.\n\n
+2. Dana yang telah ditop up tidak dapat dikembalikan.\nSetelah proses top up berhasil, dana yang masuk ke saldo akun pengguna bersifat final dan tidak dapat diuangkan kembali atau ditransfer ke rekening bank.\n\n
+3. Pembayaran harus diselesaikan dalam waktu maksimal 24 jam setelah melakukan permintaan top up.\nJika dalam waktu tersebut tidak ada konfirmasi pembayaran, maka transaksi top up akan otomatis dibatalkan dan harus dilakukan ulang.\n\n
+4. Gunakan hanya metode pembayaran resmi yang tersedia pada aplikasi.\nPembayaran melalui jalur tidak resmi atau pihak ketiga di luar aplikasi ini dapat menyebabkan kegagalan transaksi dan kehilangan dana.\n\n
+5. Jika terjadi kendala atau transaksi gagal, silakan segera hubungi layanan pelanggan.\nTim customer service kami siap membantu menyelesaikan permasalahan terkait transaksi, namun pengguna wajib menyertakan bukti transaksi yang sah untuk proses verifikasi.</string>
+    <string name="button_confirm_payment">Konfirmasi Pembayaran</string>
+
+<!--    note: top up-->
+    <string name="title_top_up">Top Up</string>
 
     <!-- Note: Detail Produk -->
     <string name="product_series">Oftast</string>

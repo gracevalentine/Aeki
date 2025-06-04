@@ -2,47 +2,51 @@ package com.example.myaeki
 
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), SignInFragment.LoginListener {
 
     private lateinit var bottomNavContainer: View
-    private lateinit var bottomNavView: BottomNavigationView
+    private lateinit var navHome: LinearLayout
+    private lateinit var navInspiration: LinearLayout
+    private lateinit var navCart: LinearLayout
+    private lateinit var navAccount: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Menghubungkan ID dari layout
         bottomNavContainer = findViewById(R.id.bottomNavViewInclude)
-        bottomNavView = findViewById(R.id.bottomNavView)
+        navHome = findViewById(R.id.navHome)
+        navInspiration = findViewById(R.id.navInspiration)
+        navCart = findViewById(R.id.navCart)
+        navAccount = findViewById(R.id.navAccount)
 
-        // Awal app langsung load SignInFragment, hide bottom nav
+        // Awal app langsung load SignInFragment dan sembunyikan bottom nav
         bottomNavContainer.visibility = View.GONE
         loadFragment(SignInFragment())
 
-        bottomNavView.setOnNavigationItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.home -> loadFragment(HomeFragment())
-                R.id.inspiration -> loadFragment(InspoFragment())
-                R.id.cart -> loadFragment(CartFragment())
-                R.id.account -> loadFragment(AccountFragment())
-                else -> false
-            }
-        }
+        // Menangani item klik pada bottom navigation
+        navHome.setOnClickListener { loadFragment(HomeFragment()) }
+        navInspiration.setOnClickListener { loadFragment(InspoFragment()) }
+        navCart.setOnClickListener { loadFragment(CartFragment()) }
+        navAccount.setOnClickListener { loadFragment(AccountFragment()) }
     }
 
+    // Load fragment ke dalam container
     private fun loadFragment(fragment: Fragment): Boolean {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main, fragment)
-            .commitNow()
+            .replace(R.id.main, fragment) // Pastikan ID main sesuai dengan FrameLayout di XML
+            .commit() // Ganti commitNow() dengan commit() yang lebih aman
         return true
     }
 
-    // Callback dari SignInFragment pas login sukses
+    // Callback setelah login sukses
     override fun onLoginSuccess() {
         bottomNavContainer.visibility = View.VISIBLE
-        loadFragment(HomeFragment())
+        loadFragment(HomeFragment()) // Memuat fragment Home setelah login sukses
     }
 }

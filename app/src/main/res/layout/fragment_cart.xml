@@ -83,7 +83,7 @@
 
                     <TextView
                         android:id="@+id/titleProduct"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -178,15 +178,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="OFTAST"
+                                android:text="@string/product_series"
                                 android:textSize="14sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:textAllCaps="true"/>
 
                             <TextView
                                 android:id="@+id/productDescription1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="piring, putih, 25 cm"
+                                android:text="@string/product_description"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -194,7 +195,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="Rp9.900"
+                                android:text="@string/product_price"
                                 android:textColor="#D32F2F"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
