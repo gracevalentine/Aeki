@@ -64,3 +64,51 @@ exports.insertToCart = (req, res) => {
     });
   });
 };
+
+exports.getTransactionById = (req, res) => {
+  const transactionId = req.params.id;
+
+  if (!transactionId) {
+    return res.status(400).json({ message: 'transaction_id wajib diisi.' });
+  }
+
+  const queryTransaction = `
+    SELECT t.transaction_id, t.order_id, t.product_id, t.quantity, t.subtotal,
+           p.name AS product_name, p.price AS product_price,
+           o.user_id, o.total_amount, o.status_order, o.created_at
+    FROM \`transaction\` t
+    JOIN products p ON t.product_id = p.product_id
+    JOIN orders o ON t.order_id = o.order_id
+    WHERE t.transaction_id = ?
+  `;
+
+  database.query(queryTransaction, [transactionId], (err, results) => {
+    if (err) {
+      console.error('Error query transaksi:', err);
+      return res.status(500).json({ message: 'Terjadi kesalahan saat mengambil data transaksi.' });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'Transaksi tidak ditemukan.' });
+    }
+
+    const trx = results[0];
+
+    res.status(200).json({
+      message: 'Transaksi ditemukan.',
+      data: {
+        transaction_id: trx.transaction_id,
+        order_id: trx.order_id,
+        user_id: trx.user_id,
+        product_id: trx.product_id,
+        product_name: trx.product_name,
+        product_price: trx.product_price,
+        quantity: trx.quantity,
+        subtotal: trx.subtotal,
+        total_amount: trx.total_amount,
+        status_order: trx.status_order,
+        created_at: trx.created_at
+      }
+    });
+  });
+};
