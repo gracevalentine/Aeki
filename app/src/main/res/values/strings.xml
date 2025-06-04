@@ -141,6 +141,9 @@
     <string name="button_simpan_perubahan_kata_sandi">Simpan Kata Sandi</string>
     <string name="button_hapus_akun">Hapus Akun</string>
 
+    <!-- note: Top Up -->
+    <string name="top_up">Top Up</string>
+
     <!-- note: Bottom Nav Bar -->
     <string name="nav_bottom_home">Beranda</string>
     <string name="nav_bottom_inspo">Inspirasi</string>
