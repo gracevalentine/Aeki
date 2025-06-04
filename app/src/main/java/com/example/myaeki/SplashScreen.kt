@@ -6,21 +6,23 @@ import android.os.Bundle
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 
-class SplashScreen : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.splash_screen)
+        setContentView(R.layout.activity_splash)
 
         val videoView = findViewById<VideoView>(R.id.videoView)
-        val videoPath = "android.resource://${packageName}/${R.raw.dekora}"
 
-        videoView.setVideoURI(Uri.parse(videoPath))
+        val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.dekora}")
+        videoView.setVideoURI(videoUri)
 
         videoView.setOnCompletionListener {
+            // Setelah video selesai, pindah ke MainActivity
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
 
+        videoView.setOnPreparedListener { it.isLooping = false } // Kalau mau looping = true
         videoView.start()
     }
 }
