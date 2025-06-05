@@ -1,7 +1,5 @@
-package com.example.myaeki.API
+package com.example.myaeki.Authentication.Model
 
-import com.example.myaeki.API.LogoutResponse
-import com.example.myaeki.API.SignupRequest
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

@@ -1,7 +1,8 @@
 package com.example.myaeki.API
 
-import com.example.myaeki.API.AuthService
-import com.example.myaeki.API.UserService
+
+import com.example.myaeki.Authentication.Model.AuthService
+import com.example.myaeki.Authentication.Model.UserService
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

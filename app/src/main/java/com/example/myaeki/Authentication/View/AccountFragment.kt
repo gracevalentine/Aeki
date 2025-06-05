@@ -1,4 +1,4 @@
-package com.example.myaeki
+package com.example.myaeki.Authentication.View
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -11,9 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.myaeki.API.ApiClient
-import com.example.myaeki.API.LoginRequest
-import com.example.myaeki.API.UserProfile
-import com.example.myaeki.API.UserProfileResponse
+import com.example.myaeki.Authentication.Model.UserProfileResponse
+import com.example.myaeki.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -73,7 +72,8 @@ class AccountFragment : Fragment() {
 
     private fun fetchUserProfile(userId: String) {
         Log.d("AccountFragment", "Fetching user profile for userId: $userId")
-        ApiClient.userService.getUserProfile(userId).enqueue(object : Callback<UserProfileResponse> {
+        ApiClient.userService.getUserProfile(userId).enqueue(object :
+            Callback<UserProfileResponse> {
             override fun onResponse(call: Call<UserProfileResponse>, response: Response<UserProfileResponse>) {
                 Log.d("AccountFragment", "Response received: $response")
                 if (response.isSuccessful) {

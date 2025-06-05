@@ -1,4 +1,4 @@
-package com.example.myaeki.API
+package com.example.myaeki.Authentication.Model
 
 
 import retrofit2.Call

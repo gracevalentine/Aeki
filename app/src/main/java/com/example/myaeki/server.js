@@ -2,9 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser'); // ✅ tambahkan ini
-const userRoute = require('./route/userRoute');
-const productRoute = require('./route/productRoute');
-const transactionRoute = require('./route/transactionRoute');
+const userRoute = require('./Authentication/Route/userRoute');
+// const productRoute = require('./route/productRoute');
+// const transactionRoute = require('./route/transactionRoute');
 
 const app = express();
 const PORT = 3000;
@@ -29,8 +29,8 @@ app.use(session({
 }));
 
 app.use('/users', userRoute);
-app.use('/products', productRoute);
-app.use('/transactions', transactionRoute);
+// app.use('/products', productRoute);
+// app.use('/transactions', transactionRoute);
 
 app.get('/', (req, res) => {
   res.send('AEKI backend is running...');

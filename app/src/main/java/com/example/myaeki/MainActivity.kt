@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.myaeki.Authentication.View.AccountFragment
+import com.example.myaeki.Authentication.View.SignInFragment
 
 class MainActivity : AppCompatActivity(), SignInFragment.LoginListener {
 

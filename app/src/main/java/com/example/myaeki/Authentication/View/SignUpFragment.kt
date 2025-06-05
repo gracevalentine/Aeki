@@ -1,17 +1,22 @@
-package com.example.myaeki
+package com.example.myaeki.Authentication.View
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.myaeki.API.UserResponse
-import com.example.myaeki.API.SignupRequest
+import com.example.myaeki.API.ApiClient
+import com.example.myaeki.Authentication.Model.UserResponse
+import com.example.myaeki.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.example.myaeki.API.ApiClient
+import com.example.myaeki.Authentication.Model.SignupRequest
+import com.example.myaeki.Authentication.Model.AuthService
 
 class SignUpFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.example.myaeki.API
+package com.example.myaeki.Authentication.Model
 
 data class UserProfile(
     val user_id: Int,
