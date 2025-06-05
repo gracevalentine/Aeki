@@ -1,59 +1,189 @@
 package com.example.myaeki
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collectLatest
+import com.example.myaeki.Product.Model.Product
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+// Data class for product
+//data class Product(
+//    val id: Int,
+//    val name: String,
+//    val description: String,
+//    val price: Double,
+//    var quantity: Int
+//)
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CartFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CartFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+// ViewModel for managing checkout data
+class CartViewModel : ViewModel() {
+    private val _products = MutableStateFlow<List<Product>>(
+        listOf(
+            Product(1, "OFTAST", "piring, putih, 25 cm", 9900.0, 1, category = null, imageUrl = null),
+            Product(2, "SAMLA", "kotak penyimpanan bening", 19900.0, 1, category = null, imageUrl = null),
+            Product(3, "REKO", "gelas, putih, kecil", 9900.0, 1, category = null, imageUrl = null)
+        )
+    )
+    val products: StateFlow<List<Product>> = _products
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private val _deliveryMethod = MutableStateFlow<String?>(null)
+    val deliveryMethod: StateFlow<String?> = _deliveryMethod
+
+    fun updateQuantity(productId: Int, increment: Boolean) {
+        viewModelScope.launch {
+            val updatedProducts = _products.value.map { product ->
+                if (product.id == productId) {
+                    val newQuantity = if (increment) product.quantity + 1 else (product.quantity - 1).coerceAtLeast(0)
+                    product.copy(quantity = newQuantity)
+                } else {
+                    product
+                }
+            }.filter { it.quantity > 0 }
+            _products.value = updatedProducts
         }
     }
+
+    fun deleteProduct(productId: Int) {
+        viewModelScope.launch {
+            _products.value = _products.value.filter { it.id != productId }
+        }
+    }
+
+    fun deleteAllProducts() {
+        viewModelScope.launch {
+            _products.value = emptyList()
+        }
+    }
+
+    fun setDeliveryMethod(method: String) {
+        _deliveryMethod.value = method
+    }
+
+    fun getTotalPrice(): Double {
+        return _products.value.sumOf { it.price * it.quantity } + if (_deliveryMethod.value == "Delivery") 25000.0 else 0.0
+    }
+
+    fun getProductCount(): Int {
+        return _products.value.sumOf { it.quantity }
+    }
+}
+
+// Holder untuk setiap produk di UI
+data class ProductViewHolder(
+    val deleteButton: ImageButton,
+    val minusButton: ImageButton,
+    val plusButton: ImageButton,
+    val quantityText: TextView,
+    val productId: Int
+)
+
+class CartFragment : Fragment() {
+
+    private val viewModel: CartViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cart, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CartFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CartFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val countProductText: TextView = view.findViewById(R.id.countProduct)
+        val countPriceText: TextView = view.findViewById(R.id.countPrice)
+        val deleteAllButton: Button = view.findViewById(R.id.button_delete_all)
+        val checkoutButton: Button = view.findViewById(R.id.buttonCheckOut)
+        val deliveryButton: View = view.findViewById(R.id.buttonDelivery)
+        val pickUpButton: View = view.findViewById(R.id.buttonPickUp)
+
+        val productViews = listOf(
+            ProductViewHolder(
+                view.findViewById(R.id.buttonDelete),
+                view.findViewById(R.id.buttonMinus),
+                view.findViewById(R.id.buttonPlus),
+                view.findViewById(R.id.textQuantity),
+                1
+            ),
+            ProductViewHolder(
+                view.findViewById(R.id.buttonDelete2),
+                view.findViewById(R.id.buttonMinus2),
+                view.findViewById(R.id.buttonPlus2),
+                view.findViewById(R.id.textQuantity2),
+                2
+            ),
+            ProductViewHolder(
+                view.findViewById(R.id.buttonDelete3),
+                view.findViewById(R.id.buttonMinus3),
+                view.findViewById(R.id.buttonPlus3),
+                view.findViewById(R.id.textQuantity3),
+                3
+            )
+        )
+
+        // Observe product list
+        lifecycleScope.launch {
+            viewModel.products.collectLatest { products ->
+                countProductText.text = "${products.sumOf { it.quantity }} produk"
+                countPriceText.text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
+
+                productViews.forEach { holder ->
+                    val product = products.find { it.id == holder.productId }
+                    holder.quantityText.text = product?.quantity?.toString() ?: "0"
+                    holder.deleteButton.setOnClickListener { viewModel.deleteProduct(holder.productId) }
+                    holder.minusButton.setOnClickListener { viewModel.updateQuantity(holder.productId, false) }
+                    holder.plusButton.setOnClickListener { viewModel.updateQuantity(holder.productId, true) }
                 }
+
+                view.findViewById<TextView>(R.id.productCounter).text = products.sumOf { it.quantity }.toString()
+                view.findViewById<TextView>(R.id.biayaSubTotal).text = "Rp ${String.format("%,.0f", products.sumOf { it.price * it.quantity })}"
+                view.findViewById<TextView>(R.id.totalBiaya).text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
             }
+        }
+
+        // Observe delivery method
+        lifecycleScope.launch {
+            viewModel.deliveryMethod.collectLatest { method ->
+                view.findViewById<TextView>(R.id.biayaPengantaran).text = if (method == "Delivery") "Rp 25.000" else "GRATIS"
+                view.findViewById<TextView>(R.id.totalBiaya).text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
+            }
+        }
+
+        // Button handlers
+        deleteAllButton.setOnClickListener {
+            viewModel.deleteAllProducts()
+            Toast.makeText(context, "Semua produk dihapus", Toast.LENGTH_SHORT).show()
+        }
+
+        deliveryButton.setOnClickListener {
+            viewModel.setDeliveryMethod("Delivery")
+            Toast.makeText(context, "Metode pengantaran: Delivery", Toast.LENGTH_SHORT).show()
+        }
+
+        pickUpButton.setOnClickListener {
+            viewModel.setDeliveryMethod("Pick Up")
+            Toast.makeText(context, "Metode pengantaran: Pick Up", Toast.LENGTH_SHORT).show()
+        }
+
+        checkoutButton.setOnClickListener {
+            when {
+                viewModel.deliveryMethod.value == null ->
+                    Toast.makeText(context, "Pilih metode pengantaran terlebih dahulu", Toast.LENGTH_SHORT).show()
+                viewModel.products.value.isEmpty() ->
+                    Toast.makeText(context, "Keranjang belanja kosong", Toast.LENGTH_SHORT).show()
+                else -> Toast.makeText(context, "Checkout berhasil! Total: Rp ${String.format("%,.0f", viewModel.getTotalPrice())}", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }

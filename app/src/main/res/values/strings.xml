@@ -48,6 +48,9 @@
 
     <!--    Note: Cari Produk-->
     <string name="placeholder_search">Masukkan kata kunci</string>
+
+    <!--    note: top up-->
+    <string name="title_top_up">Top Up</string>
     <string name="choose_total_topup">Pilih Nominal</string>
     <string name="topup_20k">20.000</string>
     <string name="topup_50k">50.000</string>
@@ -64,9 +67,6 @@
 4. Gunakan hanya metode pembayaran resmi yang tersedia pada aplikasi.\nPembayaran melalui jalur tidak resmi atau pihak ketiga di luar aplikasi ini dapat menyebabkan kegagalan transaksi dan kehilangan dana.\n\n
 5. Jika terjadi kendala atau transaksi gagal, silakan segera hubungi layanan pelanggan.\nTim customer service kami siap membantu menyelesaikan permasalahan terkait transaksi, namun pengguna wajib menyertakan bukti transaksi yang sah untuk proses verifikasi.</string>
     <string name="button_confirm_payment">Konfirmasi Pembayaran</string>
-
-<!--    note: top up-->
-    <string name="title_top_up">Top Up</string>
 
     <!-- Note: Detail Produk -->
     <string name="product_series">Oftast</string>
@@ -118,6 +118,19 @@
     <string name="cart_total_product_num">3</string>
     <string name="cart_total_product"> produk</string>
     <string name="cart_total_price">10.000</string>
+    <string name="choose_pickup_point">Pilih Pick Up Point</string>
+
+    <!--    NOTE: bottom sheet store-->
+    <string name="stock_available">Stok tersedia</string>
+    <string name="available_in_store">%1$d tersedia</string>
+    <string name="out_of_stock">Stok kosong di %1$s</string>
+
+    <!--    NOTE: bottom sheet pick up-->
+    <string name="pickup_point_name">Nama Pick Up Point</string>
+    <string name="pickup_point_address">Alamat Pick Up Point</string>
+<!--    <string name="ithb_pickup_point">23 Paskal Pick-Up Point ITHB Pick-Up Point</string>-->
+<!--    <string name="ithb_pickup_point_address">Jl. Pasir Kaliki No. 25, Bandung Jl. Dipatiukur
+No. 80–84, Bandung</string>-->
 
     <!-- note: My Profile-->
     <string name="my_profil">Profil saya</string>

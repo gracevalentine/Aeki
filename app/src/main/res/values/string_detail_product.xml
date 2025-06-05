@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Todo: Top  Bar -->
-        <string name="stock_available">Stok tersedia</string>
-        <string name="available_in_store">%1$d tersedia</string>
-        <string name="out_of_stock">Stok kosong di %1$s</string>
-
-</resources>
