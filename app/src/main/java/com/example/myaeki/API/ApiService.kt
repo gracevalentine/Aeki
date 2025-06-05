@@ -9,11 +9,8 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-//    @GET("/products/searchProducts")
-//    fun searchProducts(): Call<List<ProductResponse>>
-
-    @GET("/products/searchProducts")
-    fun searchProducts(@Query("query") query: String): Call<ProductResponse>
+    @GET("/products/searchProduct")
+    fun searchProducts(@Query("productName") productName: String): Call<ProductResponse>
 
 
 }

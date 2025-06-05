@@ -3,7 +3,7 @@ const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser'); // ✅ tambahkan ini
 const userRoute = require('./Authentication/Route/userRoute');
-const productRoute = require('./Authentication/Route/productRoute');
+const productRoute = require('./Product/Route/productRoute');
 // const transactionRoute = require('./route/transactionRoute');
 
 const app = express();
