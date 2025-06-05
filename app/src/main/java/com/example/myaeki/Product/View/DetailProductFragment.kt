@@ -55,7 +55,6 @@ class DetailProductFragment : Fragment() {
 
         closeBtn.setOnClickListener { dialog.dismiss() }
 
-
         // Contoh data dummy, nanti bisa kamu ganti dengan data asli dari database atau ViewModel
         val storeList = listOf(
             Pair("Toko A", "Stok: 12"),
