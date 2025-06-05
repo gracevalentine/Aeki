@@ -1,4 +1,4 @@
-const userRepository = require('../Repositories/userRepository');
+const userRepository = require('../Repositories/topup_wallet_repo');
 
 // TOP UP WALLET
 exports.topUpWallet = (req, res) => {
