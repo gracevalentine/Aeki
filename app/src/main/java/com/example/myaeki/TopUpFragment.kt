@@ -54,10 +54,6 @@ class TopUpFragment : Fragment() {
 //            requireActivity().finish()
 //        }
 //    }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 
 
         private fun setupNominalButtons() {
