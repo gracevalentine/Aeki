@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -23,6 +24,8 @@ class AccountFragment : Fragment() {
     private lateinit var nameTextView: TextView
     private lateinit var idTextView: TextView
     private lateinit var sharedPref: SharedPreferences
+    private lateinit var buttonMyProfile: ImageView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +40,7 @@ class AccountFragment : Fragment() {
         logoutButton = view.findViewById(R.id.button_logout)
         nameTextView = view.findViewById(R.id.nameTextView)
         idTextView = view.findViewById(R.id.idTextView)
+        buttonMyProfile = view.findViewById(R.id.buttonToMyProfile)
 
         // Ambil SharedPreferences
         sharedPref = requireActivity().getSharedPreferences("MyAppPrefs", 0)
@@ -51,6 +55,13 @@ class AccountFragment : Fragment() {
         } else {
             Toast.makeText(requireContext(), "User belum login", Toast.LENGTH_SHORT).show()
             // Bisa navigasi ke login screen
+        }
+
+        buttonMyProfile.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main, DetailAccountFragment()) // Ganti dengan .newInstance(...) kalau pakai argument
+                .addToBackStack(null)
+                .commit()
         }
 
         logoutButton.setOnClickListener {

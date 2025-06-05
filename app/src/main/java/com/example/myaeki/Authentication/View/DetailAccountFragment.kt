@@ -1,19 +1,19 @@
-package com.example.myaeki.authentication.View
+package com.example.myaeki.Authentication.View
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.myaeki.R
+import com.example.myaeki.databinding.FragmentDetailAccountBinding
 
-/**
- * A simple [androidx.fragment.app.Fragment] subclass.
- * Use the [DetailAccountFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetailAccountFragment : Fragment() {
-    // Parameters
+
+    // View binding reference
+    private var _binding: FragmentDetailAccountBinding? = null
+    private val binding get() = _binding!!
+
+    // Optional parameters
     private var param1: String? = null
     private var param2: String? = null
 
@@ -28,23 +28,37 @@ class DetailAccountFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_account, container, false)
+    ): View {
+        _binding = FragmentDetailAccountBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Contoh penggunaan ViewBinding:
+        binding.buttonSimpanProfile.setOnClickListener {
+            // Simpan perubahan profil
+        }
+
+        binding.buttonSimpanPassword.setOnClickListener {
+            // Simpan perubahan kata sandi
+        }
+
+        binding.buttonHapusAkun.setOnClickListener {
+            // Hapus akun
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
         private const val ARG_PARAM1 = "param1"
         private const val ARG_PARAM2 = "param2"
 
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailAccountFragment.
-         */
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             DetailAccountFragment().apply {

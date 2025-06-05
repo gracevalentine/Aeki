@@ -124,6 +124,8 @@
             </LinearLayout>
 
             <!-- Section Produk -->
+
+            <!--Section Pengiriman-->
             <LinearLayout
                 android:id="@+id/sectionProduk"
                 android:layout_width="match_parent"
@@ -179,9 +181,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/product_series"
+                                android:textAllCaps="true"
                                 android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textAllCaps="true"/>
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/productDescription1"
@@ -566,7 +568,6 @@
 
             </LinearLayout>
 
-            <!--Section Pengiriman-->
             <LinearLayout
                 android:id="@+id/sectionPengantaran"
                 android:layout_width="match_parent"
@@ -575,7 +576,7 @@
                 android:orientation="vertical"
                 android:padding="15dp">
 
-                <!--            Header Pengiriman-->
+                <!-- Header Pengiriman-->
                 <LinearLayout
                     android:id="@+id/headerPengantaran"
                     android:layout_width="match_parent"

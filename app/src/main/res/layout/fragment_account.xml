@@ -175,8 +175,11 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/buttonToMyProfile"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:src="@drawable/ic_arrow_forward_24" />
             </LinearLayout>
 
