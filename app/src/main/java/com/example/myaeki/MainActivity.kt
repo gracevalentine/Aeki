@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.myaeki.Authentication.View.AccountFragment
 import com.example.myaeki.Authentication.View.SignInFragment
+import com.example.myaeki.Transaction.View.CartFragment
 
 class MainActivity : AppCompatActivity(), SignInFragment.LoginListener {
 

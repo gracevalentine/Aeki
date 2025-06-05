@@ -1,4 +1,4 @@
-package com.example.myaeki
+package com.example.myaeki.Transaction.View
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collectLatest
 import com.example.myaeki.Product.Model.Product
+import com.example.myaeki.R
 
 // Data class for product
 //data class Product(
