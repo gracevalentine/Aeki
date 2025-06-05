@@ -6,12 +6,12 @@ import retrofit2.http.POST
 
 interface AuthService {
     @POST("/users/login")
-    fun login(@Body request: LoginRequest): Call<UserResponse>
+    fun login(@Body request: LoginRequest): Call<LoginResponse>
 
     @POST("/logout")
     fun logout(): Call<LogoutResponse>
 
     @POST("/users/signup")
-    fun signup(@Body request: SignupRequest): Call<UserResponse>
+    fun signup(@Body request: SignupRequest): Call<SignupResponse>
 
 }

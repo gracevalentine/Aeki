@@ -1,6 +1,6 @@
 package com.example.myaeki.Authentication.Model
 
-data class UserResponse(
+data class SignupResponse(
     val message: String,
     val user: User?
 )

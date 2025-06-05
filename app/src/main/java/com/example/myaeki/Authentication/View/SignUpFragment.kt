@@ -17,6 +17,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import com.example.myaeki.Authentication.Model.SignupRequest
 import com.example.myaeki.Authentication.Model.AuthService
+import com.example.myaeki.Authentication.Model.SignupResponse
 
 class SignUpFragment : Fragment() {
 
@@ -110,10 +111,10 @@ class SignUpFragment : Fragment() {
     }
 
     private fun sendSignupRequest(signupRequest: SignupRequest) {
-        ApiClient.authService.signup(signupRequest).enqueue(object : Callback<UserResponse> {
+        ApiClient.authService.signup(signupRequest).enqueue(object : Callback<SignupResponse> {
             override fun onResponse(
-                call: Call<UserResponse>,
-                response: Response<UserResponse>
+                call: Call<SignupResponse>,
+                response: Response<SignupResponse>
             ) {
                 if (response.isSuccessful && response.body() != null) {
                     Toast.makeText(requireContext(), "Akun berhasil dibuat!", Toast.LENGTH_SHORT)
@@ -131,7 +132,7 @@ class SignUpFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+            override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
                 Toast.makeText(requireContext(), "Error: ${t.localizedMessage}", Toast.LENGTH_LONG)
                     .show()
             }

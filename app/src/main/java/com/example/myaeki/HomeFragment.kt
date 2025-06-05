@@ -10,8 +10,9 @@ import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.myaeki.API.ProductResponse
+import com.example.myaeki.Product.Model.ProductResponse
 import com.example.myaeki.API.RetrofitClient
+import com.example.myaeki.Product.View.DetailProductFragment
 
 
 class HomeFragment : Fragment() {

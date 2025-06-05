@@ -10,12 +10,12 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.myaeki.API.ApiClient
-import com.example.myaeki.Authentication.Model.UserResponse
 import com.example.myaeki.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.example.myaeki.Authentication.Model.LoginRequest
+import com.example.myaeki.Authentication.Model.LoginResponse
 
 class SignInFragment : Fragment() {
 
@@ -66,10 +66,10 @@ class SignInFragment : Fragment() {
 
             val loginRequest = LoginRequest(email, password)
 
-            ApiClient.authService.login(loginRequest).enqueue(object : Callback<UserResponse> {
+            ApiClient.authService.login(loginRequest).enqueue(object : Callback<LoginResponse> {
                 override fun onResponse(
-                    call: Call<UserResponse>,
-                    response: Response<UserResponse>
+                    call: Call<LoginResponse>,
+                    response: Response<LoginResponse>
                 ) {
                     if (response.isSuccessful && response.body()?.user != null) {
                         val user = response.body()!!.user!!
@@ -87,7 +87,7 @@ class SignInFragment : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })

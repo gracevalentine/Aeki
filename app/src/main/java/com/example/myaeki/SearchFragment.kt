@@ -8,6 +8,8 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myaeki.Product.Model.Product
+import com.example.myaeki.Product.View.ProductAdapter
 
 class SearchFragment : Fragment() {
 
