@@ -63,7 +63,7 @@ class HomeFragment : Fragment() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
-                    RetrofitClient.instance.searchProducts(query).enqueue(object : retrofit2.Callback<ProductResponse> {
+                    ApiClient.instance.searchProducts(query).enqueue(object : retrofit2.Callback<ProductResponse> {
                         override fun onResponse(
                             call: retrofit2.Call<ProductResponse>,
                             response: retrofit2.Response<ProductResponse>
