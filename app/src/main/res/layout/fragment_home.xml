@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/homeFragmentRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -12,9 +12,9 @@
         android:id="@+id/containerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginTop="24dp"
         android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -30,16 +30,16 @@
             app:srcCompat="@drawable/dekora" />
 
         <Space
-            android:layout_width="8dp"
+            android:layout_width="220dp"
             android:layout_height="match_parent" />
 
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
+        <ImageView
+            android:id="@+id/searchButtoninHome"
+            android:layout_width="44dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="@drawable/searchview_border" />
+            android:contentDescription=""
+            android:src="@drawable/ic_search_24" />
 
         <Space
             android:layout_width="8dp"
@@ -98,38 +98,22 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <Space
-                    android:layout_width="12dp"
-                    android:layout_height="match_parent" />
-
-                <LinearLayout
-                    android:id="@+id/sectionTopUpButton"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/sectionTopUpTitle"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/product_border"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="12dp">
+                    android:text="@string/top_up"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/iconTopUp"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:contentDescription="TopUp Icon"
-                        android:src="@drawable/plus" />
-
-                    <TextView
-                        android:id="@+id/textTopUp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="TopUp"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                <ImageButton
+                    android:id="@+id/topUpButton"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/circle_button_bg"
+                    android:contentDescription=""
+                    android:scaleType="centerInside"
+                    android:src="@drawable/plus" />
             </LinearLayout>
 
             <View

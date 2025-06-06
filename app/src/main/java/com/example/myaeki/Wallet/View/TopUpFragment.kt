@@ -1,8 +1,6 @@
-package com.example.myaeki
+package com.example.myaeki.wallet.view
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.Html.ImageGetter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +8,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.myaeki.MainActivity
+import com.example.myaeki.HomeFragment
+import com.example.myaeki.R
 import com.example.myaeki.databinding.FragmentTopUpBinding
 
 class TopUpFragment : Fragment() {
@@ -23,17 +22,19 @@ class TopUpFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTopUpBinding.inflate(inflater, container, false)
-        val backButton = view?.findViewById<ImageView>(R.id.backButtonTopUp)
-        backButton?.setOnClickListener {
-            parentFragmentManager.popBackStack()
-        }
-        return view
+        return binding.root  // ✅ INI YANG HARUS DI-RETURN
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Akses elemen dari include pakai view.findViewById
+        val backBtn = view.findViewById<ImageView>(R.id.backButtonTopUp)
+        backBtn.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
 
         // Inisialisasi daftar tombol nominal
         nominalButtons = listOf(
@@ -42,21 +43,11 @@ class TopUpFragment : Fragment() {
             binding.btnNominal100000
         )
 
-//        setupBackButton()
         setupNominalButtons()
         setupConfirmButton()
     }
 
-//    private fun setupBackButton() {
-//        binding.backButtonTopUp.setOnClickListener {
-//            val intent = Intent(requireContext(), HomeFragment::class.java)
-//            startActivity(intent)
-//            requireActivity().finish()
-//        }
-//    }
-
-
-        private fun setupNominalButtons() {
+    private fun setupNominalButtons() {
         nominalButtons.forEach { button ->
             button.setOnClickListener {
                 // Reset semua tombol
