@@ -1,9 +1,9 @@
 const database = require('../../Configuration/database');
 
 // Fungsi untuk mencari produk berdasarkan nama
-const searchProduct = (name, callback) => {
+const searchProduct = (productName, callback) => {
   const sql = 'SELECT * FROM products WHERE name LIKE ?';
-  const searchQuery = `%${name}%`;// Menggunakan LIKE untuk pencarian yang lebih fleksibel
+  const searchQuery = `%${productName}%`; // Menggunakan LIKE untuk pencarian yang lebih fleksibel
 
   database.query(sql, [searchQuery], (err, results) => {
     if (err) {

@@ -3,6 +3,7 @@ package com.example.myaeki.API
 
 import com.example.myaeki.Authentication.Model.AuthService
 import com.example.myaeki.Authentication.Model.UserService
+import com.example.myaeki.Product.Model.ProductService
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -39,13 +40,12 @@ object ApiClient {
             .create(UserService::class.java)
     }
 
-    val instance: ApiService by lazy {
-        val retrofit = Retrofit.Builder()
+    val productService: ProductService by lazy {
+        Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
-        retrofit.create(ApiService::class.java)
+            .create(ProductService::class.java)
     }
 }
 

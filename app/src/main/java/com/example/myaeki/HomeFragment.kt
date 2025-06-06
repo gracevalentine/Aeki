@@ -1,6 +1,7 @@
 package com.example.myaeki
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,9 @@ import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.myaeki.API.ApiClient
 import com.example.myaeki.Product.Model.ProductResponse
-import com.example.myaeki.API.RetrofitClient
 import com.example.myaeki.Product.View.DetailProductFragment
-
 
 class HomeFragment : Fragment() {
 
@@ -63,15 +63,15 @@ class HomeFragment : Fragment() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
-                    ApiClient.instance.searchProducts(query).enqueue(object : retrofit2.Callback<ProductResponse> {
+                    ApiClient.productService.searchProducts(query).enqueue(object : retrofit2.Callback<ProductResponse> {
                         override fun onResponse(
                             call: retrofit2.Call<ProductResponse>,
                             response: retrofit2.Response<ProductResponse>
                         ) {
                             if (response.isSuccessful) {
+
                                 val products = response.body()?.products
                                 if (!products.isNullOrEmpty()) {
-                                    // Tampilkan hasil pertama (untuk sementara)
                                     val product = products[0]
                                     productName1.text = product.name
                                     productDescription1.text = product.description
