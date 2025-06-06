@@ -8,8 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myaeki.Product.Model.Product
 import com.example.myaeki.R
+import java.text.NumberFormat
+import java.util.*
 
-class ProductAdapter(private val listProduct: List<Product>) :
+class ProductAdapter(private var listProduct: List<Product>) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -20,26 +22,33 @@ class ProductAdapter(private val listProduct: List<Product>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_product, parent, false)
         return ProductViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-//        val product = listProduct[position]
-//
-//        // Load image pakai Glide
-//        Glide.with(holder.itemView.context)
-//            .load(product.imageUrl) // imageUrl harus URL yang valid ya
-//            .placeholder(R.drawable.oftast) // gambar default kalau gagal
-//            .into(holder.img)
-//
-//        holder.nama.text = product.name
-//        holder.desc.text = product.description ?: "-"
-//
-//        // Format harga pakai Rupiah
-//        val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-//        holder.harga.text = formatter.format(product.price)
+        val product = listProduct[position]
+
+        // Load image - bisa pakai Glide kalau image URL valid
+        // Glide.with(holder.itemView.context)
+        //     .load(product.imageUrl)
+        //     .placeholder(R.drawable.oftast)
+        //     .into(holder.img)
+
+        holder.img.setImageResource(R.drawable.oftast) // Gambar default sementara
+        holder.nama.text = product.name
+        holder.desc.text = product.description ?: "-"
+
+        val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+        holder.harga.text = formatter.format(product.price)
     }
 
     override fun getItemCount(): Int = listProduct.size
+
+    // Digunakan untuk update list produk setelah pencarian
+    fun updateProducts(newList: List<Product>) {
+        listProduct = newList
+        notifyDataSetChanged()
+    }
 }
