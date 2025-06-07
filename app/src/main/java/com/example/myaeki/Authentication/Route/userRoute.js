@@ -7,6 +7,7 @@ router.post('/logout', userController.logoutUser);
 router.post('/signup', userController.signupUser);
 router.get('/profile/:id', userController.getUserProfile);
 router.post('/topup', userController.topUpWallet);
+router.get('/wallet/:id', userController.getWallet);
 
 
 module.exports = router;

@@ -41,7 +41,8 @@ const getUserProfileById = (userId) => {
        u.created_at,
        c.address,
        c.postal_code,
-       c.phone_number
+       c.phone_number,
+       c.wallet       
      FROM users u
      LEFT JOIN customer c ON u.user_id = c.customer_id
      WHERE u.user_id = ?`,
@@ -49,10 +50,15 @@ const getUserProfileById = (userId) => {
   );
 };
 
+
+
 // Cek saldo saat top-up
-const getWalletByUserId = (userId, callback) => {
-  const sql = 'SELECT wallet FROM customer WHERE customer_id = ?';
-  database.query(sql, [userId], callback);
+const getWalletByUserId = (userId) => {
+  // Gunakan database.promise().query() yang return-nya [rows, fields]
+  return database.promise().query(
+    `SELECT wallet FROM customer WHERE customer_id = ?`,
+    [userId]
+  );
 };
 
 // Update saldo wallet saat top-up

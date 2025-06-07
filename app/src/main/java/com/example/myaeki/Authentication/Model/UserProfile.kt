@@ -1,5 +1,3 @@
-package com.example.myaeki.Authentication.Model
-
 data class UserProfile(
     val user_id: Int,
     val first_name: String,
@@ -8,6 +6,6 @@ data class UserProfile(
     val created_at: String,
     val address: String?,
     val postal_code: String?,
-    val phone_number: String?
+    val phone_number: String?,
+    val wallet: Double 
 )
-

@@ -7,4 +7,7 @@ import retrofit2.http.POST
 interface WalletService {
     @POST("/wallet/topup")
     fun topUp(@Body request: TopUpRequest): Call<TopUpResponse>
+
+    @GET("/users/wallet/{id}")
+    fun getWalletByUserId(@Path("id") userId: Int): Call<WalletResponse>
 }

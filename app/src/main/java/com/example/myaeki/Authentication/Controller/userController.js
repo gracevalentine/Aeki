@@ -116,6 +116,28 @@ exports.getUserProfile = async (req, res) => {
   }
 };
 
+exports.getWallet = async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const [rows] = await userRepository.getWalletByUserId(userId); // ✅ rows, bukan [result]
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'Wallet tidak ditemukan.' });
+    }
+
+    res.status(200).json({
+      message: 'Wallet ditemukan.',
+      wallet: rows[0].wallet
+    });
+  } catch (err) {
+    console.error('Error ambil wallet:', err);
+    res.status(500).json({ message: 'Gagal ambil wallet.', error: err.message });
+  }
+};
+
+
+
 // TOP UP WALLET
 exports.topUpWallet = (req, res) => {
   const { user_id, amount } = req.body;
