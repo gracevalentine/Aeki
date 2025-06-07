@@ -97,6 +97,8 @@
             android:paddingEnd="20dp">
 
             <!-- 1. Gambar Produk -->
+
+            <!-- 2. Nama Series Product -->
             <ImageView
                 android:id="@+id/productImage"
                 android:layout_width="match_parent"
@@ -105,7 +107,6 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/piring" />
 
-            <!-- 2. Nama Series Product -->
             <TextView
                 android:id="@+id/productSeries"
                 android:layout_width="match_parent"

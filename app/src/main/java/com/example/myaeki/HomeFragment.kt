@@ -9,7 +9,9 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.myaeki.API.ApiClient
 import com.example.myaeki.Product.View.DetailProductFragment
+import com.example.myaeki.Wallet.Model.WalletResponse
 import com.example.myaeki.wallet.view.TopUpFragment
 import retrofit2.Call
 import retrofit2.Callback
