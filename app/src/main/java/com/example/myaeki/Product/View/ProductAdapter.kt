@@ -14,7 +14,8 @@ import java.util.*
 
 class ProductAdapter(
     private var listProduct: List<Product>,
-    private val onItemClick: (Product) -> Unit
+    private val onItemClick: (Product) -> Unit,
+    private val onAddToCartClick: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -22,6 +23,7 @@ class ProductAdapter(
         val nama: TextView = itemView.findViewById(R.id.productName1)
         val desc: TextView = itemView.findViewById(R.id.productDescription1)
         val harga: TextView = itemView.findViewById(R.id.productPrice1)
+        val cartButton: ImageView = itemView.findViewById(R.id.addToCartButton)
 
         fun bind(product: Product) {
             nama.text = product.name ?: "-"
@@ -33,6 +35,10 @@ class ProductAdapter(
 
             itemView.setOnClickListener {
                 onItemClick(product)
+            }
+
+            cartButton.setOnClickListener {
+                onAddToCartClick(product)
             }
         }
     }

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.SearchView
@@ -27,6 +28,7 @@ class SearchFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchProductInput: SearchView
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,31 +49,34 @@ class SearchFragment : Fragment() {
         recyclerView = view.findViewById(R.id.productRecyclerView)
         searchProductInput = view.findViewById(R.id.searchProductInput)
 
-        adapter = ProductAdapter(emptyList()) { selectedProduct ->
-            val detailFragment = DetailProductFragment()
+        adapter = ProductAdapter(
+            emptyList(),
+            onItemClick = { selectedProduct ->
+                val detailFragment = DetailProductFragment()
+                val bundle = Bundle().apply {
+                    putInt("PRODUCT_ID", selectedProduct.product_id ?: -1)
+                }
+                detailFragment.arguments = bundle
 
-            val bundle = Bundle().apply {
-                putInt("PRODUCT_ID", selectedProduct.product_id ?: -1)
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.main, detailFragment)
+                    .addToBackStack(null)
+                    .commit()
+            },
+            onAddToCartClick = { product ->
+                Toast.makeText(context, "Ditambahkan ke cart: ${product.name}", Toast.LENGTH_SHORT).show()
             }
-            detailFragment.arguments = bundle
-
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.main, detailFragment)
-                .addToBackStack(null)
-                .commit()
-        }
+        )
 
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
 
-
         searchProductInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
-                    ApiClient.productService.searchProducts(query.trim())
                     Log.d("SearchFragment", "Query submitted: $query")
-                    ApiClient.productService.searchProducts(query)
+                    ApiClient.productService.searchProducts(query.trim())
                         .enqueue(object : Callback<ProductResponse> {
                             override fun onResponse(
                                 call: Call<ProductResponse>,
@@ -79,33 +84,24 @@ class SearchFragment : Fragment() {
                             ) {
                                 if (response.isSuccessful) {
                                     val products = response.body()?.products
-
-                                    // Update tetap dilakukan meskipun kosong agar UI kosongin list juga
                                     adapter.updateProducts(products ?: emptyList())
-
                                     if (products.isNullOrEmpty()) {
                                         Toast.makeText(requireContext(), "Produk tidak ditemukan", Toast.LENGTH_SHORT).show()
                                     }
                                 } else {
                                     val errorBodyStr = response.errorBody()?.string()
                                     Log.e("SearchFragment", "Error response: $errorBodyStr")
-
                                     val errorMsg = try {
                                         JSONObject(errorBodyStr ?: "").getString("message")
                                     } catch (e: Exception) {
                                         "Gagal mendapatkan data"
                                     }
-
                                     Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_SHORT).show()
                                 }
                             }
 
                             override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Error: ${t.message}",
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_LONG).show()
                             }
                         })
                 }
@@ -113,7 +109,6 @@ class SearchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                // Optional: bisa tambahin fitur live search di sini
                 return false
             }
         })
