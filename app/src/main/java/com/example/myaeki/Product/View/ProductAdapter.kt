@@ -12,14 +12,29 @@ import com.example.myaeki.R
 import java.text.NumberFormat
 import java.util.*
 
-class ProductAdapter(private var listProduct: List<Product>) :
-    RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter(
+    private var listProduct: List<Product>,
+    private val onItemClick: (Product) -> Unit
+) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val img = itemView.findViewById<ImageView>(R.id.imageProduct1)
-        val nama = itemView.findViewById<TextView>(R.id.productName1)
-        val desc = itemView.findViewById<TextView>(R.id.productDescription1)
-        val harga = itemView.findViewById<TextView>(R.id.productPrice1)
+        val img: ImageView = itemView.findViewById(R.id.imageProduct)
+        val nama: TextView = itemView.findViewById(R.id.productName1)
+        val desc: TextView = itemView.findViewById(R.id.productDescription1)
+        val harga: TextView = itemView.findViewById(R.id.productPrice1)
+
+        fun bind(product: Product) {
+            nama.text = product.name ?: "-"
+            desc.text = product.description ?: "-"
+
+            val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+            formatter.maximumFractionDigits = 0
+            harga.text = formatter.format(product.price ?: 0.0)
+
+            itemView.setOnClickListener {
+                onItemClick(product)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -31,29 +46,13 @@ class ProductAdapter(private var listProduct: List<Product>) :
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         try {
             val product = listProduct[position]
-
-            holder.nama.text = product.name ?: "-"
-            holder.desc.text = product.description ?: "-"
-
-            // 🔥 Format harga ke RpXXX.XXX tanpa desimal
-            val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-            formatter.maximumFractionDigits = 0 // ⬅️ supaya gak ada ",00"
-            val formattedPrice = formatter.format(product.price ?: 0.0)
-
-            holder.harga.text = formattedPrice
-
+            holder.bind(product)
         } catch (e: Exception) {
             Log.e("ProductAdapter", "Error binding product: ${e.message}")
         }
     }
 
     override fun getItemCount(): Int = listProduct.size
-
-    // Digunakan untuk update list produk setelah pencarian
-//    fun updateProducts(newList: List<Product>) {
-//        listProduct = newList.ifEmpty { emptyList() }
-//        notifyDataSetChanged()
-//    }
 
     fun updateProducts(newList: List<Product>) {
         listProduct = newList

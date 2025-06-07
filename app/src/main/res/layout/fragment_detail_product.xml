@@ -144,6 +144,7 @@
                     android:textSize="11sp" />
 
                 <TextView
+                    android:id="@+id/productPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"

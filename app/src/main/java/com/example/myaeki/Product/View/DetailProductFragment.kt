@@ -1,42 +1,82 @@
 package com.example.myaeki.Product.View
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.myaeki.R
 import com.example.myaeki.SearchFragment
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.example.myaeki.API.ApiClient
+import com.example.myaeki.Product.Model.Product
+import com.example.myaeki.Product.Model.ProductDetailResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class DetailProductFragment : Fragment() {
 
     private lateinit var stockArrow: ImageView
+    private var productId: Int = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_detail_product, container, false)
+
         val backButton = view.findViewById<ImageView>(R.id.buttonBack)
         val searchButton = view.findViewById<ImageView>(R.id.buttonSearch)
 
+        val productImage = view.findViewById<ImageView>(R.id.productImage)
+        val productName = view.findViewById<TextView>(R.id.productSeries)
+        val productPrice = view.findViewById<TextView>(R.id.productPrice)
+        val productDescription = view.findViewById<TextView>(R.id.productDescription)
+
         stockArrow = view.findViewById(R.id.stockArrow)
-        stockArrow.setOnClickListener {
-            showStoreBottomSheet()
+
+        productId = arguments?.getInt("PRODUCT_ID") ?: -1
+        Log.d("DetailProductFragment", "Received productId: $productId")
+
+        if (productId != -1) {
+            ApiClient.productService.getProductDetails(productId)
+                .enqueue(object : Callback<ProductDetailResponse> {
+                    override fun onResponse(call: Call<ProductDetailResponse>, response: Response<ProductDetailResponse>) {
+                        if (response.isSuccessful) {
+                            val product = response.body()?.product
+                            if (product != null) {
+                                productName.text = product.name
+                                productPrice.text = " ${product.price.toInt()}"
+                                productDescription.text = product.description
+
+                                Glide.with(requireContext())
+                                    .load(product.image_url)
+                                    .into(productImage)
+                            } else {
+                                Log.w("API_RESPONSE", "Response body is null")
+                            }
+                        } else {
+                            Log.w("API_RESPONSE", "Response not successful: ${response.code()} ${response.message()}")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ProductDetailResponse>, t: Throwable) {
+                        Log.e("API_ERROR", "Failed to fetch product", t)
+                    }
+                })
+        } else {
+            Log.e("DetailProductFragment", "Invalid productId")
         }
 
         backButton.setOnClickListener {
-            // Kembali ke fragment sebelumnya di backstack
             parentFragmentManager.popBackStack()
         }
 
         searchButton.setOnClickListener {
-            // Navigasi ke SearchFragment
             parentFragmentManager.beginTransaction()
                 .replace(R.id.main, SearchFragment())
                 .addToBackStack(null)
@@ -44,31 +84,5 @@ class DetailProductFragment : Fragment() {
         }
 
         return view
-    }
-
-    private fun showStoreBottomSheet() {
-        val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_store_stock, null)
-        val dialog = BottomSheetDialog(requireContext())
-        dialog.setContentView(bottomSheetView)
-        val stockContainer = bottomSheetView.findViewById<LinearLayout>(R.id.stockContainer)
-        val closeBtn = bottomSheetView.findViewById<ImageView>(R.id.btnClose)
-
-        closeBtn.setOnClickListener { dialog.dismiss() }
-
-        // Contoh data dummy, nanti bisa kamu ganti dengan data asli dari database atau ViewModel
-        val storeList = listOf(
-            Pair("Toko A", "Stok: 12"),
-            Pair("Toko B", "Stok: 0"),
-            Pair("Toko C", "Stok: 4")
-        )
-
-        for ((storeName, stockInfo) in storeList) {
-            val itemView = layoutInflater.inflate(R.layout.item_store, stockContainer, false)
-            itemView.findViewById<TextView>(R.id.storeName).text = storeName
-            itemView.findViewById<TextView>(R.id.stockAvailability).text = stockInfo
-            stockContainer.addView(itemView)
-        }
-
-        dialog.show()
     }
 }
