@@ -76,10 +76,22 @@ class TopUpFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            // Sementara pakai userId hardcoded, ganti dengan yang login sesungguhnya nanti
-            val userId = 1
+            // Ambil user_id dari SharedPreferences (harus sudah login sebelumnya)
+            val sharedPref = requireActivity().getSharedPreferences("MyAppPrefs", 0)
+            val userIdStr = sharedPref.getString("USER_ID", null)
 
-            val request = TopUpRequest(userId = userId, amount = selectedAmount)
+            if (userIdStr == null) {
+                Toast.makeText(requireContext(), "User belum login", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val userId = userIdStr.toIntOrNull()
+            if (userId == null) {
+                Toast.makeText(requireContext(), "ID user tidak valid", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val request = TopUpRequest(user_id = userId, amount = selectedAmount)
 
             walletService.topUp(request).enqueue(object : Callback<TopUpResponse> {
                 override fun onResponse(call: Call<TopUpResponse>, response: Response<TopUpResponse>) {
