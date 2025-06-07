@@ -1,5 +1,6 @@
 package com.example.myaeki.Product.View
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,25 +29,30 @@ class ProductAdapter(private var listProduct: List<Product>) :
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        val product = listProduct[position]
+        try {
+            val product = listProduct[position]
 
-        // Load image - bisa pakai Glide kalau image URL valid
-        // Glide.with(holder.itemView.context)
-        //     .load(product.imageUrl)
-        //     .placeholder(R.drawable.oftast)
-        //     .into(holder.img)
+            holder.img.setImageResource(R.drawable.oftast)
+            holder.nama.text = product.name ?: "-"
+            holder.desc.text = product.description ?: "-"
 
-        holder.img.setImageResource(R.drawable.oftast) // Gambar default sementara
-        holder.nama.text = product.name
-        holder.desc.text = product.description ?: "-"
+            val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+            holder.harga.text = formatter.format(product.price ?: 0)
 
-        val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-        holder.harga.text = formatter.format(product.price)
+        } catch (e: Exception) {
+            Log.e("ProductAdapter", "Error binding product: ${e.message}")
+        }
     }
+
 
     override fun getItemCount(): Int = listProduct.size
 
     // Digunakan untuk update list produk setelah pencarian
+//    fun updateProducts(newList: List<Product>) {
+//        listProduct = newList.ifEmpty { emptyList() }
+//        notifyDataSetChanged()
+//    }
+
     fun updateProducts(newList: List<Product>) {
         listProduct = newList
         notifyDataSetChanged()
