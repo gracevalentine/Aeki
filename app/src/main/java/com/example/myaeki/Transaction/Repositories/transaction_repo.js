@@ -38,10 +38,23 @@ const getTransactionById = (transactionId, callback) => {
   database.query(sql, [transactionId], callback);
 };
 
+// Ambil semua item cart by user_id
+const getCartByUserId = (user_id, callback) => {
+  const sql = `
+    SELECT c.cart_id, c.product_id, c.quantity,
+           p.name AS product_name, p.price AS product_price, p.stock_quantity
+    FROM cart c
+    JOIN products p ON c.product_id = p.product_id
+    WHERE c.user_id = ?
+  `;
+  database.query(sql, [user_id], callback);
+};
+
 module.exports = {
   getProductStockById,
   checkCartItem,
   updateCartQuantity,
   insertCartItem,
-  getTransactionById
+  getTransactionById,
+  getCartByUserId
 };

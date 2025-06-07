@@ -93,3 +93,34 @@ exports.getTransactionById = (req, res) => {
     });
   });
 };
+
+exports.getCartByUserId = (req, res) => {
+  const userId = req.params.user_id;
+
+  if (!userId) {
+    return res.status(400).json({ message: 'user_id wajib diisi.' });
+  }
+
+  repo.getCartByUserId(userId, (err, results) => {
+    if (err) {
+      console.error('Error saat ambil cart:', err);
+      return res.status(500).json({ message: 'Terjadi kesalahan server saat mengambil cart.' });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'Cart kosong atau user tidak ditemukan.' });
+    }
+
+    res.status(200).json({
+      message: 'Cart ditemukan.',
+      data: results.map(item => ({
+        cart_id: item.cart_id,
+        product_id: item.product_id,
+        product_name: item.product_name,
+        product_price: item.product_price,
+        quantity: item.quantity,
+        stock_quantity: item.stock_quantity
+      }))
+    });
+  });
+};
