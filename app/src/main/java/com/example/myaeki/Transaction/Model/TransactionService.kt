@@ -10,5 +10,8 @@ interface TransactionService {
 
     @POST("/transaction/transactionCart")
     fun transactionCart(@Body request: TransactionCartRequest): Call<TransactionCartResponse>
+
+    @POST("/transaction/cart")
+    fun addToCart(@Body request: TransactionCartRequest): Call<TransactionCartResponse>
 }
 

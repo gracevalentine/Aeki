@@ -1,11 +1,7 @@
 package com.example.myaeki.Transaction.Model
 
-class TransactionCartRequest(
+data class TransactionCartRequest(
     val user_id: Int,
-    val cart_items: List<CartItem>
-)
-
-class CartItem(
     val product_id: Int,
-    val quantity: Int
+    val quantity: Int = 1
 )

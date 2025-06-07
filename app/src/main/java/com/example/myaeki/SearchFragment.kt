@@ -64,8 +64,47 @@ class SearchFragment : Fragment() {
                     .commit()
             },
             onAddToCartClick = { product ->
-                Toast.makeText(context, "Ditambahkan ke cart: ${product.name}", Toast.LENGTH_SHORT).show()
+                val sharedPref = requireContext().getSharedPreferences("MyAppPrefs", android.content.Context.MODE_PRIVATE)
+                val userIdStr = sharedPref.getString("USER_ID", null)
+                val userId = userIdStr?.toIntOrNull() ?: -1
+
+                if (userId == -1) {
+                    Toast.makeText(requireContext(), "User belum login", Toast.LENGTH_SHORT).show()
+                    return@ProductAdapter
+                }
+
+                val request = com.example.myaeki.Transaction.Model.TransactionCartRequest(
+                    user_id = userId,
+                    product_id = product.product_id,
+                    quantity = 1 // default 1
+                )
+
+                ApiClient.transactionService.addToCart(request).enqueue(object : retrofit2.Callback<com.example.myaeki.Transaction.Model.TransactionCartResponse> {
+                    override fun onResponse(
+                        call: Call<com.example.myaeki.Transaction.Model.TransactionCartResponse>,
+                        response: Response<com.example.myaeki.Transaction.Model.TransactionCartResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val message = response.body()?.message ?: "Berhasil ditambahkan ke cart"
+                            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                        } else {
+                            val errorBody = response.errorBody()?.string()
+                            Log.e("SearchFragment", "Add to cart error body: $errorBody")
+                            val msg = try {
+                                JSONObject(errorBody ?: "").getString("message")
+                            } catch (e: Exception) {
+                                "Gagal menambahkan ke cart"
+                            }
+                            Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<com.example.myaeki.Transaction.Model.TransactionCartResponse>, t: Throwable) {
+                        Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                    }
+                })
             }
+
         )
 
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
