@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser'); // ✅ tambahkan ini
 const userRoute = require('./Authentication/Route/userRoute');
 const productRoute = require('./Product/Route/productRoute');
 const wallet_route = require('./Wallet/Route/wallet_route');
-const wallet_route = require('./Transaction/Route/transaction_route');
+const transaction_route = require('./Transaction/Route/transaction_route');
 
 const app = express();
 const PORT = 3000;
@@ -32,7 +32,7 @@ app.use(session({
 app.use('/users', userRoute);
 app.use('/products', productRoute);
 app.use('/wallet', wallet_route);
-app.use('/transaction', wallet_route);
+app.use('/transaction', transaction_route);
 
 app.get('/', (req, res) => {
   res.send('AEKI backend is running...');
