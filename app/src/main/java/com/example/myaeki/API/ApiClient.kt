@@ -4,6 +4,7 @@ package com.example.myaeki.API
 import com.example.myaeki.Authentication.Model.AuthService
 import com.example.myaeki.Authentication.Model.UserService
 import com.example.myaeki.Product.Model.ProductService
+import com.example.myaeki.Wallet.Model.WalletService
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -47,6 +48,15 @@ object ApiClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ProductService::class.java)
+    }
+
+    val walletService: WalletService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(WalletService::class.java)
     }
 }
 
