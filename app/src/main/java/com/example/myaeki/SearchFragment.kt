@@ -1,6 +1,7 @@
 package com.example.myaeki
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myaeki.API.ApiClient
-import com.example.myaeki.Product.Model.Product
 import com.example.myaeki.Product.Model.ProductResponse
 import com.example.myaeki.Product.View.ProductAdapter
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -52,6 +53,8 @@ class SearchFragment : Fragment() {
         searchProductInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
+                    ApiClient.productService.searchProducts(query.trim())
+                    Log.d("SearchFragment", "Query submitted: $query")
                     ApiClient.productService.searchProducts(query)
                         .enqueue(object : Callback<ProductResponse> {
                             override fun onResponse(
@@ -60,21 +63,24 @@ class SearchFragment : Fragment() {
                             ) {
                                 if (response.isSuccessful) {
                                     val products = response.body()?.products
-                                    if (!products.isNullOrEmpty()) {
-                                        adapter.updateProducts(products)
-                                    } else {
-                                        Toast.makeText(
-                                            requireContext(),
-                                            "Produk tidak ditemukan",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+
+                                    // Update tetap dilakukan meskipun kosong agar UI kosongin list juga
+                                    adapter.updateProducts(products ?: emptyList())
+
+                                    if (products.isNullOrEmpty()) {
+                                        Toast.makeText(requireContext(), "Produk tidak ditemukan", Toast.LENGTH_SHORT).show()
                                     }
                                 } else {
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "Gagal mendapatkan data",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    val errorBodyStr = response.errorBody()?.string()
+                                    Log.e("SearchFragment", "Error response: $errorBodyStr")
+
+                                    val errorMsg = try {
+                                        JSONObject(errorBodyStr ?: "").getString("message")
+                                    } catch (e: Exception) {
+                                        "Gagal mendapatkan data"
+                                    }
+
+                                    Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_SHORT).show()
                                 }
                             }
 

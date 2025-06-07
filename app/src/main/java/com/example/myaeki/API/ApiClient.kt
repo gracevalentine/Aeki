@@ -43,6 +43,7 @@ object ApiClient {
     val productService: ProductService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .client(okHttpClient)  // tambahin ini
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ProductService::class.java)

@@ -78,6 +78,7 @@
         android:background="@drawable/searchview_border"
         android:hint="@string/placeholder_search"
         android:inputType="text"
+        android:imeOptions="actionSearch"
         android:paddingHorizontal="12dp"
         android:textColor="@android:color/black"
         android:textSize="14sp"

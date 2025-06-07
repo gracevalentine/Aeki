@@ -3,13 +3,14 @@ const productRepository = require('../Repositories/productRepository');
 // Fungsi untuk mencari produk
 // Controller
 exports.searchProduct = (req, res) => {
-  const { productName } = req.query;
+console.log("Query received:", req.query);
+  const { name } = req.query;
 
-  if (!productName) {
+  if (!name) {
     return res.status(400).json({ message: 'Nama produk wajib diisi.' });
   }
 
-  productRepository.searchProduct(productName, (err, results) => {
+  productRepository.searchProduct(name, (err, results) => {
     if (err) return res.status(500).json({ message: err });
     if (results.length === 0) return res.status(404).json({ message: 'Produk tidak ditemukan.' });
 

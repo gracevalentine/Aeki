@@ -17,22 +17,13 @@ import kotlinx.coroutines.flow.collectLatest
 import com.example.myaeki.Product.Model.Product
 import com.example.myaeki.R
 
-// Data class for product
-//data class Product(
-//    val id: Int,
-//    val name: String,
-//    val description: String,
-//    val price: Double,
-//    var quantity: Int
-//)
-
-// ViewModel for managing checkout data
+// ViewModel untuk mengelola data checkout
 class CartViewModel : ViewModel() {
     private val _products = MutableStateFlow<List<Product>>(
         listOf(
-            Product(1, "OFTAST", "piring, putih, 25 cm", 9900.0, 1, category = null, imageUrl = null),
-            Product(2, "SAMLA", "kotak penyimpanan bening", 19900.0, 1, category = null, imageUrl = null),
-            Product(3, "REKO", "gelas, putih, kecil", 9900.0, 1, category = null, imageUrl = null)
+            Product(1, "OFTAST", "piring, putih, 25 cm", 9900.0, 1, category = null, image_url = null),
+            Product(2, "SAMLA", "kotak penyimpanan bening", 19900.0, 1, category = null, image_url = null),
+            Product(3, "REKO", "gelas, putih, kecil", 9900.0, 1, category = null, image_url = null)
         )
     )
     val products: StateFlow<List<Product>> = _products
@@ -43,20 +34,20 @@ class CartViewModel : ViewModel() {
     fun updateQuantity(productId: Int, increment: Boolean) {
         viewModelScope.launch {
             val updatedProducts = _products.value.map { product ->
-                if (product.id == productId) {
-                    val newQuantity = if (increment) product.quantity + 1 else (product.quantity - 1).coerceAtLeast(0)
-                    product.copy(quantity = newQuantity)
+                if (product.product_id == productId) {
+                    val newQuantity = if (increment) product.stock_quantity + 1 else (product.stock_quantity - 1).coerceAtLeast(0)
+                    product.copy(stock_quantity = newQuantity)
                 } else {
                     product
                 }
-            }.filter { it.quantity > 0 }
+            }.filter { it.stock_quantity > 0 }
             _products.value = updatedProducts
         }
     }
 
     fun deleteProduct(productId: Int) {
         viewModelScope.launch {
-            _products.value = _products.value.filter { it.id != productId }
+            _products.value = _products.value.filter { it.product_id != productId }
         }
     }
 
@@ -71,15 +62,14 @@ class CartViewModel : ViewModel() {
     }
 
     fun getTotalPrice(): Double {
-        return _products.value.sumOf { it.price * it.quantity } + if (_deliveryMethod.value == "Delivery") 25000.0 else 0.0
+        return _products.value.sumOf { it.price * it.stock_quantity } + if (_deliveryMethod.value == "Delivery") 25000.0 else 0.0
     }
 
     fun getProductCount(): Int {
-        return _products.value.sumOf { it.quantity }
+        return _products.value.sumOf { it.stock_quantity }
     }
 }
 
-// Holder untuk setiap produk di UI
 data class ProductViewHolder(
     val deleteButton: ImageButton,
     val minusButton: ImageButton,
@@ -133,27 +123,25 @@ class CartFragment : Fragment() {
             )
         )
 
-        // Observe product list
         lifecycleScope.launch {
             viewModel.products.collectLatest { products ->
-                countProductText.text = "${products.sumOf { it.quantity }} produk"
+                countProductText.text = "${products.sumOf { it.stock_quantity }} produk"
                 countPriceText.text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
 
                 productViews.forEach { holder ->
-                    val product = products.find { it.id == holder.productId }
-                    holder.quantityText.text = product?.quantity?.toString() ?: "0"
+                    val product = products.find { it.product_id == holder.productId }
+                    holder.quantityText.text = product?.stock_quantity?.toString() ?: "0"
                     holder.deleteButton.setOnClickListener { viewModel.deleteProduct(holder.productId) }
                     holder.minusButton.setOnClickListener { viewModel.updateQuantity(holder.productId, false) }
                     holder.plusButton.setOnClickListener { viewModel.updateQuantity(holder.productId, true) }
                 }
 
-                view.findViewById<TextView>(R.id.productCounter).text = products.sumOf { it.quantity }.toString()
-                view.findViewById<TextView>(R.id.biayaSubTotal).text = "Rp ${String.format("%,.0f", products.sumOf { it.price * it.quantity })}"
+                view.findViewById<TextView>(R.id.productCounter).text = products.sumOf { it.stock_quantity }.toString()
+                view.findViewById<TextView>(R.id.biayaSubTotal).text = "Rp ${String.format("%,.0f", products.sumOf { it.price * it.stock_quantity })}"
                 view.findViewById<TextView>(R.id.totalBiaya).text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
             }
         }
 
-        // Observe delivery method
         lifecycleScope.launch {
             viewModel.deliveryMethod.collectLatest { method ->
                 view.findViewById<TextView>(R.id.biayaPengantaran).text = if (method == "Delivery") "Rp 25.000" else "GRATIS"
@@ -161,7 +149,6 @@ class CartFragment : Fragment() {
             }
         }
 
-        // Button handlers
         deleteAllButton.setOnClickListener {
             viewModel.deleteAllProducts()
             Toast.makeText(context, "Semua produk dihapus", Toast.LENGTH_SHORT).show()
