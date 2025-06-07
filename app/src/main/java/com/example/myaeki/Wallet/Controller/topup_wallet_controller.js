@@ -33,3 +33,25 @@ exports.topUpWallet = (req, res) => {
     });
   });
 };
+
+// Ambil saldo wallet user berdasarkan ID
+exports.getWalletByUserId = (req, res) => {
+  const user_id = req.params.id;
+
+  if (!user_id) {
+    return res.status(400).json({ message: 'User ID tidak valid.' });
+  }
+
+  topup_repo.getWalletByUserId(user_id, (err, results) => {
+    if (err) {
+      return res.status(500).json({ message: 'Gagal mengambil saldo.', error: err });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'User tidak ditemukan.' });
+    }
+
+    const wallet = results[0].wallet || 0;
+    res.status(200).json({ wallet });
+  });
+};

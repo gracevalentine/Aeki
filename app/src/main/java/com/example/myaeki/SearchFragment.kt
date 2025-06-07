@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myaeki.API.ApiClient
 import com.example.myaeki.Product.Model.ProductResponse
+import com.example.myaeki.Product.View.DetailProductFragment
 import com.example.myaeki.Product.View.ProductAdapter
 import org.json.JSONObject
 import retrofit2.Call
@@ -45,10 +47,24 @@ class SearchFragment : Fragment() {
         recyclerView = view.findViewById(R.id.productRecyclerView)
         searchProductInput = view.findViewById(R.id.searchProductInput)
 
-        adapter = ProductAdapter(emptyList())
+        adapter = ProductAdapter(emptyList()) { selectedProduct ->
+            val detailFragment = DetailProductFragment()
+
+            val bundle = Bundle().apply {
+                putInt("PRODUCT_ID", selectedProduct.product_id ?: -1)
+            }
+            detailFragment.arguments = bundle
+
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main, detailFragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
+
 
         searchProductInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

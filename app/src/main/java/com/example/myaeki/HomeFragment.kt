@@ -2,6 +2,7 @@ package com.example.myaeki
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        saldoText = view.findViewById(R.id.saldoText)  // TextView buat saldo wallet
+        saldoText = view.findViewById(R.id.saldoDekoraPay)  // TextView buat saldo wallet
 
         val searchButton = view.findViewById<ImageView>(R.id.searchButtoninHome)
         val topUpButton = view.findViewById<ImageButton>(R.id.topUpButton)
@@ -80,6 +81,8 @@ class HomeFragment : Fragment() {
                             saldoText.text = formatter.format(wallet)
                         } else {
                             saldoText.text = "Rp 0"
+//                            Log.e("HomeFragment", "Response error: ${response.code()}")
+                            Log.d("Retrofit", call.request().url.toString())
                         }
                     }
 
