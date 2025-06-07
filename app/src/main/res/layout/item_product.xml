@@ -53,11 +53,12 @@
                 android:textSize="11sp" />
 
             <TextView
+                android:id="@+id/productPrice1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:fontFamily="@font/mplus1pextrabold"
-                android:text="@string/product_price"
+                android:text=""
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>

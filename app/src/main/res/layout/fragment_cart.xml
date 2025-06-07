@@ -197,7 +197,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="@string/product_price"
+                                android:text="Rp.9000"
                                 android:textColor="#D32F2F"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />

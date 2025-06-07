@@ -72,7 +72,7 @@
     <string name="product_series">Oftast</string>
     <string name="product_description">piring, putih, 25 cm</string>
     <string name="product_currency">Rp. </string>
-    <string name="product_price">%1$d</string>
+<!--    <string name="product_price">%1$,d</string>,-->
     <string name="product_purchase_count">%1$d orang telah membeli produk ini</string>
     <string name="stock_info_title">Stok tersedia %1$d di %2$s</string>
     <string name="icon_desc"></string>

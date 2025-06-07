@@ -53,23 +53,21 @@ class SearchFragment : Fragment() {
         searchProductInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
-                    val searchQuery = query.trim()
-                    Log.d("SearchFragment", "Query submitted: $searchQuery")
-
-                    ApiClient.productService.searchProducts(searchQuery)
+                    ApiClient.productService.searchProducts(query.trim())
+                    Log.d("SearchFragment", "Query submitted: $query")
+                    ApiClient.productService.searchProducts(query)
                         .enqueue(object : Callback<ProductResponse> {
                             override fun onResponse(
                                 call: Call<ProductResponse>,
                                 response: Response<ProductResponse>
                             ) {
                                 if (response.isSuccessful) {
-                                    val products = response.body()?.products ?: emptyList()
-                                    Log.d("SearchFragment", "Produk ditemukan: $products")
+                                    val products = response.body()?.products
 
-                                    // Update UI list produk di recyclerView
-                                    adapter.updateProducts(products)
+                                    // Update tetap dilakukan meskipun kosong agar UI kosongin list juga
+                                    adapter.updateProducts(products ?: emptyList())
 
-                                    if (products.isEmpty()) {
+                                    if (products.isNullOrEmpty()) {
                                         Toast.makeText(requireContext(), "Produk tidak ditemukan", Toast.LENGTH_SHORT).show()
                                     }
                                 } else {
@@ -99,9 +97,9 @@ class SearchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                // Optional: bisa tambahin fitur live search di sini
                 return false
             }
         })
-
     }
 }

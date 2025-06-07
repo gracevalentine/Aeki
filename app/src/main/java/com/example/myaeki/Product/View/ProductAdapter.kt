@@ -32,18 +32,20 @@ class ProductAdapter(private var listProduct: List<Product>) :
         try {
             val product = listProduct[position]
 
-            holder.img.setImageResource(R.drawable.oftast)
             holder.nama.text = product.name ?: "-"
             holder.desc.text = product.description ?: "-"
 
+            // 🔥 Format harga ke RpXXX.XXX tanpa desimal
             val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-            holder.harga.text = formatter.format(product.price ?: 0)
+            formatter.maximumFractionDigits = 0 // ⬅️ supaya gak ada ",00"
+            val formattedPrice = formatter.format(product.price ?: 0.0)
+
+            holder.harga.text = formattedPrice
 
         } catch (e: Exception) {
             Log.e("ProductAdapter", "Error binding product: ${e.message}")
         }
     }
-
 
     override fun getItemCount(): Int = listProduct.size
 
