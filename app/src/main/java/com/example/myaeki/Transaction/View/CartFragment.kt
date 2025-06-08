@@ -97,8 +97,23 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userId = 10 // Sementara hardcoded, bisa ambil dari session nanti
-        viewModel.fetchCart(userId)
+        // Ambil SharedPreferences
+        val sharedPref = requireActivity().getSharedPreferences("MyAppPrefs", 0)
+
+// Ambil userId dari SharedPreferences (gunakan getString karena kamu simpan sebagai string)
+        val userIdString = sharedPref.getString("USER_ID", null)
+
+        if (userIdString != null) {
+            val userId = userIdString.toIntOrNull()
+            if (userId != null) {
+                viewModel.fetchCart(userId)
+            } else {
+                Toast.makeText(requireContext(), "USER_ID tidak valid", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(requireContext(), "User belum login", Toast.LENGTH_SHORT).show()
+        }
+
 
         val countProductText: TextView = view.findViewById(R.id.countProduct)
         val countPriceText: TextView = view.findViewById(R.id.countPrice)

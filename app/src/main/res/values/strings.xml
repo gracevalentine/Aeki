@@ -162,4 +162,11 @@ No. 80–84, Bandung</string>-->
     <string name="nav_bottom_inspo">Inspirasi</string>
     <string name="nav_bottom_cart">Keranjang</string>
     <string name="nav_bottom_account">Akun</string>
+
+    <string name="product_1">LACK Table</string>
+    <string name="product_2">POÄNG Chair</string>
+    <string name="product_3">MALM Bed Frame</string>
+    <string name="product_1_desc">Meja serbaguna dengan desain minimalis, warna puti...</string>
+    <string name="product_2_desc">Kursi santai dengan bantalan empuk dan rangka kayu...</string>
+    <string name="product_3_desc">MRangka tempat tidur kayu dengan desain sederhana.</string>
 </resources>

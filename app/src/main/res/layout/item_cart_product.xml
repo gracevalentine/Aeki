@@ -6,56 +6,135 @@
     android:padding="8dp"
     android:layout_marginBottom="8dp">
 
-    <TextView
-        android:id="@+id/productName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nama Produk"
-        android:textSize="16sp"
-        android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="8dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/productPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Rp 9.000"
-        android:textSize="14sp"
-        android:textColor="#D32F2F"/>
+            <!-- List Product -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginVertical="8dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="end"
-        android:paddingTop="8dp">
+                <ImageView
+                    android:id="@+id/productImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/oftast" />
 
-        <ImageButton
-            android:id="@+id/buttonDelete"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="@drawable/circle_button_bg"
-            android:src="@drawable/trash" />
+                <!-- Detail Product -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-        <ImageButton
-            android:id="@+id/buttonMinus"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/minus" />
+                    <TextView
+                        android:id="@+id/productName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/product_1"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textQuantity"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:gravity="center"
-            android:text="1"
-            android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/productDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/product_1_desc"
+                        android:textSize="12sp" />
 
-        <ImageButton
-            android:id="@+id/buttonPlus"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/plus" />
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/productPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Rp 9.000"
+                        android:textColor="#D32F2F"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Action Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <Space
+                    android:layout_width="130dp"
+                    android:layout_height="match_parent" />
+
+                <ImageButton
+                    android:id="@+id/buttonDelete"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/circle_button_bg"
+                    android:contentDescription="Hapus produk"
+                    android:padding="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/trash" />
+
+                <Space
+                    android:layout_width="12dp"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:background="@drawable/rounded_border"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/buttonMinus"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="Kurangi"
+                        android:padding="10dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/minus" />
+
+                    <TextView
+                        android:id="@+id/textQuantity"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textSize="16sp" />
+
+                    <ImageButton
+                        android:id="@+id/buttonPlus"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="Tambah"
+                        android:padding="10dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/plus" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
 </LinearLayout>
