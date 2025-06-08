@@ -125,69 +125,87 @@ exports.getCartByUserId = (req, res) => {
   });
 };
 
+// exports.checkoutCart = (req, res) => {
+// console.log("==> Checkout controller dipanggil");
+// console.log('Checkout request body:', req.body);
+//   const { user_id, delivery_method } = req.body;
+
+
+//   if (!user_id || !delivery_method) {
+//     return res.status(400).json({ message: 'user_id dan delivery_method wajib diisi.' });
+//   }
+
+//   // Ambil isi cart user
+//   repo.getCartByUserId(user_id, (err, cartItems) => {
+//     if (err) return res.status(500).json({ message: 'Gagal mengambil cart' });
+//     if (cartItems.length === 0) return res.status(400).json({ message: 'Cart kosong' });
+
+//     const subtotal = cartItems.reduce((sum, item) => sum + item.product_price * item.quantity, 0);
+//     const deliveryFee = delivery_method === 'Delivery' ? 25000 : 0;
+//     const total = subtotal + deliveryFee;
+
+//     // Ambil saldo user
+//     repo.getUserWallet(user_id, (err, result) => {
+//       if (err) return res.status(500).json({ message: 'Gagal ambil data wallet' });
+
+//       const currentWallet = result[0].wallet;
+
+//       if (currentWallet < total) {
+//         return res.status(400).json({ message: 'Saldo tidak cukup untuk checkout.' });
+//       }
+
+//       // Lakukan transaksi
+//       repo.createOrder(user_id, total, (err, orderResult) => {
+//         if (err) return res.status(500).json({ message: 'Gagal membuat order.' });
+
+//         const orderId = orderResult.insertId;
+
+//         // Simpan setiap item sebagai transaksi
+//         const tasks = cartItems.map(item => {
+//           return new Promise((resolve, reject) => {
+//             repo.insertTransaction(orderId, item.product_id, item.quantity, item.product_price * item.quantity, (err) => {
+//               if (err) reject(err);
+//               else resolve();
+//             });
+//           });
+//         });
+
+//         // Jalankan semua transaksi
+//         Promise.all(tasks).then(() => {
+//           // Kurangi saldo wallet
+//           repo.updateUserWallet(user_id, currentWallet - total, (err) => {
+//             if (err) return res.status(500).json({ message: 'Gagal update saldo' });
+
+//             // Hapus cart
+//             repo.clearCart(user_id, (err) => {
+//               if (err) return res.status(500).json({ message: 'Gagal hapus cart' });
+
+//               res.status(200).json({ message: 'Checkout berhasil', total_dibayar: total });
+//             });
+//           });
+//         }).catch(err => {
+//           console.error(err);
+//           res.status(500).json({ message: 'Gagal menyimpan transaksi' });
+//         });
+//       });
+//     });
+//   });
+// };
+
 exports.checkoutCart = (req, res) => {
-console.log("==> Checkout controller dipanggil");
-console.log('Checkout request body:', req.body);
-  const { user_id, delivery_method } = req.body;
+  const { user_id, product_id, quantity } = req.body;
 
 
-  if (!user_id || !delivery_method) {
-    return res.status(400).json({ message: 'user_id dan delivery_method wajib diisi.' });
+  if (!user_id || !product_id || !quantity || quantity <= 0 ) {
+    return res.status(400).json({
+      message: 'user_id, product_id, quantity wajib diisi dengan benar.'
+    });
   }
 
-  // Ambil isi cart user
-  repo.getCartByUserId(user_id, (err, cartItems) => {
-    if (err) return res.status(500).json({ message: 'Gagal mengambil cart' });
-    if (cartItems.length === 0) return res.status(400).json({ message: 'Cart kosong' });
-
-    const subtotal = cartItems.reduce((sum, item) => sum + item.product_price * item.quantity, 0);
-    const deliveryFee = delivery_method === 'Delivery' ? 25000 : 0;
-    const total = subtotal + deliveryFee;
-
-    // Ambil saldo user
-    repo.getUserWallet(user_id, (err, result) => {
-      if (err) return res.status(500).json({ message: 'Gagal ambil data wallet' });
-
-      const currentWallet = result[0].wallet;
-
-      if (currentWallet < total) {
-        return res.status(400).json({ message: 'Saldo tidak cukup untuk checkout.' });
-      }
-
-      // Lakukan transaksi
-      repo.createOrder(user_id, total, (err, orderResult) => {
-        if (err) return res.status(500).json({ message: 'Gagal membuat order.' });
-
-        const orderId = orderResult.insertId;
-
-        // Simpan setiap item sebagai transaksi
-        const tasks = cartItems.map(item => {
-          return new Promise((resolve, reject) => {
-            repo.insertTransaction(orderId, item.product_id, item.quantity, item.product_price * item.quantity, (err) => {
-              if (err) reject(err);
-              else resolve();
-            });
-          });
-        });
-
-        // Jalankan semua transaksi
-        Promise.all(tasks).then(() => {
-          // Kurangi saldo wallet
-          repo.updateUserWallet(user_id, currentWallet - total, (err) => {
-            if (err) return res.status(500).json({ message: 'Gagal update saldo' });
-
-            // Hapus cart
-            repo.clearCart(user_id, (err) => {
-              if (err) return res.status(500).json({ message: 'Gagal hapus cart' });
-
-              res.status(200).json({ message: 'Checkout berhasil', total_dibayar: total });
-            });
-          });
-        }).catch(err => {
-          console.error(err);
-          res.status(500).json({ message: 'Gagal menyimpan transaksi' });
-        });
-      });
-    });
+  repo.buyProduct(user_id, product_id, quantity, (err, result) => {
+    if (err) {
+      return res.status(500).json({ message: err });
+    }
+    res.status(200).json(result);
   });
 };

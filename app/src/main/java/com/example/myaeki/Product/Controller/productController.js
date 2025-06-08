@@ -42,19 +42,3 @@ exports.getProductDetail = (req, res) => {
 };
 
 // Fungsi untuk melakukan pembelian produk
-exports.buyProduct = (req, res) => {
-  const { user_id, product_id, quantity, payment_method } = req.body;
-
-  if (!user_id || !product_id || !quantity || quantity <= 0 || !payment_method) {
-    return res.status(400).json({
-      message: 'user_id, product_id, quantity, dan payment_method wajib diisi dengan benar.'
-    });
-  }
-
-  productRepository.buyProduct(user_id, product_id, quantity, payment_method, (err, result) => {
-    if (err) {
-      return res.status(500).json({ message: err });
-    }
-    res.status(200).json(result);
-  });
-};
