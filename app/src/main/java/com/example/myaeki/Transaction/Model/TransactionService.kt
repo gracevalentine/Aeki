@@ -17,6 +17,6 @@ interface TransactionService {
     fun addToCart(@Body request: TransactionCartRequest): Call<TransactionCartResponse>
 
     @GET("/transaction/cart/{userId}")
-    fun getCartByUserId(@Path("userId") userId: Int): Call<List<CartItem>>
+    fun getCartByUserId(@Path("userId") userId: Int): Call<TransactionCartResponse>
 }
 

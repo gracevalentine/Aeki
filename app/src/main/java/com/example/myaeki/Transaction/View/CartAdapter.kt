@@ -5,14 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myaeki.Product.Model.Product
 import com.example.myaeki.R
+import com.example.myaeki.Transaction.Model.CartItem
 
 class CartAdapter(
-    private val products: List<Product>,
-    private val onPlusClick: (Product) -> Unit,
-    private val onMinusClick: (Product) -> Unit,
-    private val onDeleteClick: (Product) -> Unit
+    private val cartItems: List<CartItem>,
+    private val onPlusClick: (CartItem) -> Unit,
+    private val onMinusClick: (CartItem) -> Unit,
+    private val onDeleteClick: (CartItem) -> Unit
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     inner class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,16 +29,16 @@ class CartAdapter(
         return CartViewHolder(view)
     }
 
-    override fun getItemCount() = products.size
+    override fun getItemCount() = cartItems.size
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        val product = products[position]
-        holder.productName.text = product.name
-        holder.productPrice.text = "Rp ${String.format("%,.0f", product.price)}"
-        holder.quantityText.text = product.stock_quantity.toString()
+        val item = cartItems[position]
+        holder.productName.text = item.product_name
+        holder.productPrice.text = "Rp ${String.format("%,.0f", item.product_price)}"
+        holder.quantityText.text = item.quantity.toString()
 
-        holder.plusButton.setOnClickListener { onPlusClick(product) }
-        holder.minusButton.setOnClickListener { onMinusClick(product) }
-        holder.deleteButton.setOnClickListener { onDeleteClick(product) }
+        holder.plusButton.setOnClickListener { onPlusClick(item) }
+        holder.minusButton.setOnClickListener { onMinusClick(item) }
+        holder.deleteButton.setOnClickListener { onDeleteClick(item) }
     }
 }

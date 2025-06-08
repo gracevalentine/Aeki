@@ -16,6 +16,7 @@ import com.example.myaeki.API.ApiClient
 import com.example.myaeki.Product.Model.Product
 import com.example.myaeki.R
 import com.example.myaeki.Transaction.Model.CartItem
+import com.example.myaeki.Transaction.Model.TransactionCartResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -25,60 +26,49 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class CartViewModel : ViewModel() {
-    private val _products = MutableStateFlow<List<Product>>(emptyList())
-    val products: StateFlow<List<Product>> = _products
+    private val _cartItems = MutableStateFlow<List<CartItem>>(emptyList())
+    val cartItems: StateFlow<List<CartItem>> = _cartItems
 
     private val _deliveryMethod = MutableStateFlow<String?>(null)
     val deliveryMethod: StateFlow<String?> = _deliveryMethod
 
     fun fetchCart(userId: Int) {
         ApiClient.transactionService.getCartByUserId(userId)
-            .enqueue(object : Callback<List<CartItem>> {
-                override fun onResponse(call: Call<List<CartItem>>, response: Response<List<CartItem>>) {
+            .enqueue(object : Callback<TransactionCartResponse> {
+                override fun onResponse(call: Call<TransactionCartResponse>, response: Response<TransactionCartResponse>) {
                     if (response.isSuccessful) {
-                        val items = response.body().orEmpty()
-                        val products = items.map {
-                            Product(
-                                product_id = it.product_id,
-                                name = it.product_name,
-                                description = "", // bisa ganti kalau backend kirim
-                                price = it.product_price,
-                                stock_quantity = it.quantity,
-                                category = null,
-                                image_url = null
-                            )
-                        }
-                        _products.value = products
+                        _cartItems.value = response.body()?.data.orEmpty()
                     }
                 }
 
-                override fun onFailure(call: Call<List<CartItem>>, t: Throwable) {
-                    // log error atau toast
+                override fun onFailure(call: Call<TransactionCartResponse>, t: Throwable) {
+                    // Log error
                 }
             })
     }
 
+
     fun updateQuantity(productId: Int, increment: Boolean) {
         viewModelScope.launch {
-            val updatedProducts = _products.value.map { product ->
-                if (product.product_id == productId) {
-                    val newQty = if (increment) product.stock_quantity + 1 else (product.stock_quantity - 1).coerceAtLeast(0)
-                    product.copy(stock_quantity = newQty)
-                } else product
-            }.filter { it.stock_quantity > 0 }
-            _products.value = updatedProducts
+            val updated = _cartItems.value.map {
+                if (it.product_id == productId) {
+                    val newQty = if (increment) it.quantity + 1 else (it.quantity - 1).coerceAtLeast(0)
+                    it.copy(quantity = newQty)
+                } else it
+            }.filter { it.quantity > 0 }
+            _cartItems.value = updated
         }
     }
 
     fun deleteProduct(productId: Int) {
         viewModelScope.launch {
-            _products.value = _products.value.filter { it.product_id != productId }
+            _cartItems.value = _cartItems.value.filter { it.product_id != productId }
         }
     }
 
     fun deleteAllProducts() {
         viewModelScope.launch {
-            _products.value = emptyList()
+            _cartItems.value = emptyList()
         }
     }
 
@@ -87,10 +77,11 @@ class CartViewModel : ViewModel() {
     }
 
     fun getTotalPrice(): Double {
-        return _products.value.sumOf { it.price * it.stock_quantity } +
+        return _cartItems.value.sumOf { it.product_price * it.quantity } +
                 if (_deliveryMethod.value == "Delivery") 25000.0 else 0.0
     }
 }
+
 
 class CartFragment : Fragment() {
 
@@ -106,7 +97,7 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userId = 1 // Sementara hardcoded, bisa ambil dari session nanti
+        val userId = 10 // Sementara hardcoded, bisa ambil dari session nanti
         viewModel.fetchCart(userId)
 
         val countProductText: TextView = view.findViewById(R.id.countProduct)
@@ -124,21 +115,22 @@ class CartFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         lifecycleScope.launch {
-            viewModel.products.collectLatest { products ->
-                countProductText.text = "${products.sumOf { it.stock_quantity }} produk"
+            viewModel.cartItems.collectLatest { items ->
+                countProductText.text = "${items.sumOf { it.quantity }} produk"
                 countPriceText.text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
-                productCounter.text = products.sumOf { it.stock_quantity }.toString()
-                biayaSubTotal.text = "Rp ${String.format("%,.0f", products.sumOf { it.price * it.stock_quantity })}"
+                productCounter.text = items.sumOf { it.quantity }.toString()
+                biayaSubTotal.text = "Rp ${String.format("%,.0f", items.sumOf { it.product_price * it.quantity })}"
                 totalBiaya.text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
 
                 recyclerView.adapter = CartAdapter(
-                    products,
+                    items,
                     onPlusClick = { viewModel.updateQuantity(it.product_id, true) },
                     onMinusClick = { viewModel.updateQuantity(it.product_id, false) },
                     onDeleteClick = { viewModel.deleteProduct(it.product_id) }
                 )
             }
         }
+
 
         lifecycleScope.launch {
             viewModel.deliveryMethod.collectLatest { method ->
@@ -166,7 +158,7 @@ class CartFragment : Fragment() {
             when {
                 viewModel.deliveryMethod.value == null ->
                     Toast.makeText(context, "Pilih metode pengantaran terlebih dahulu", Toast.LENGTH_SHORT).show()
-                viewModel.products.value.isEmpty() ->
+                viewModel.cartItems.value.isEmpty() ->
                     Toast.makeText(context, "Keranjang belanja kosong", Toast.LENGTH_SHORT).show()
                 else -> Toast.makeText(
                     context,

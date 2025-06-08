@@ -269,6 +269,7 @@
                         android:orientation="horizontal"
                         android:padding="5dp">
 
+                        <!--Detail Product-->
                         <ImageView
                             android:id="@+id/imageProduct2"
                             android:layout_width="wrap_content"
@@ -277,7 +278,6 @@
                             android:scaleType="centerInside"
                             android:src="@drawable/samla" />
 
-                        <!--Detail Product-->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
