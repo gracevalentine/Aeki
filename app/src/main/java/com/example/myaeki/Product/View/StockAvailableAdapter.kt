@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myaeki.R
 
-//import com.yourpackage.R
 
 data class StoreItem(val storeName: String, val stockAvailable: Int, val isAvailable: Boolean)
 

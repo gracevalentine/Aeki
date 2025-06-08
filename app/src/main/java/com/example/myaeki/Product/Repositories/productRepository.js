@@ -27,7 +27,5 @@ const getProductDetail = (productId, callback) => {
   });
 };
 
-// Fungsi untuk melakukan pembelian produk
-
 
 module.exports = { searchProduct, getProductDetail };

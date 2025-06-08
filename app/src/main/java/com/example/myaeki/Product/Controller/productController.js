@@ -41,4 +41,3 @@ exports.getProductDetail = (req, res) => {
   });
 };
 
-// Fungsi untuk melakukan pembelian produk

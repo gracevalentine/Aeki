@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity(), SignInFragment.LoginListener {
 
     private lateinit var bottomNavContainer: View
     private lateinit var navHome: LinearLayout
-    private lateinit var navInspiration: LinearLayout
     private lateinit var navCart: LinearLayout
     private lateinit var navAccount: LinearLayout
 
@@ -24,7 +23,6 @@ class MainActivity : AppCompatActivity(), SignInFragment.LoginListener {
         // Menghubungkan ID dari layout
         bottomNavContainer = findViewById(R.id.bottomNavViewInclude)
         navHome = findViewById(R.id.navHome)
-        navInspiration = findViewById(R.id.navInspiration)
         navCart = findViewById(R.id.navCart)
         navAccount = findViewById(R.id.navAccount)
 
@@ -34,7 +32,6 @@ class MainActivity : AppCompatActivity(), SignInFragment.LoginListener {
 
         // Menangani item klik pada bottom navigation
         navHome.setOnClickListener { loadFragment(HomeFragment()) }
-        navInspiration.setOnClickListener { loadFragment(InspoFragment()) }
         navCart.setOnClickListener { loadFragment(CartFragment()) }
         navAccount.setOnClickListener { loadFragment(AccountFragment()) }
     }

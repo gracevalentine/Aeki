@@ -59,7 +59,7 @@ class AccountFragment : Fragment() {
 
         buttonMyProfile.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.main, DetailAccountFragment()) // Ganti dengan .newInstance(...) kalau pakai argument
+                .replace(R.id.main, DetailAccountFragment())
                 .addToBackStack(null)
                 .commit()
         }

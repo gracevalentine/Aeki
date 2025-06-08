@@ -1,3 +1,5 @@
+package com.example.myaeki.Authentication.Model
+
 data class UserProfile(
     val user_id: Int,
     val first_name: String,

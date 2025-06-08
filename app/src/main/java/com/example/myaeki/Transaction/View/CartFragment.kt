@@ -17,10 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myaeki.API.ApiClient
 import com.example.myaeki.Authentication.Model.UserProfileResponse
-import com.example.myaeki.Authentication.Model.UserResponse
-import com.example.myaeki.Product.Model.Product
 import com.example.myaeki.R
-import com.example.myaeki.Transaction.Model.BuyProductRequest
 import com.example.myaeki.Transaction.Model.CartItem
 import com.example.myaeki.Transaction.Model.CheckoutRequest
 import com.example.myaeki.Transaction.Model.CheckoutResponse
