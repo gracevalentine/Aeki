@@ -50,12 +50,47 @@ const getCartByUserId = (user_id, callback) => {
   database.query(sql, [user_id], callback);
 };
 
+// Ambil wallet user
+const getUserWallet = (user_id, callback) => {
+  const sql = 'SELECT c.wallet FROM users u JOIN customer c ON u.user_id = c.customer_id WHERE u.user_id = ?';
+  database.query(sql, [user_id], callback);
+};
+
+// Update wallet user
+const updateUserWallet = (user_id, newWallet, callback) => {
+  const sql = 'UPDATE users SET wallet = ? WHERE user_id = ?';
+  database.query(sql, [newWallet, user_id], callback);
+};
+
+// Simpan order
+const createOrder = (user_id, total_amount, callback) => {
+  const sql = 'INSERT INTO orders (user_id, total_amount, status_order, created_at) VALUES (?, ?, "Pending", NOW())';
+  database.query(sql, [user_id, total_amount], callback);
+};
+
+// Simpan transaksi
+const insertTransaction = (order_id, product_id, quantity, subtotal, callback) => {
+  const sql = 'INSERT INTO `transaction` (order_id, product_id, quantity, subtotal) VALUES (?, ?, ?, ?)';
+  database.query(sql, [order_id, product_id, quantity, subtotal], callback);
+};
+
+// Hapus cart
+const clearCart = (user_id, callback) => {
+  const sql = 'DELETE FROM cart WHERE user_id = ?';
+  database.query(sql, [user_id], callback);
+};
+
 module.exports = {
   getProductStockById,
   checkCartItem,
   updateCartQuantity,
   insertCartItem,
   getTransactionById,
-  getCartByUserId
+  getCartByUserId,
+  getUserWallet,
+  updateUserWallet,
+  createOrder,
+  insertTransaction,
+  clearCart
 };
 

@@ -18,5 +18,9 @@ interface TransactionService {
 
     @GET("/transaction/cart/{userId}")
     fun getCartByUserId(@Path("userId") userId: Int): Call<TransactionCartResponse>
+
+    @POST("/transaction/checkout")
+    fun checkout(@Body request: CheckoutRequest): Call<CheckoutResponse>
+
 }
 

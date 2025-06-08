@@ -1,6 +1,7 @@
 package com.example.myaeki.Transaction.View
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,8 @@ import com.example.myaeki.Authentication.Model.UserResponse
 import com.example.myaeki.Product.Model.Product
 import com.example.myaeki.R
 import com.example.myaeki.Transaction.Model.CartItem
+import com.example.myaeki.Transaction.Model.CheckoutRequest
+import com.example.myaeki.Transaction.Model.CheckoutResponse
 import com.example.myaeki.Transaction.Model.TransactionCartResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -215,17 +218,40 @@ class CartFragment : Fragment() {
         }
 
         checkoutButton.setOnClickListener {
+            val delivery = viewModel.deliveryMethod.value
+            val items = viewModel.cartItems.value
+            val userId = userIdString?.toIntOrNull()
+
             when {
-                viewModel.deliveryMethod.value == null ->
-                    Toast.makeText(context, "Pilih metode pengantaran terlebih dahulu", Toast.LENGTH_SHORT).show()
-                viewModel.cartItems.value.isEmpty() ->
-                    Toast.makeText(context, "Keranjang belanja kosong", Toast.LENGTH_SHORT).show()
-                else -> Toast.makeText(
-                    context,
-                    "Checkout berhasil! Total: Rp ${String.format("%,.0f", viewModel.getTotalPrice())}",
-                    Toast.LENGTH_LONG
-                ).show()
+                delivery == null -> Toast.makeText(context, "Pilih metode pengantaran terlebih dahulu", Toast.LENGTH_SHORT).show()
+                items.isEmpty() -> Toast.makeText(context, "Keranjang belanja kosong", Toast.LENGTH_SHORT).show()
+                userId == null -> Toast.makeText(context, "User tidak valid", Toast.LENGTH_SHORT).show()
+                else -> {
+                    val request = CheckoutRequest(userId, delivery)
+
+                    ApiClient.transactionService.checkout(request)
+                        .enqueue(object : Callback<CheckoutResponse> {
+                            override fun onResponse(call: Call<CheckoutResponse>, response: Response<CheckoutResponse>) {
+                                if (response.isSuccessful) {
+                                    val responseData = response.body()
+                                    Toast.makeText(context, "Checkout sukses: Rp ${responseData?.total_dibayar}", Toast.LENGTH_LONG).show()
+                                    viewModel.deleteAllProducts()
+                                } else {
+                                    val errorBody = response.errorBody()?.string()
+                                    Log.e("Checkout", "Checkout gagal: $errorBody")
+                                    Toast.makeText(context, "Checkout gagal: $errorBody", Toast.LENGTH_LONG).show()
+                                }
+                            }
+
+                            override fun onFailure(call: Call<CheckoutResponse>, t: Throwable) {
+                                Log.e("Checkout", "Network error: ${t.message}")
+                                Toast.makeText(context, "Network error: ${t.message}", Toast.LENGTH_LONG).show()
+                            }
+                        })
+
+                }
             }
         }
+
     }
 }
