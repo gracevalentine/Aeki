@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
@@ -18,6 +20,7 @@ import com.example.myaeki.Authentication.Model.UserProfileResponse
 import com.example.myaeki.Authentication.Model.UserResponse
 import com.example.myaeki.Product.Model.Product
 import com.example.myaeki.R
+import com.example.myaeki.Transaction.Model.BuyProductRequest
 import com.example.myaeki.Transaction.Model.CartItem
 import com.example.myaeki.Transaction.Model.CheckoutRequest
 import com.example.myaeki.Transaction.Model.CheckoutResponse
@@ -127,9 +130,34 @@ class CartViewModel : ViewModel() {
     }
 }
 
+class TransactionViewModel : ViewModel() {
+
+    fun buyProduct(request: CheckoutRequest): LiveData<CheckoutResponse> {
+        val result = MutableLiveData<CheckoutResponse>()
+
+        ApiClient.transactionService.checkout(request).enqueue(object : Callback<CheckoutResponse> {
+            override fun onResponse(call: Call<CheckoutResponse>, response: Response<CheckoutResponse>) {
+                if (response.isSuccessful) {
+                    result.value = response.body() ?: CheckoutResponse(success = false, message = "Tidak ada respons")
+                } else {
+                    result.value = CheckoutResponse(success = false, message = "Gagal: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<CheckoutResponse>, t: Throwable) {
+                result.value = CheckoutResponse(success = false, message = "Error: ${t.message}")
+            }
+        })
+
+        return result
+    }
+}
+
 class CartFragment : Fragment() {
 
     private val viewModel: CartViewModel by viewModels()
+    private val transactionViewModel: TransactionViewModel by viewModels() // Tambahkan ini
+    private lateinit var cartAdapter: CartAdapter // Tambahkan ini
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -176,7 +204,8 @@ class CartFragment : Fragment() {
                 countProductText.text = "${items.sumOf { it.quantity }} produk"
                 countPriceText.text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
                 productCounter.text = items.sumOf { it.quantity }.toString()
-                biayaSubTotal.text = "Rp ${String.format("%,.0f", items.sumOf { it.product_price * it.quantity })}"
+                biayaSubTotal.text =
+                    "Rp ${String.format("%,.0f", items.sumOf { it.product_price * it.quantity })}"
                 totalBiaya.text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
 
                 recyclerView.adapter = CartAdapter(
@@ -218,40 +247,57 @@ class CartFragment : Fragment() {
         }
 
         checkoutButton.setOnClickListener {
-            val delivery = viewModel.deliveryMethod.value
-            val items = viewModel.cartItems.value
-            val userId = userIdString?.toIntOrNull()
+            val cartItems = viewModel.cartItems.value ?: emptyList()
 
-            when {
-                delivery == null -> Toast.makeText(context, "Pilih metode pengantaran terlebih dahulu", Toast.LENGTH_SHORT).show()
-                items.isEmpty() -> Toast.makeText(context, "Keranjang belanja kosong", Toast.LENGTH_SHORT).show()
-                userId == null -> Toast.makeText(context, "User tidak valid", Toast.LENGTH_SHORT).show()
-                else -> {
-                    val request = CheckoutRequest(userId, delivery)
+            if (cartItems.isEmpty()) {
+                Toast.makeText(requireContext(), "Keranjang kosong", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-                    ApiClient.transactionService.checkout(request)
-                        .enqueue(object : Callback<CheckoutResponse> {
-                            override fun onResponse(call: Call<CheckoutResponse>, response: Response<CheckoutResponse>) {
-                                if (response.isSuccessful) {
-                                    val responseData = response.body()
-                                    Toast.makeText(context, "Checkout sukses: Rp ${responseData?.total_dibayar}", Toast.LENGTH_LONG).show()
-                                    viewModel.deleteAllProducts()
-                                } else {
-                                    val errorBody = response.errorBody()?.string()
-                                    Log.e("Checkout", "Checkout gagal: $errorBody")
-                                    Toast.makeText(context, "Checkout gagal: $errorBody", Toast.LENGTH_LONG).show()
-                                }
-                            }
+            val userId = sharedPref.getString("USER_ID", null)?.toIntOrNull() ?: -1
+            if (userId == -1) {
+                Toast.makeText(requireContext(), "User tidak ditemukan", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-                            override fun onFailure(call: Call<CheckoutResponse>, t: Throwable) {
-                                Log.e("Checkout", "Network error: ${t.message}")
-                                Toast.makeText(context, "Network error: ${t.message}", Toast.LENGTH_LONG).show()
-                            }
-                        })
+            var successCount = 0
+            var failCount = 0
 
+            for (item in cartItems) {
+                val request = CheckoutRequest(
+                    user_id = userId,
+                    product_id = item.product_id,
+                    quantity = item.quantity
+                )
+
+                transactionViewModel.buyProduct(request).observe(viewLifecycleOwner) { result ->
+                    if (result.message.contains("berhasil", ignoreCase = true)) {
+                        successCount++
+                    } else {
+                        failCount++
+                    }
+
+                    // Cek apakah semua item sudah diproses
+                    if (successCount + failCount == cartItems.size) {
+                        if (failCount == 0) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Checkout berhasil",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            viewModel.deleteAllProducts() // Kosongkan cart
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                "Beberapa produk gagal dibeli",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
                 }
             }
         }
 
     }
 }
+

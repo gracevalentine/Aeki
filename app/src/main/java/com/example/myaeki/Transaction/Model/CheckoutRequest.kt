@@ -1,6 +1,9 @@
 package com.example.myaeki.Transaction.Model
 
+// Transaction/Model/CheckoutRequest.kt
 data class CheckoutRequest(
     val user_id: Int,
-    val delivery_method: String
+    val product_id: Int,
+    val quantity: Int
 )
+
