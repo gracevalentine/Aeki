@@ -13,6 +13,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myaeki.API.ApiClient
+import com.example.myaeki.Authentication.Model.UserProfileResponse
+import com.example.myaeki.Authentication.Model.UserResponse
 import com.example.myaeki.Product.Model.Product
 import com.example.myaeki.R
 import com.example.myaeki.Transaction.Model.CartItem
@@ -25,29 +27,64 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class CartViewModel : ViewModel() {
+
+    // State untuk data cart
     private val _cartItems = MutableStateFlow<List<CartItem>>(emptyList())
     val cartItems: StateFlow<List<CartItem>> = _cartItems
 
+    // State untuk metode pengantaran
     private val _deliveryMethod = MutableStateFlow<String?>(null)
     val deliveryMethod: StateFlow<String?> = _deliveryMethod
 
+    // State untuk alamat user
+    private val _userAddress = MutableStateFlow<String?>(null)
+    private val _userPostalCode = MutableStateFlow<String?>(null)
+    val userAddress: StateFlow<String?> = _userAddress
+    val userPostalCode: StateFlow<String?> = _userPostalCode
+
+    // Ambil data keranjang berdasarkan userId
     fun fetchCart(userId: Int) {
         ApiClient.transactionService.getCartByUserId(userId)
             .enqueue(object : Callback<TransactionCartResponse> {
-                override fun onResponse(call: Call<TransactionCartResponse>, response: Response<TransactionCartResponse>) {
+                override fun onResponse(
+                    call: Call<TransactionCartResponse>,
+                    response: Response<TransactionCartResponse>
+                ) {
                     if (response.isSuccessful) {
                         _cartItems.value = response.body()?.data.orEmpty()
                     }
                 }
 
                 override fun onFailure(call: Call<TransactionCartResponse>, t: Throwable) {
-                    // Log error
+                    // Bisa log error di sini
                 }
             })
     }
 
+    // Ambil data alamat berdasarkan userId
+    fun fetchUserAddress(userId: Int) {
+        ApiClient.userService.getUserProfile(userId.toString()) // Convert Int ke String saat memanggil API
+            .enqueue(object : Callback<UserProfileResponse> {
+                override fun onResponse(
+                    call: Call<UserProfileResponse>,
+                    response: Response<UserProfileResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        _userAddress.value = response.body()?.user?.address
+                        _userPostalCode.value = response.body()?.user?.postal_code
 
+                    }
+                }
+
+                override fun onFailure(call: Call<UserProfileResponse>, t: Throwable) {
+                    // Log error jika perlu
+                }
+            })
+    }
+
+    // Update kuantitas produk
     fun updateQuantity(productId: Int, increment: Boolean) {
         viewModelScope.launch {
             val updated = _cartItems.value.map {
@@ -60,28 +97,32 @@ class CartViewModel : ViewModel() {
         }
     }
 
+    // Hapus 1 produk dari cart
     fun deleteProduct(productId: Int) {
         viewModelScope.launch {
             _cartItems.value = _cartItems.value.filter { it.product_id != productId }
         }
     }
 
+    // Hapus semua produk dari cart
     fun deleteAllProducts() {
         viewModelScope.launch {
             _cartItems.value = emptyList()
         }
     }
 
+    // Set metode pengantaran
     fun setDeliveryMethod(method: String) {
         _deliveryMethod.value = method
     }
 
+    // Hitung total harga
     fun getTotalPrice(): Double {
-        return _cartItems.value.sumOf { it.product_price * it.quantity } +
-                if (_deliveryMethod.value == "Delivery") 25000.0 else 0.0
+        val subtotal = _cartItems.value.sumOf { it.product_price * it.quantity }
+        val deliveryFee = if (_deliveryMethod.value == "Delivery") 25000.0 else 0.0
+        return subtotal + deliveryFee
     }
 }
-
 
 class CartFragment : Fragment() {
 
@@ -97,23 +138,20 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Ambil SharedPreferences
         val sharedPref = requireActivity().getSharedPreferences("MyAppPrefs", 0)
-
-// Ambil userId dari SharedPreferences (gunakan getString karena kamu simpan sebagai string)
         val userIdString = sharedPref.getString("USER_ID", null)
 
         if (userIdString != null) {
             val userId = userIdString.toIntOrNull()
             if (userId != null) {
                 viewModel.fetchCart(userId)
+                viewModel.fetchUserAddress(userId)
             } else {
                 Toast.makeText(requireContext(), "USER_ID tidak valid", Toast.LENGTH_SHORT).show()
             }
         } else {
             Toast.makeText(requireContext(), "User belum login", Toast.LENGTH_SHORT).show()
         }
-
 
         val countProductText: TextView = view.findViewById(R.id.countProduct)
         val countPriceText: TextView = view.findViewById(R.id.countPrice)
@@ -125,6 +163,7 @@ class CartFragment : Fragment() {
         val biayaSubTotal: TextView = view.findViewById(R.id.biayaSubTotal)
         val biayaPengantaran: TextView = view.findViewById(R.id.biayaPengantaran)
         val totalBiaya: TextView = view.findViewById(R.id.totalBiaya)
+        val alamatText: TextView = view.findViewById(R.id.detailAlamat)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerCart)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -146,11 +185,17 @@ class CartFragment : Fragment() {
             }
         }
 
-
         lifecycleScope.launch {
             viewModel.deliveryMethod.collectLatest { method ->
                 biayaPengantaran.text = if (method == "Delivery") "Rp 25.000" else "GRATIS"
                 totalBiaya.text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
+            }
+        }
+
+        // ✅ Mengamati alamat user
+        lifecycleScope.launch {
+            viewModel.userAddress.collectLatest { address ->
+                alamatText.text = address ?: "Alamat tidak ditemukan"
             }
         }
 

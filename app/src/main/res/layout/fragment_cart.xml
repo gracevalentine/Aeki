@@ -312,13 +312,34 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
+                    <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/detailAlamat"
                         android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:layout_weight="1"
-                        android:text="Jl. KH Wahid Hasyim 27, Kudus | 59313"
+                        android:layout_height="wrap_content"
+                        android:text="Jl. KH Wahid Hasyim 27, Kudus"
                         android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" | "
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/detailKodePos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="59313"
+                        android:textSize="15sp" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
