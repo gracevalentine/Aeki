@@ -67,59 +67,24 @@
                 android:orientation="horizontal"
                 android:padding="8dp">
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:layout_marginBottom="16dp"
+                    tools:listitem="@layout/item_cart_product" />
+                <TextView
+                    android:id="@+id/countProduct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingStart="14dp">
+                    android:text="0 produk" />
 
-                    <TextView
-                        android:id="@+id/countProduct"
-                        android:layout_width="19dp"
-                        android:layout_height="50dp"
-                        android:gravity="center"
-                        android:text="@string/cart_total_product_num"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/titleProduct"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/cart_total_product"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-
-                <Space
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent" />
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/countPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:id="@+id/currency"
-                        android:layout_height="50dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/product_currency"
-                        />
-
-                    <TextView
-                        android:id="@+id/countPrice"
-                        android:layout_width="107dp"
-                        android:layout_height="50dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/cart_total_price"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                    android:text="Rp 0" />
 
             </LinearLayout>
 

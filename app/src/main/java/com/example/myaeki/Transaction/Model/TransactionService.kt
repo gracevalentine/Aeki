@@ -2,7 +2,9 @@ package com.example.myaeki.Transaction.Model
 
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface TransactionService {
     @POST("/transaction/transactionProduct")
@@ -13,5 +15,8 @@ interface TransactionService {
 
     @POST("/transaction/cart")
     fun addToCart(@Body request: TransactionCartRequest): Call<TransactionCartResponse>
+
+    @GET("/transaction/cart/{userId}")
+    fun getCartByUserId(@Path("userId") userId: Int): Call<List<CartItem>>
 }
 
