@@ -97,8 +97,6 @@
             android:paddingEnd="20dp">
 
             <!-- 1. Gambar Produk -->
-
-            <!-- 2. Nama Series Product -->
             <ImageView
                 android:id="@+id/productImage"
                 android:layout_width="match_parent"
@@ -107,6 +105,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/piring" />
 
+            <!-- 2. Nama Series Product -->
             <TextView
                 android:id="@+id/productSeries"
                 android:layout_width="match_parent"
@@ -209,7 +208,7 @@
                     android:layout_height="18dp"
                     android:contentDescription="@string/icon_desc"
                     android:onClick="showStorePopup"
-                    android:src="@drawable/ic_arrow_forward_24" /> <!-- Tombol untuk memicu popup -->
+                    android:src="@drawable/ic_arrow_forward_24" />
             </LinearLayout>
 
             <!-- 8. Garis Abu -->
@@ -442,109 +441,6 @@
             </LinearLayout>
 
             <!-- 13. Garis Abu -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#D3D3D3" />
-
-            <!-- 14. Petunjuk Perawatan -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:layout_marginBottom="28dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/careInstructions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="13dp"
-                    android:fontFamily="@font/mplus1pbold"
-                    android:text="@string/product_care_instructions"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/careInstructionsDetail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mplus1pregular"
-                    android:justificationMode="inter_word"
-                    android:text="@string/product_care_instructions_detail"
-                    android:textColor="@color/black"
-                    android:textSize="11sp" />
-            </LinearLayout>
-
-            <!-- 15. Garis Abu -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#D3D3D3" />
-
-            <!-- 16. Info Tambahan -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:layout_marginBottom="28dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/addsInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="13dp"
-                    android:fontFamily="@font/mplus1pbold"
-                    android:text="@string/product_adds_info"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-
-                <!-- benefit-->
-                <TextView
-                    android:id="@+id/addsInfoBenefit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="13dp"
-                    android:fontFamily="@font/mplus1pbold"
-                    android:text="@string/product_info_benefit"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/addsInfoBenefitDetail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="13dp"
-                    android:fontFamily="@font/mplus1pregular"
-                    android:justificationMode="inter_word"
-                    android:text="@string/product_info_benefit_detail"
-                    android:textColor="@color/black"
-                    android:textSize="11sp" />
-
-                <!-- penting untuk diketahui-->
-                <TextView
-                    android:id="@+id/addsInfoImportantNote"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="13dp"
-                    android:fontFamily="@font/mplus1pbold"
-                    android:text="@string/product_info_important_note"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/addsInfoImportantNoteDetail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mplus1pregular"
-                    android:justificationMode="inter_word"
-                    android:text="@string/product_info_important_note_detail"
-                    android:textColor="@color/black"
-                    android:textSize="11sp" />
-            </LinearLayout>
-
-            <!-- 17. Garis Abu -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

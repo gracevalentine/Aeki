@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <!-- SECTION: NOMINAL -->
         <LinearLayout
             android:id="@+id/sectionNominal"

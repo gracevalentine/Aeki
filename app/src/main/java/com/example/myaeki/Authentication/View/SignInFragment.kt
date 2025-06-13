@@ -74,13 +74,11 @@ class SignInFragment : Fragment() {
                     if (response.isSuccessful && response.body()?.user != null) {
                         val user = response.body()!!.user!!
 
-                        // Simpan user_id ke SharedPreferences
                         val sharedPref = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
                         sharedPref.edit().putString("USER_ID", user.id.toString()).apply()
 
                         Toast.makeText(requireContext(), "Selamat datang, ${user.first_name}", Toast.LENGTH_SHORT).show()
 
-                        // Login sukses, kasih tahu activity lewat callback
                         loginListener?.onLoginSuccess()
                     } else {
                         Toast.makeText(requireContext(), "Login gagal. Cek kembali email/password", Toast.LENGTH_SHORT).show()

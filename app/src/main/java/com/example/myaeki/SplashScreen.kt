@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
             finish()
         }
 
-        videoView.setOnPreparedListener { it.isLooping = false } // Kalau mau looping = true
+        videoView.setOnPreparedListener { it.isLooping = false }
         videoView.start()
     }
 }

@@ -1,7 +1,6 @@
 package com.example.myaeki.Transaction.View
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -153,8 +152,7 @@ class TransactionViewModel : ViewModel() {
 class CartFragment : Fragment() {
 
     private val viewModel: CartViewModel by viewModels()
-    private val transactionViewModel: TransactionViewModel by viewModels() // Tambahkan ini
-    private lateinit var cartAdapter: CartAdapter // Tambahkan ini
+    private val transactionViewModel: TransactionViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -199,7 +197,7 @@ class CartFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.cartItems.collectLatest { items ->
                 countProductText.text = "${items.sumOf { it.quantity }} produk"
-                countPriceText.text = "Rp ${String.format("%,.0f", viewModel.getTotalPrice())}"
+                countPriceText.text = "${String.format("%,.0f", viewModel.getTotalPrice())}"
                 productCounter.text = items.sumOf { it.quantity }.toString()
                 biayaSubTotal.text =
                     "Rp ${String.format("%,.0f", items.sumOf { it.product_price * it.quantity })}"

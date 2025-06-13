@@ -42,10 +42,8 @@ class AccountFragment : Fragment() {
         idTextView = view.findViewById(R.id.idTextView)
         buttonMyProfile = view.findViewById(R.id.buttonToMyProfile)
 
-        // Ambil SharedPreferences
         sharedPref = requireActivity().getSharedPreferences("MyAppPrefs", 0)
 
-        // Ambil userId dari SharedPreferences (harus sudah login sebelumnya)
         val userId = sharedPref.getString("USER_ID", null)
         val allPrefs = sharedPref.all
         Log.d("AccountFragment", "SharedPrefs content: $allPrefs")
@@ -69,10 +67,8 @@ class AccountFragment : Fragment() {
             sharedPref.edit().clear().apply()
             Toast.makeText(requireContext(), "Logout berhasil", Toast.LENGTH_SHORT).show()
 
-            // Sembunyikan BottomNavigationView langsung dari fragment
             activity?.findViewById<View>(R.id.bottomNavViewInclude)?.visibility = View.GONE
 
-            // Navigasi ke SignInFragment
             parentFragmentManager.beginTransaction()
                 .replace(R.id.main, SignInFragment())
                 .addToBackStack(null)

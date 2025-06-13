@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.example.myaeki.R
 import com.example.myaeki.SearchFragment
 import com.example.myaeki.API.ApiClient
-import com.example.myaeki.Product.Model.Product
 import com.example.myaeki.Product.Model.ProductDetailResponse
 import retrofit2.Call
 import retrofit2.Callback

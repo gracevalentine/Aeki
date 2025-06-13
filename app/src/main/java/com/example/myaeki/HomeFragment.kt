@@ -34,13 +34,12 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        saldoText = view.findViewById(R.id.saldoDekoraPay)  // TextView buat saldo wallet
+        saldoText = view.findViewById(R.id.saldoDekoraPay)
 
         val searchButton = view.findViewById<ImageView>(R.id.searchButtoninHome)
         val topUpButton = view.findViewById<ImageButton>(R.id.topUpButton)
 
         val imageProduct1 = view.findViewById<ImageView>(R.id.imageProduct1)
-        val productName1 = view.findViewById<TextView>(R.id.productName1)
 
         imageProduct1.setOnClickListener {
             parentFragmentManager.beginTransaction()
@@ -81,7 +80,6 @@ class HomeFragment : Fragment() {
                             saldoText.text = formatter.format(wallet)
                         } else {
                             saldoText.text = "Rp 0"
-//                            Log.e("HomeFragment", "Response error: ${response.code()}")
                             Log.d("Retrofit", call.request().url.toString())
                         }
                     }
@@ -91,7 +89,6 @@ class HomeFragment : Fragment() {
                     }
                 })
         } ?: run {
-            // Kalau userId null, tampilkan saldo default
             saldoText.text = "Rp 0"
         }
     }

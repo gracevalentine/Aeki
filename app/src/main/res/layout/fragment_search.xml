@@ -101,14 +101,5 @@
         app:layout_constraintTop_toBottomOf="@id/searchProductInput"
         app:spanCount="2"
         tools:listitem="@layout/item_product"/>
-
-    <!-- Bottom Navigation -->
-<!--    <include-->
-<!--        android:id="@+id/bottomNavView"-->
-<!--        layout="@layout/bottom_nav"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent" />-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 

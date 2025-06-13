@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
-const cookieParser = require('cookie-parser'); // ✅ tambahkan ini
+const cookieParser = require('cookie-parser');
 const userRoute = require('./Authentication/Route/userRoute');
 const productRoute = require('./Product/Route/productRoute');
 const wallet_route = require('./Wallet/Route/wallet_route');
@@ -13,7 +13,7 @@ const PORT = 3000;
 // Harus sebelum routes
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser()); // ✅ dan ini, setelah express.json
+app.use(cookieParser());
 
 app.use(cors({
   origin: 'http://10.0.2.2:3000', // emulator IP

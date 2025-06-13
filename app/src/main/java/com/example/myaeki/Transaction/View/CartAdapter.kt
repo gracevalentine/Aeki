@@ -34,7 +34,7 @@ class CartAdapter(
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         val item = cartItems[position]
         holder.productName.text = item.product_name
-        holder.productPrice.text = "Rp ${String.format("%,.0f", item.product_price)}"
+        holder.productPrice.text = "${String.format("%,.0f", item.product_price)}"
         holder.quantityText.text = item.quantity.toString()
 
         holder.plusButton.setOnClickListener { onPlusClick(item) }
